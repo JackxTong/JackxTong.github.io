@@ -112,3 +112,10 @@ friends: [
         href: "https://developer.apple.com/"
     }
 ]
+
+# custom variable for my experience
+
+collections:
+  experience:
+    output: true
+

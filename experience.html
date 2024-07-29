@@ -5,7 +5,7 @@ description: "Thinking will not overcome fear but action will."
 header-img: "img/post-bg-rwd.jpg"
 ---
 
-{% for post in paginator.posts %}
+{% for post in site.experience %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
@@ -28,7 +28,7 @@ header-img: "img/post-bg-rwd.jpg"
 {% endfor %}
 
 <!-- Pager -->
-{% if paginator.total_pages > 1 %}
+<!-- {% if paginator.total_pages > 1 %}
 <ul class="pager">
     {% if paginator.previous_page %}
     <li class="previous">
@@ -41,4 +41,4 @@ header-img: "img/post-bg-rwd.jpg"
     </li>
     {% endif %}
 </ul>
-{% endif %}
+{% endif %} -->
