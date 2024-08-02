@@ -117,10 +117,10 @@ friends: [
 
 # custom variable for my experience
 
-collections:
-  experience:
-    output: true
+# collections:
+#   experience:
+#     output: true
 
-languages: 
-  - en
-  - fr
+# languages: 
+#   - en
+#   - fr
