@@ -120,8 +120,6 @@ friends: [
 collections:
   experience:
     output: true
-paginate: 5
-paginate_path: "/experience/page:num/"
 
 languages: 
   - en
