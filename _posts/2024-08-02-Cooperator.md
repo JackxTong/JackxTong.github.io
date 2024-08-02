@@ -12,6 +12,7 @@ tags:
     - LLM
     - Azure
     - Github
+    - Project
 ---
 
 # Co-Operator: Automated Repository Management

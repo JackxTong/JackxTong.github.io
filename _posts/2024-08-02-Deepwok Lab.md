@@ -8,6 +8,7 @@ catalog: true
 tags:
     - Pytorch
     - Machine Learning
+    - Internship
 ---
 
 ## 前言
