@@ -41,7 +41,7 @@ Given the nature of this work, localization is not a trivial task. At Microsoft,
 
 Fortunately, this task is something large language models (LLMs) excel at compared to machine translation, as they process tokens of text in a context window. LLMs use attention mechanisms to weigh the relevance of each token relative to others in the sequence, allowing them to capture nuanced meanings and contextual dependencies effectively.
 
-![有帮助的截图]({{ site.url }}/assets/cooperator/adv_of_lms.jpg)
+![有帮助的截图]({{ site.url }}/assets/cooperator/adv_of_lms.png)
 
 Our team at Imperial College London has worked with Microsoft to realize the potential of LLMs in the localization process, including noting any interesting behaviors and useful takeaways of what is currently possible with existing technologies provided by Azure and OpenAI.
 
