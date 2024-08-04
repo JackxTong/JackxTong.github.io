@@ -41,7 +41,7 @@ Given the nature of this work, localization is not a trivial task. At Microsoft,
 
 Fortunately, this task is something large language models (LLMs) excel at compared to machine translation, as they process tokens of text in a context window. LLMs use attention mechanisms to weigh the relevance of each token relative to others in the sequence, allowing them to capture nuanced meanings and contextual dependencies effectively.
 
-![有帮助的截图]({{ site.url }}/assets/cooperator/adv_of_lms.png)
+![advantages of lm]({{ site.url }}/assets/cooperator/adv_of_lms.png)
 
 Our team at Imperial College London has worked with Microsoft to realize the potential of LLMs in the localization process, including noting any interesting behaviors and useful takeaways of what is currently possible with existing technologies provided by Azure and OpenAI.
 
@@ -88,6 +88,9 @@ The app opts for a simple configuration:
             /readme_img<hash>.es.png
 ```
 
+![app structure]({{ site.url }}/assets/cooperator/app_structure.png)
+
+
 ## Properly Translating a Markdown File
 
 There are three aspects to translating a markdown file:
@@ -107,6 +110,8 @@ This article covers a deeper definition of low-resource languages, which tend to
 To our surprise, translating code blocks in Markdown came naturally to most LLMs. Since a lot of training data for GPTs consist of a lot of code, the GPT models perform very well on translating comments while preserving the structure of code syntax in code blocks.
 
 ### Image Translation
+
+![app structure]({{ site.url }}/assets/cooperator/image_translation.png)
 
 Markdown files can contain images – in most cases these images are stored locally within the repository. All the images in the repository get translated and their translated copies are stored within the repo, and then after the Markdown files are translated, regex is used to find all image links and replace them with their translated variants.
 
@@ -157,6 +162,8 @@ This worked, but the model would fail to translate longer files properly. So, we
 
 - **Example Image, two cards of text:**
 
+    ![app structure]({{ site.url }}/assets/cooperator/two_cards.png)
+
   - Extracted Text (-> French translation)
     ```
     Section 1: -> Section 1:
@@ -168,8 +175,10 @@ This worked, but the model would fail to translate longer files properly. So, we
     ```
 
   - Expected Output
+    ![app structure]({{ site.url }}/assets/cooperator/expected_output.png)
 
   - Actual Output (using line to line replacement)
+    ![app structure]({{ site.url }}/assets/cooperator/actual_output.png)
 
 Note that the translation of "Apple" could be confused between either the company name in French (also called Apple), or the fruit (pomme). Note that there is also a small grammatical error as 'tech company' has been split up, so the context has lost track of the lines. This is because 'tech company' is reversed in French to be 'société tech' or 'company tech'.
 
