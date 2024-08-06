@@ -35,7 +35,7 @@ It would look like this in French:
 print("Bonjour le monde")
 ```
 
-While this is a simple example, there exist small nuances that require us to pay attention to the context of the example. For example, the Python function \`print\` cannot be translated into another language. The hash (\#), that denotes the comment also has to be left unmodified even during the translation. Paying attention to small details is not something conventional machine translation methods (used in tools such as Google Translate) are developed for.
+While this is a simple example, there exist small nuances that require us to pay attention to the context of the example. For example, the Python function `print` cannot be translated into another language. The hash (\#), that denotes the comment also has to be left unmodified even during the translation. Paying attention to small details is not something conventional machine translation methods (used in tools such as Google Translate) are developed for.
 
 Given the nature of this work, localization is not a trivial task. At Microsoft, there are localization teams hired to produce culturally and professionally accurate versions of documentation, reports, and guides for codebases. Tasks like these can take up to several months to finish.
 
@@ -53,7 +53,7 @@ The app opts for a simple configuration:
 
 - We use English as the universal language (although theoretically, we can have this set to any other language). Any translations made by the app are stored in a separate branch that follows the main branch. Every time main is updated by the user, the app pushes to the translation branch and makes a PR to main.
 - A yml configuration file lists the directory of the documentation folder and the desired languages to be translated into.
-- Any \`README.md\` files in the repository are automatically translated – the translated READMEs are placed in a folder of translations adjacent to the original \`README.md\` file in English.
+- Any `README.md` files in the repository are automatically translated – the translated READMEs are placed in a folder of translations adjacent to the original `README.md` file in English.
 - All markdown files in the documentation directory are automatically translated. The documentation directory also contains translation folders by language. Each translation folder mirrors the structure of the documentation directory in English.
 
 ```plaintext
@@ -128,6 +128,16 @@ This is not a perfect solution, but text replacement works. It was also agreed w
 ## More Detailed Information about the App
 
 - Django backend, React frontend
+
+### Translation Process
+#### Installation
+Users start by installing GitHub app on repositories or organization selected, those repositories will be recorded in SQLite database, and displayed on webpage once you logged in. A robot account will be invited to those repositories. 
+
+#### Initial Translation 
+Once you activate translation on webpage, a new branch "co-op-translator" will be created, then all document files/images will be read and translated by backend server, then uploaded to the new branch. Pull request will then be created from "co-op-translator" to main branch. Note that all changes to repositories will be performed by the robot account, as it’s easier to manage. 
+
+#### Tracking Stage
+Repositories will be further tracked. GitHub app is subscribed to events (main branch update, delete of pull requests), modified or added document in new commit will be translated and updated on the “co-op-translator" branch, old pull request will be replaced by a new one. 
 
 ### Edge Cases and Interesting Behavior
 
