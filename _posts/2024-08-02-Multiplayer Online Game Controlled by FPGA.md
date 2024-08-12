@@ -22,7 +22,11 @@ Our aim was to create an engaging multiplayer game using FPGAs as direction cont
 
 ## Game Description
 
-We developed a co-op real-time multiplayer game on Unity using C#. The game supports two players in real-time on the same laptop and is highly scalable to accommodate more players with additional control nodes. The objective is to fight against a randomly spawned monster. Players must work together to defeat the monster, and the game displays the final score if any player dies. We aim to replicate the console multiplayer gaming experience, similar to playing a multiplayer game on one PlayStation.
+We developed a co-op real-time multiplayer game on Unity using C#. 
+- The game supports two players in real-time on the same laptop, and is highly scalable to accommodate more players with additional control nodes. 
+- The objective is to fight against a randomly spawned monster. Players must work together to defeat the monster, and the game finish if any player dies. 
+
+We aim to replicate the console multiplayer gaming experience, similar to playing a multiplayer game on one PlayStation.
 
 ## Performance Metrics
 
