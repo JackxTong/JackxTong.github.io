@@ -60,7 +60,7 @@ We allocated team members to each stage based on their specialized knowledge to 
 
 ### Using FIR-Filtered Data
 
-\`\`\`c
+```c
 #define N 49 
 float COEFF[N] = {0.0046,0.0074,-0.0024,-0.0071,0.0033,0.0001,-0.0094,0.0040,0.0044,-0.0133,0.0030, 
 0.0114,-0.0179,-0.0011,0.0223,-0.0225,-0.0109,0.0396,-0.0263,-0.0338,0.0752,-0.0289,-0.1204,0.2879, 
@@ -88,7 +88,7 @@ alt_32 firFilter(alt_32 *sample, int n, alt_32 input){
  sample[n-1] = input; 
  return results; 
 }
-\`\`\`
+```
 
 We used FIR-filtered data rather than raw data to reduce errors. MATLAB produces the 49 coefficients. The function takes an array of samples, the number of samples (\`n\`), and a new input value. It returns the filtered output value. Despite adding filters increasing latency, the rest of the system's latency optimizations keep it low, so we retained the filter for its noise-reduction performance.
 
