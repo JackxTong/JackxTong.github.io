@@ -48,7 +48,7 @@ using (BinaryReader brIn = new BinaryReader(msIn)){
 // output: 16777216
 ```
 
-In the above code, byteArray represents an Int32 of 1 in Big Endian format. If a 1 is received over the network, this is the data we get. But BinaryReader defaults to the machine's storage format, which is Little Endian, so the output is the interpretation of 0x 01 00 00 00: 16777216.
+In the above code, `byteArray` represents an Int32 of 1 in Big Endian format. If a 1 is received over the network, this is the data we get. But BinaryReader defaults to the machine's storage format, which is Little Endian, so the output is the interpretation of 0x 01 00 00 00: 16777216.
 
 ```C#
 Int32 a = 1;
@@ -65,7 +65,7 @@ foreach (byte b in byteArray)
 
 // output: 1 0 0 0
 ```
-Similarly, writing numbers to a byte stream using BinaryWriter will produce similar issues. In the above code, the number 1 is written in Little Endian format.
+Similarly, writing numbers to a byte stream using `BinaryWriter` will produce similar issues. In the above code, the number 1 is written in Little Endian format.
 
 ```C#
 long a = 1;
