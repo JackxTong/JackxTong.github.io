@@ -6,6 +6,7 @@ date:       2024-05-02
 author:     JY
 header-img: img/post-bg-rwd.jpg
 catalog: true
+lang: en
 tags:
     - Django
     - Sqlite

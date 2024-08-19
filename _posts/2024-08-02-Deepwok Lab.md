@@ -6,6 +6,7 @@ date:       2023-07-01
 author:     JY
 header-img: img/post-bg-desk.jpg
 catalog: true
+lang: en
 tags:
     - Pytorch
     - Machine Learning

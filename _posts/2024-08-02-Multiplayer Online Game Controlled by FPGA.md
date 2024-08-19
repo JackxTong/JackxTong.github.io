@@ -6,6 +6,7 @@ date:       2023-03-02
 author:     JY
 header-img: img/post-bg-debug.jpg
 catalog: true
+lang: en
 tags:
     - C#
     - Unity
