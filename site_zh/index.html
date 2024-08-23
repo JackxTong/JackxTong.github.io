@@ -1,9 +1,10 @@
 ---
 layout: page
+lang: "zh"
 description: "Thinking will not overcome fear but action will."
 ---
 
-{% for post in paginator.posts %}
+{% for post in paginator.posts %}{% if post.lang == "zh"%}
     {% unless post.tags contains "Project" or post.tags contains "Internship" %}
         <div class="post-preview">
             <a href="{{ post.url | prepend: site.baseurl }}">
@@ -25,7 +26,7 @@ description: "Thinking will not overcome fear but action will."
         </div>
         <hr>
     {% endunless %}
-{% endfor %}
+{% endif %}{% endfor %}
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
