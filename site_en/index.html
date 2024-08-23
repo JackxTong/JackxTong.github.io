@@ -4,7 +4,7 @@ lang: "en"
 description: "Thinking will not overcome fear but action will."
 ---
 
-{% for post in paginator.posts %}{% if post.lang == "en"%}
+{% for post in paginator.posts %}{% if post.lang == 'en'%}
     {% unless post.tags contains "Project" or post.tags contains "Internship" %}
         <div class="post-preview">
             <a href="{{ post.url | prepend: site.baseurl }}">
