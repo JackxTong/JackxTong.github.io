@@ -29,19 +29,20 @@
                         {% endif %}
                     </li>
                     
-                    {% for page in site.pages %}{% if page.title %}
-                    <!-- <li>
-                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-                    </li> -->
-                        {% if page.lang == 'en' and page.url contains '/site_en/' %}
-                        <li>
-                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-                        </li>
-                        {% elsif page.lang == 'zh' and page.url contains '/site_en/' %}
-                        <li>
-                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-                        </li>
-                    {% endif %}{% endif %}{% endfor %}
+                    {% if page.url contains '/site_en/' %}
+                        {% assign current_lang = 'en' %}
+                    {% elsif page.url contains '/site_zh/' %}
+                        {% assign current_lang = 'zh' %}
+                    {% endif %}
+
+                    {% for page in site.pages %}
+                        {% if page.lang == current_lang and page.title %}
+                            <li>
+                                <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
                     <!-- Language Switch Button -->
                     <li>
                         {% if page.url contains '/site_en/' %}

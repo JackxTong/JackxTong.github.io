@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 23 Aug 2024 17:39:28 +0800</pubDate>
-    <lastBuildDate>Fri, 23 Aug 2024 17:39:28 +0800</lastBuildDate>
+    <pubDate>Tue, 27 Aug 2024 10:42:04 +0800</pubDate>
+    <lastBuildDate>Tue, 27 Aug 2024 10:42:04 +0800</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
@@ -481,8 +481,224 @@ company: Apple -&amp;gt; société: Apple
 &lt;p&gt;Take this example, of a Microsoft Guide for Generative AI in English. This is the app’s translated French version. Note that translations do not work with externally linked images.&lt;/p&gt;
 </description>
         <pubDate>Thu, 02 May 2024 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2024/05/02/Cooperator/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024/05/02/Cooperator/</guid>
+        <link>http://localhost:4000/2024/05/02/Cooperator-en/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024/05/02/Cooperator-en/</guid>
+        
+        <category>Django</category>
+        
+        <category>Sqlite</category>
+        
+        <category>LLM</category>
+        
+        <category>Azure</category>
+        
+        <category>Github</category>
+        
+        <category>Project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Cooperator - GitHub大型项目本地化的解决方案</title>
+        <description>&lt;h1 id=&quot;localizing-github-repositories-with-llms&quot;&gt;Localizing GitHub Repositories with LLMs&lt;/h1&gt;
+
+&lt;p&gt;Many established software teams work across multiple locations, basing their work on GitHub repositories. Such teams consist of people across different languages and cultures.&lt;/p&gt;
+
+&lt;p&gt;It is common practice for large repositories to undergo localization procedures, which involves translating documentation files in such a way that preserve the context of work.&lt;/p&gt;
+
+&lt;p&gt;For example, if you had the following Python code in English:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# test the Python print function
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hello World&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It would look like this in French:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# tester la fonction print en Python
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Bonjour le monde&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While this is a simple example, there exist small nuances that require us to pay attention to the context of the example. For example, the Python function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;print&lt;/code&gt; cannot be translated into another language. The hash (#), that denotes the comment also has to be left unmodified even during the translation. Paying attention to small details is not something conventional machine translation methods (used in tools such as Google Translate) are developed for.&lt;/p&gt;
+
+&lt;p&gt;Given the nature of this work, localization is not a trivial task. At Microsoft, there are localization teams hired to produce culturally and professionally accurate versions of documentation, reports, and guides for codebases. Tasks like these can take up to several months to finish.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, this task is something large language models (LLMs) excel at compared to machine translation, as they process tokens of text in a context window. LLMs use attention mechanisms to weigh the relevance of each token relative to others in the sequence, allowing them to capture nuanced meanings and contextual dependencies effectively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/cooperator/adv_of_lms.png&quot; alt=&quot;advantages of lm&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our team at Imperial College London has worked with Microsoft to realize the potential of LLMs in the localization process, including noting any interesting behaviors and useful takeaways of what is currently possible with existing technologies provided by Azure and OpenAI.&lt;/p&gt;
+
+&lt;h2 id=&quot;introducing-a-proof-of-concept-github-app&quot;&gt;Introducing a Proof-of-Concept GitHub App&lt;/h2&gt;
+
+&lt;p&gt;As part of the project, our team built a simple GitHub app based off Django and React, with the former framework utilizing Python to quickly build and iterate an app that would look for a configuration file on an installed GitHub repository, and then Markdown files on the repo.&lt;/p&gt;
+
+&lt;p&gt;The app opts for a simple configuration:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We use English as the universal language (although theoretically, we can have this set to any other language). Any translations made by the app are stored in a separate branch that follows the main branch. Every time main is updated by the user, the app pushes to the translation branch and makes a PR to main.&lt;/li&gt;
+  &lt;li&gt;A yml configuration file lists the directory of the documentation folder and the desired languages to be translated into.&lt;/li&gt;
+  &lt;li&gt;Any &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;README.md&lt;/code&gt; files in the repository are automatically translated – the translated READMEs are placed in a folder of translations adjacent to the original &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file in English.&lt;/li&gt;
+  &lt;li&gt;All markdown files in the documentation directory are automatically translated. The documentation directory also contains translation folders by language. Each translation folder mirrors the structure of the documentation directory in English.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/project_root
+    /docs
+        /installation.md
+        /screenshot.png
+        /api
+            /services.md
+        /usage.md
+        /fr
+            /installation.md
+            /usage.md
+            /api
+                /services.md
+        /es
+            /installation.md
+            /usage.md
+            /api
+                /services.md
+        /translated_images
+            /screenshot&amp;lt;hash&amp;gt;.fr.png
+            /screenshot&amp;lt;hash&amp;gt;.es.png
+    /src
+        /readme.md
+        /readme_img.png
+        /translations
+            /readme.fr.md
+            /readme.es.md
+        /translated_images
+            /readme_img&amp;lt;hash&amp;gt;.fr.png
+            /readme_img&amp;lt;hash&amp;gt;.es.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/cooperator/app_structure.png&quot; alt=&quot;app structure&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;properly-translating-a-markdown-file&quot;&gt;Properly Translating a Markdown File&lt;/h2&gt;
+
+&lt;p&gt;There are three aspects to translating a markdown file:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Getting the text translations correct&lt;/li&gt;
+  &lt;li&gt;Getting the code block translations precise&lt;/li&gt;
+  &lt;li&gt;Translating the images in the Markdown file.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;text-translation&quot;&gt;Text Translation&lt;/h3&gt;
+
+&lt;p&gt;This was a relatively straightforward task requiring minimal prompting – our tests with GPT models were generally very accurate (even with RTL languages like Arabic). At the time of testing, GPT-4o and GPT-4 were accurate most of the time for high-resource languages and performed moderately on low-resource languages. GPT-3.5 performed adequately for common high-resource languages but struggled with low-resource languages.&lt;/p&gt;
+
+&lt;p&gt;This article covers a deeper definition of low-resource languages, which tend to be less commonly spoken in the world. Naturally, there is a lack of training data in such low-resource languages used to train language models, which leads to poorer performance in tasks that involve low-resource languages compared to completing tasks in high-resource languages. This behavior is observed in many leading LLMs today, such as from Claude, Llama, Mistral, and GPT. There exist initiatives such as Cohere for AI that try to solve the low-resource language problem with dedicated multilingual models such as Aya, but they are out of the scope of this article.&lt;/p&gt;
+
+&lt;h3 id=&quot;code-block-translation&quot;&gt;Code Block Translation&lt;/h3&gt;
+
+&lt;p&gt;To our surprise, translating code blocks in Markdown came naturally to most LLMs. Since a lot of training data for GPTs consist of a lot of code, the GPT models perform very well on translating comments while preserving the structure of code syntax in code blocks.&lt;/p&gt;
+
+&lt;h3 id=&quot;image-translation&quot;&gt;Image Translation&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/cooperator/image_translation.png&quot; alt=&quot;app structure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Markdown files can contain images – in most cases these images are stored locally within the repository. All the images in the repository get translated and their translated copies are stored within the repo, and then after the Markdown files are translated, regex is used to find all image links and replace them with their translated variants.&lt;/p&gt;
+
+&lt;p&gt;Current state of the art diffusion cannot be reliably prompted to generate translated versions of images due to their probabilistic nature – they are good at generating new images from scratch but cannot imitate the structure of previous images.&lt;/p&gt;
+
+&lt;p&gt;Generating new images would also be computationally expensive, so we developed a novel way of using a mix of OCR services and GPT models to translate images:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Use Azure’s Image Analysis API to detect text lines and their bounding boxes&lt;/li&gt;
+  &lt;li&gt;Feed the detected text lines into GPT to be translated&lt;/li&gt;
+  &lt;li&gt;Replace each text line with translated variant&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This is not a perfect solution, but text replacement works. It was also agreed with our supervisor that overlaying text would be more legally feasible because there was no generation of new images of similar likeness, which carries copyright implications.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-detailed-information-about-the-app&quot;&gt;More Detailed Information about the App&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Django backend, React frontend&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;translation-process&quot;&gt;Translation Process&lt;/h3&gt;
+&lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
+&lt;p&gt;Users start by installing GitHub app on repositories or organization selected, those repositories will be recorded in SQLite database, and displayed on webpage once you logged in. A robot account will be invited to those repositories.&lt;/p&gt;
+
+&lt;h4 id=&quot;initial-translation&quot;&gt;Initial Translation&lt;/h4&gt;
+&lt;p&gt;Once you activate translation on webpage, a new branch “co-op-translator” will be created, then all document files/images will be read and translated by backend server, then uploaded to the new branch. Pull request will then be created from “co-op-translator” to main branch. Note that all changes to repositories will be performed by the robot account, as it’s easier to manage.&lt;/p&gt;
+
+&lt;h4 id=&quot;tracking-stage&quot;&gt;Tracking Stage&lt;/h4&gt;
+&lt;p&gt;Repositories will be further tracked. GitHub app is subscribed to events (main branch update, delete of pull requests), modified or added document in new commit will be translated and updated on the “co-op-translator” branch, old pull request will be replaced by a new one.&lt;/p&gt;
+
+&lt;h3 id=&quot;edge-cases-and-interesting-behavior&quot;&gt;Edge Cases and Interesting Behavior&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Fixed:&lt;/strong&gt; The GPT model would hallucinate translated short 1-liner markdown files:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;INPUT:&lt;/strong&gt;
+        &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gh&quot;&gt;# Example Hello World in Markdown&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;OUTPUT (translated into Spanish):&lt;/strong&gt;
+        &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gh&quot;&gt;# Ejemplo de &quot;Hello World&quot; en Markdown&lt;/span&gt;
+    
+Este es un archivo &lt;span class=&quot;se&quot;&gt;\`&lt;/span&gt;README.md&lt;span class=&quot;se&quot;&gt;\`&lt;/span&gt; simple para demostrar el formato de Markdown en GitHub.
+    
+&lt;span class=&quot;gu&quot;&gt;## Características&lt;/span&gt;
+    
+Este documento incluye:
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; Etiquetas de &lt;span class=&quot;gs&quot;&gt;**encabezado**&lt;/span&gt; (&lt;span class=&quot;se&quot;&gt;\`&lt;/span&gt;#&lt;span class=&quot;se&quot;&gt;\`&lt;/span&gt;)
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;gs&quot;&gt;**Bloque de código**&lt;/span&gt; para resaltado de sintaxis
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; Formato en &lt;span class=&quot;gs&quot;&gt;**negrita**&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We tried to prompt the model with the prompt:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;“NEVER ADD ANY EXTRA CONTENT OUTSIDE THE TRANSLATION. TRANSLATE ONLY WHAT IS GIVEN TO YOU. MAINTAIN MARKDOWN FORMAT”
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This worked, but the model would fail to translate longer files properly. So, we have a dynamic prompt – for files with less than 2 lines, we use the prompt for shorter files, and for files with more than 2 lines, we use the original prompt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Issues in Image Context:&lt;/strong&gt; Sometimes due to the way image text is extracted, they are parsed line by line in order of appearance from left to right, then top to bottom. However, this order might not reflect the structure of objects in the text, and sometimes context can be confusing to the model as it has no spatial awareness of the text.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Example Image, two cards of text:&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/cooperator/two_cards.png&quot; alt=&quot;app structure&quot; /&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Extracted Text (-&amp;gt; French translation)
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Section 1: -&amp;gt; Section 1:
+Section 2: -&amp;gt; Section 2:
+My favourite tech -&amp;gt; Ma technologie préférée
+My favourite fruit -&amp;gt; Mon fruit préféré:
+company: Apple -&amp;gt; société: Apple
+: Apple -&amp;gt; : Apple? Pomme?
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Expected Output
+&lt;img src=&quot;http://localhost:4000/assets/cooperator/expected_output.png&quot; alt=&quot;app structure&quot; /&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Actual Output (using line to line replacement)
+&lt;img src=&quot;http://localhost:4000/assets/cooperator/actual_output.png&quot; alt=&quot;app structure&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that the translation of “Apple” could be confused between either the company name in French (also called Apple), or the fruit (pomme). Note that there is also a small grammatical error as ‘tech company’ has been split up, so the context has lost track of the lines. This is because ‘tech company’ is reversed in French to be ‘société tech’ or ‘company tech’.&lt;/p&gt;
+
+&lt;h2 id=&quot;examples&quot;&gt;Examples&lt;/h2&gt;
+
+&lt;p&gt;Take this example, of a Microsoft Guide for Generative AI in English. This is the app’s translated French version. Note that translations do not work with externally linked images.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 02 May 2024 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2024/05/02/Cooperator-cn/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024/05/02/Cooperator-cn/</guid>
         
         <category>Django</category>
         
