@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Machine Learning Internship
-subtitle:   UROP at Deepwok Lab Imperial College
+title:      机器学习科研
+subtitle:   帝国理工 Deepwok Lab UROP科研项目
 date:       2023-07-01
 author:     JY
 header-img: img/post-bg-desk.jpg

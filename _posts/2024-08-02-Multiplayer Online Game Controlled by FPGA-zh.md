@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Multiplayer Online Game Controlled by FPGA
-subtitle:   2023 School Project
+title:      FPGA控制的多人在线游戏
+subtitle:   2023 校内项目
 date:       2023-03-02
 author:     JY
 header-img: img/post-bg-debug.jpg
