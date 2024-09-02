@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      游戏架构：ECS
-subtitle:   ECS的介绍和解读
+title:      Game Framework：ECS
+subtitle:   Introduction and Understanding of ECS Framework
 date:       2024-08-01
 author:     JY
 header-img: img/post-bg-ios10.jpg
