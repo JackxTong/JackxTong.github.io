@@ -6,7 +6,7 @@ description: "Thinking will not overcome fear but action will."
 header-img: "img/post-bg-rwd.jpg"
 ---
 
-{% for post in site.posts %}{% if post.lang == 'en' %}
+{% for post in site.posts %}{% if post.lang == 'zh' %}
     {% if post.tags contains "Project" or post.tags contains "Internship" %}
         <div class="post-preview">
             <a href="{{ post.url | prepend: site.baseurl }}">
