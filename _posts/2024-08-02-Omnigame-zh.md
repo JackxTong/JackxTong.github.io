@@ -6,7 +6,7 @@ date:       2024-07-02
 author:     JY
 header-img: img/post-bg-cook.jpg
 catalog: true
-lang: en
+lang: zh
 tags:
     - C#
     - Unity
