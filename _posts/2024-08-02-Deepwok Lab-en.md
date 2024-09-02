@@ -13,7 +13,6 @@ tags:
     - Internship
 ---
 
-## 前言
 
 ### Paper Published
 The research paper is published on DATE. You can view the paper [here](https://arxiv.org/abs/2406.03088).

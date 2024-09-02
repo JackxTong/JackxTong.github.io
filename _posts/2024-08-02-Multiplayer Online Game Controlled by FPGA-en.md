@@ -95,7 +95,7 @@ We used FIR-filtered data rather than raw data to reduce errors. MATLAB produces
 
 ### Implementing the Seven-Segment Display
 
-\`\`\`c
+```c
 while(loop){ 
     printf("<--> Please Type Your Username (6 bits maximum) and Press Enter: <-->\n"); 
 
@@ -127,7 +127,7 @@ while(loop){
     IOWR_ALTERA_AVALON_PIO_DATA(HEX2_BASE, getBin(text[3])); 
     IOWR_ALTERA_AVALON_PIO_DATA(HEX1_BASE, getBin(text[4])); 
     IOWR_ALTERA_AVALON_PIO_DATA(HEX0_BASE, getBin(text[5]));
-\`\`\`
+```
 
 We designed a seven-segment display that can show both characters and numbers. It is used in two parts of the game:
 
@@ -136,7 +136,7 @@ We designed a seven-segment display that can show both characters and numbers. I
 
 ### Implementing the Button
 
-\`\`\`c
+```c
 button = IORD_ALTERA_AVALON_PIO_DATA(BUTTON_BASE); 
 if(button == 0b10){//press key0 to stop 
  char stop='a'; 
@@ -153,7 +153,7 @@ if(button == 0b10){//press key0 to stop
     y_dir = 'a'; 
     alt_printf("%c%c\n", x_dir, y_dir); 
 }
-\`\`\`
+```
 
 Pressing key 0 stops the game and displays the score on the screen.
 
@@ -191,7 +191,7 @@ Our game is 2D, and the attack is automatic, so we only need to transmit players
 
 ##### Connection
 
-\`\`\`python
+```python
 def init():  # connect and remember three clients 
     print("initializing, please connect player1") 
     msg1, add1 = server_socket.recvfrom(2048) 
@@ -218,13 +218,13 @@ def connect():  # refuse and retry the connection when one player appears multip
     return add1, add2, add3 
 
 add1, add2, add3 = connect()
-\`\`\`
+```
 
 This part of the code does the connection. Since we can’t know the public IP of clients, the server receives one message from each one of them and remembers the IP. If one IP appears multiple times, the server will refuse and retry the connection.
 
 ##### Transmitting
 
-\`\`\`python
+```python
 while True: 
     #cadd below is the client process address 
     cmsg, cadd = server_socket.recvfrom(2048) 
@@ -242,7 +242,7 @@ while True:
         cmsg = 'C2:' + cmsg 
         print("C2:" + cmsg) 
         server_socket.sendto(cmsg.encode(), add3)
-\`\`\`
+```
 
 ### Database
 
@@ -266,19 +266,19 @@ Latency consists of software and hardware parts.
 
 **Software Part:**
 
-\`\`\`text
+```text
 Protocol/delay  Test 1    Test 2    Test 3    Test 4    Test 5    Average
 UDP             165ms     343.2ms   263ms     302.3ms   187.2ms   252.14ms
-\`\`\`
+```
 
 **Hardware Part:**
 
-\`\`\`text
+```text
 Running 50 times:
 
 Average  Max       Min
 0.62 ms  250.23 ms 0.53 ms
-\`\`\`
+```
 
 ### Unity Game Development
 
@@ -290,5 +290,6 @@ Testing flow involved unit tests for each component and iterative improvements w
 
 To view the final system deliverable and demonstration, please refer to the video we have submitted with this coursework. It showcases live gameplay, along with commentary on the implementation. Group14
 
-[http://host.py/](http://host.py/)
-[https://imperiallondon-my.sharepoint.com/:v:/g/personal/bz1521_ic_ac_uk/EQWuP7PvxvNBj7r5vfuSiUABnPlbUIslF7B5U7uDMGvb-w](https://imperiallondon-my.sharepoint.com/:v:/g/personal/bz1521_ic_ac_uk/EQWuP7PvxvNBj7r5vfuSiUABnPlbUIslF7B5U7uDMGvb-w)
+[related code](http://host.py/)
+
+[recorded demo](https://imperiallondon-my.sharepoint.com/:v:/g/personal/bz1521_ic_ac_uk/EQWuP7PvxvNBj7r5vfuSiUABnPlbUIslF7B5U7uDMGvb-w)
