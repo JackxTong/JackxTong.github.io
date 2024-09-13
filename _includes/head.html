@@ -53,3 +53,7 @@
     <!-- ga & ba script hoook -->
     <script></script>
 </head>
+
+{% if jekyll.environment == 'production' %}
+{% include google-analytics.html %}
+{% endif %}
