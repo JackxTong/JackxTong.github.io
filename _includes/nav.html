@@ -49,11 +49,11 @@
                         
                         {% if page.url contains '/site_en/' %}
                         <a href="{{ site.baseurl }}/site_zh/">
-                            English | <span style="font-weight: bold; font-size: larger;">中文</span> 
+                            <span style="font-weight: bold; font-size: larger;">English</span> | 中文
                         </a>
                         {% elsif page.url contains '/site_zh/' %}
                         <a href="{{ site.baseurl }}/site_en/">
-                            <span style="font-weight: bold; font-size: larger;">English</span> | 中文
+                            English | <span style="font-weight: bold; font-size: larger;">中文</span>
                         </a>
                         {% endif %}
                     </li>
