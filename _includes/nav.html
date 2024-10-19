@@ -16,14 +16,47 @@
         <div id="huxblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    <!-- <li>
                         <a href="{{ site.baseurl }}/">Home</a>
-                    </li>
-                    {% for page in site.pages %}{% if page.title %}
+                    </li> -->
                     <li>
-                        <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                        {% if page.url contains '/site_en/' %}
+                        <a href="{{ site.baseurl }}/site_en/">Home</a>
+                        {% elsif page.url contains '/site_zh/' %}
+                        <a href="{{ site.baseurl }}/site_zh/">Home</a>
+                        {% else %}
+                        <a href="/">Home</a>
+                        {% endif %}
                     </li>
-                    {% endif %}{% endfor %}
+                    
+                    {% if page.url contains '/site_en/' %}
+                        {% assign current_lang = 'en' %}
+                    {% elsif page.url contains '/site_zh/' %}
+                        {% assign current_lang = 'zh' %}
+                    {% endif %}
+
+                    {% for page in site.pages %}
+                        {% if page.lang == current_lang and page.title %}
+                            <li>
+                                <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- Language Switch Button -->
+                    <li>
+
+                        
+                        {% if page.url contains '/site_en/' %}
+                        <a href="{{ site.baseurl }}/site_zh/">
+                            <span style="font-weight: bold; font-size: larger;">English</span> | 中文
+                        </a>
+                        {% elsif page.url contains '/site_zh/' %}
+                        <a href="{{ site.baseurl }}/site_en/">
+                            English | <span style="font-weight: bold; font-size: larger;">中文</span>
+                        </a>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
         </div>
