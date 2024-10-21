@@ -1,10 +1,10 @@
 # Site settings
-title: JY Blog
-SEOTitle: Johnny的博客 | JY Blog
+title: TX Blog
+SEOTitle: Tong Xiao
 header-img: img/post-bg-desk.jpg
 email: johnnywu944@gmail.com
 description: "Every failure is leading towards success."
-keyword: "JY Blog, Johnny的博客, iOS, Apple, iPhone"
+# keyword: "JY Blog, iOS, Apple, iPhone"
 url: "https://jackxtong.github.io/"          
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/JackxTong/JackxTong.github.io.git"
