@@ -11,8 +11,7 @@ github_repo: "https://github.com/JackxTong/JackxTong.github.io.git"
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you going to be!"
-# sidebar-avatar: /img/avator_cat.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
-sidebar-avatar: /img/imperial.png
+sidebar-avatar: /img/profile.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings
