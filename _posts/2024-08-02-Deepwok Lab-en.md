@@ -2,8 +2,8 @@
 layout:     post
 title:      Machine Learning Internship
 subtitle:   UROP at Deepwok Lab Imperial College
-date:       2023-07-01
-author:     JY
+date:       2024-09-01
+author:     TX
 header-img: img/post-bg-desk.jpg
 catalog: true
 lang: en
@@ -15,9 +15,10 @@ tags:
 
 
 ### Project Overview
-Deep Neural Networks (DNNs) achieve high performance and energy efficiency when deployed on customized hardware accelerators. Dataflow architectures are particularly effective due to their layer-pipelined structure and scalability.
+DNA language models apply techniques from natural language processing (NLP) to model biological sequences, treating DNA as a "language" to capture patterns, structures, and functional elements in genomic data. These models aim to understand and predict biological phenomena by encoding DNA sequences in a format that machine learning models can use.
 
-Current methods to exploit weight and activation sparsity often overlook dataflow architectures, missing opportunities for optimization. We propose Hardware-Aware Sparsity Search (HASS), a novel approach for exploiting sparsity in dataflow accelerators through software and hardware co-optimization. HASS systematically finds efficient sparsity solutions, achieving significant improvements over existing designs.
+Tokenization Methods: In DNA language models, tokenization is the process of breaking down DNA sequences into manageable units, or "tokens," which represent the genetic information. State-of-the-art DNA models like Hyena used a mere character-level naive tokenizer, simply translating 'A', 'C', 'G', 'T' to fixed integers. We were experimenting the adoptation of the 
+Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine frequently occurring character pairs into single tokens iteratively, creating a hierarchy of tokens that balances between single characters and multi-character sequences.
 
 ### Contribution
 
