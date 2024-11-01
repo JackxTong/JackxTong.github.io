@@ -42,4 +42,4 @@ Most of my work is software development on [MASE](https://github.com/jianyicheng
 The research paper is published on FPT. You can view the paper [here](https://arxiv.org/abs/2406.03088).
 
 
-![DNA sequence](img/post-bg-desk.jpg "DNA Model")
+![DNA sequence](../img/post-bg-desk.jpg "DNA Model")
