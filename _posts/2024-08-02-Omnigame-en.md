@@ -1,71 +1,37 @@
 ---
 layout:     post
-title:      Omnigame Internship
-subtitle:   2024 Summer Internship
+title:      Data Science Internship
+subtitle:   Natwest Group
 date:       2024-07-02
-author:     JY
+author:     TX
 header-img: img/post-bg-cook.jpg
 catalog: true
 lang: en
 tags:
-    - C#
-    - Unity
+    - python
+    - AWS
     - Internship
 ---
 
 
-### Project Brief
+### Overview
 
-The project is cooperating with Amazon AWS Team, Use reinforcement learning to train AI agent in our gameplay. Our game [Quad Battle](https://store.steampowered.com/app/2525990/Quad_Battle/) is a multiplayer online game, combining MOBA, Monopoly, and auto chess. The game aim to be published by next year, play it if you like!
+I was placed into the Data Science team within Natwest Group Solutions, the part of Natwest that focuses on coming up with digital solutions for other parts of the bank. In particular, I was in charge of improving the machine learning classifier for the Suspicious Activity Reports (SAR) which the FinCrime team need to analyze.
 
-In this project, I'm mainly responsible includes building and maintaining server, modify communication protocal, provide interface for AWS team, and modify game structure according to requirements.
+### Challenges
 
-### RL Design Challenges
+The SAR are written by different humans, without a set strict format in general. The purpose is to classify each SAR into a category (e.g. Money laundering, gambling, fraud etc), for further analysis.The old classifier used by the FinCrime team is a rule-based model (based on a bunch of if-elsees), and can lead to low classication accuracy especially in terms of minority groups. A major challenge for using a machine learning model that can be trained for higher accuracy is the lack of labeled data. While the bank has several thousand SARs per month, human labor are needed to label each SAR with the right category, and we had only 50ish labeled SARs per month.
 
-Conventional reinforcement learning use game like chess, while this game is much more complex. Player have abilities, and Map have different tools, so many effect were used to define state, action and reward
+### My Approach
+I developed a novel approach by using LLM to generate synthetic SAR for each category. This way we can scale up the data and allow the training of ML classifiers. To ensure the quality, we employed clustering analysis by looking at the vector embeddings of the original data and the generated data, both fed into the embedding layer of an LLM into a (1546,) vector. We used PCA to find the two most important dimension for plotting the data vectors, computed average consine similarity for both old and new data, and also constructed a cosine-distance based KNN graph. All evidence suggested there isn't a systematic difference between the old and the new synthetic text data.
 
-#### State
-1. Player's Position. The map in grid form, so x-y coordinateds can be used to define positon. It's easier then conventional MOBA game, where player's position is continous.
+Hence we were able to train a random forest model on top of all the data and achieved a big increase in average classication accuracy across all categories.
 
-2. Teammates State. The game is usually in a team of 4, so Teammates' state and Enemies' state is also considered. This includes positon, health and score.
-
-3. Map info: there are different tools for player to use on the map, some of then are generated dynamicly, so it's necessary to put this into consideration.
-
-#### Action
-This is more complex, as Each character have it's unique ability.
-
-1. Move/Attack:
-2. Use ability
-3. Buy/Sell minions
-4. Make tech choice
-
-#### Reward
-
-1. Winner Score: Once Score reach 3000, the team wins, so this is important
-2. castle health: Like most MOBA, if the crystal is destroyed, the team loose immediately, so health of castle including crystal is also important
+An alternative approach where we directly prompt the LLM to do the classication also worked, though it still suffers from hallucinations and occasionally create categories that didn't exist.
 
 
+### Technologies Used
+We used OpenAI API through Azure. 
 
-### AWS Manager Server Design
-Quad Battle is a online game, so game needs to run on a server, seperate from AWS training agents. Also, there many be more then one agent in a battle, and more then one battle running at the same time. So it's necessary to build a seperate server, AWS Manager, to Manage diffent battle and agnets.
+The coding environment was based on the AWS Sagemaker Studio, and data are stored in the AWS S3 database.
 
-AWS Manager use HTTP to accept requests.
-1. CreateBattle: Create a new battle
-2. DeleteeBattle: End a battle
-3. UpdateBattle: Update a Battle, make it proceed by a given time interval. 
-
-Since UpdateBattle will be called very frequently, a ProducerConsumerQueue is used to optimize. Update requests will be stored in this messagequeue, and workers can retrive and complete the update task from the queue asynchronously.
-
-For a certain battle, a protobuf protocal is used to define TCP messages between client and server.
-Because Training require frequent update of state infomation, I create a messge ReconnectMsg. This is modified from the Message responsible for reconnection, because reconnection require most of the current game status.
-
-### Game Modify
-For Reinforcement Learning, a gameplay can be done in under one minute. To improve efficiency, This require us to modify the game, enable it to speed up according to update speed of training agent.
-
-
-Quad Battle use a ECS Structure, and there's a component corresponding for managing gametime. This component use real-world time to update it's value.
-
-
-Inorder to achieve game acceleration, I created a new component to handle time. But instead of using real-world time, i set a fixed time for each game frame. So eachtime it's updated, the game is processed by a constant time.
-
-UpdateBattle, the HTTP request handled by AWS Manager, will update the game component. Training agent can send this request to AWS Manager to inform it's ready for it's next step. By doing this, the agent can control the game to go that it's speed.
