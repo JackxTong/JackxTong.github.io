@@ -4,19 +4,17 @@ title:      Machine Learning Internship
 subtitle:   UROP at Deepwok Lab Imperial College
 date:       2024-09-01
 author:     TX
-header-img: img/post-bg-desk.jpg
+header-img: img/Queens-tower.png
 catalog: true
 lang: en
 tags:
     - Pytorch
     - LLM
-    - Azure
-    - AWS
-    - OpenAI
     - Machine Learning
     - Internship
 ---
-
+### TimeLine
+Apr - Sep 2024
 
 ### Project Overview
 DNA language models apply techniques from natural language processing (NLP) to model biological sequences, treating DNA as a "language" to capture patterns, structures, and functional elements in genomic data. These models aim to understand and predict biological phenomena by encoding DNA sequences in a format that machine learning models can use.
@@ -37,9 +35,5 @@ Most of my work is software development on [MASE](https://github.com/jianyicheng
 -  **Transform Script:** Run a transformation pass on the specified model, e.g. quantization or pruning. 
 -  **Search Script:** Apply a given search strategy over a search space to optimize a specified set of hardware/software metrics.
 
-### Paper Published
-
-The research paper is published on FPT. You can view the paper [here](https://arxiv.org/abs/2406.03088).
 
 
-![DNA sequence](../img/post-bg-desk.jpg "DNA Model")

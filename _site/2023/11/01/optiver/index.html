@@ -10,7 +10,7 @@
     <meta name="keywords"  content="">
     <meta name="theme-color" content="#000000">
     
-    <title>字节流处理 - Tong Xiao</title>
+    <title>Optiver & Imperial Trading Academy - Tong Xiao</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2024/08/09/ByteStream-zh/">
+    <link rel="canonical" href="http://localhost:4000/2023/11/01/optiver/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,13 +154,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-BJJ.jpg" width="0" height="0"> -->
+<!-- <img src="/img/Optiver.jpeg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-BJJ.jpg')
+        background-image: url('/img/Optiver.jpeg')
     }
 
     
@@ -173,17 +173,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Data Stream" title="Data Stream">Data Stream</a>
+                        <a class="tag" href="/tags/#volatility trading" title="volatility trading">volatility trading</a>
                         
-                        <a class="tag" href="/tags/#C#" title="C#">C#</a>
+                        <a class="tag" href="/tags/#equity option pricing" title="equity option pricing">equity option pricing</a>
+                        
+                        <a class="tag" href="/tags/#quantitative research" title="quantitative research">quantitative research</a>
                         
                     </div>
-                    <h1>字节流处理</h1>
+                    <h1>Optiver & Imperial Trading Academy</h1>
                     
                     
-                    <h2 class="subheading">Java与C#中字节流的区别</h2>
+                    <h2 class="subheading">Real time trading experience</h2>
                     
-                    <span class="meta">Posted by JY on August 9, 2024</span>
+                    <span class="meta">Posted by TX on November 1, 2023</span>
                 </div>
             </div>
         </div>
@@ -201,91 +203,21 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="介绍">介绍</h2>
+				<h3 id="timeline">TimeLine</h3>
+<p>Nov 2023</p>
 
-<h2 id="主要内容">主要内容</h2>
-<h3 id="大端和小端">大端和小端</h3>
-<p>大端（Big Endian）和小端（Little Endian）定义了数据在物理内存中的存储方式。例如，存储一个 <code class="language-plaintext highlighter-rouge">long</code> 类型的值：0X 12 34 56 78</p>
+<h3 id="overview">Overview</h3>
 
 <ul>
-  <li>
-    <p><strong>大端</strong>：最高有效字节存储在最小的内存地址。
-在内存中，它的存储方式为：12 34 56 78（最小地址在左侧）</p>
-  </li>
-  <li>
-    <p><strong>小端</strong>：最高有效字节存储在最大的内存地址。
-在内存中，它的存储方式为：78 56 34 12</p>
-  </li>
+  <li>Developed a delta-hedging trading algorithm that autonomously traded options in Optiver’s simulated exchange, Optibook, leveraging the Black-Scholes model for option pricing.</li>
+  <li>Trained an SVM model to dynamically adjust the credit for bid/ask prices based on liquidity, volatility, time to expiry, and historical price movements.</li>
+  <li>Achieved positive PnL of $500,000, ranked in top 20% of participants in the contest with over 50 student traders.</li>
 </ul>
-
-<p>由于数据存储是以字节为单位（每个地址可以存储一个字节），因此在大端和小端之间转换只需要反转字节顺序。</p>
-
-<p>值得注意的是，诸如 <code class="language-plaintext highlighter-rouge">short</code>、<code class="language-plaintext highlighter-rouge">int</code> 和 <code class="language-plaintext highlighter-rouge">long</code> 这样的数据类型会受到字节序的影响。而字符串（<code class="language-plaintext highlighter-rouge">string</code>）的存储不受影响。此外，由于 <code class="language-plaintext highlighter-rouge">char</code> 只占用一个字节，所以也不受影响。</p>
-
-<h3 id="网络字节序">网络字节序</h3>
-<p>不同的机器可能使用不同的字节序定义。Intel X86 架构使用小端字节序，而 ARM 架构的 CPU 使用大端字节序。如何确保不同机器之间的数据传输不会产生错误呢？</p>
-
-<p>UDP/TCP/IP 协议规定：将接收到的第一个字节视为最高有效字节，这意味着在数据传输时使用大端字节序。</p>
-
-<h3 id="c中的数据流">C#中的数据流</h3>
-<p>C# 提供了 <code class="language-plaintext highlighter-rouge">MemoryStream</code>、<code class="language-plaintext highlighter-rouge">BinaryWriter</code> 和 <code class="language-plaintext highlighter-rouge">BinaryReader</code> 作为读写字节流的工具。然而，值得注意的是，<code class="language-plaintext highlighter-rouge">BinaryWriter</code> 和 <code class="language-plaintext highlighter-rouge">BinaryReader</code> 在读写操作时并不考虑网络字节序。与 Java 的 <code class="language-plaintext highlighter-rouge">ByteBuffer</code> 不同，后者在内部处理这一问题。</p>
-
-<pre><code class="language-C#">byte[] byteArray = new byte[] { 0x00, 0x00, 0x00, 0x01 };
-
-using (MemoryStream msIn = new MemoryStream(byteArray))
-using (BinaryReader brIn = new BinaryReader(msIn)){
-    var result = brIn.ReadInt32();
-    Console.Write(result);
-}
-
-// output: 16777216
-</code></pre>
-
-<p>在上面的代码中，<code class="language-plaintext highlighter-rouge">byteArray</code> 表示大端格式的 Int32 类型值 1。如果通过网络接收到一个 1，这就是我们得到的数据。但由于 <code class="language-plaintext highlighter-rouge">BinaryReader</code> 默认使用机器的存储格式（小端字节序），因此输出的是对 0x 01 00 00 00 的解释：16777216。</p>
-
-<pre><code class="language-C#">Int32 a = 1;
-byte[] byteArray;
-
-using (MemoryStream msIn = new MemoryStream(32))
-using (BinaryWriter writer = new BinaryWriter(msIn, Encoding.UTF8)){
-    writer.Write(a);
-    byteArray = msIn.ToArray();
-}
-
-foreach (byte b in byteArray)
-    Console.Write(b + " ");
-
-// output: 1 0 0 0
-</code></pre>
-
-<p>同样，使用 <code class="language-plaintext highlighter-rouge">BinaryWriter</code> 将数字写入字节流时也会产生类似的问题。在上面的代码中，数字 1 以小端格式写入字节流。</p>
-
-<pre><code class="language-C#">long a = 1;
-var ret = BitConverter.GetBytes(a);
-
-foreach (var c in ret)
-    Console.Write($"   {c}");
-// output: 1 0 0 0 0 0 0 0
-</code></pre>
-
-<p><code class="language-plaintext highlighter-rouge">BitConverter</code> 的行为方式相同。
-为了解决这个问题，你可以使用 <code class="language-plaintext highlighter-rouge">IPAddress.HostToNetworkOrder</code>，或者手动使用 <code class="language-plaintext highlighter-rouge">Array.Reverse</code> 反转字节顺序。</p>
-
-<h3 id="参考资料">参考资料</h3>
-
-<p>https://www.cnblogs.com/ArrozZhu/p/8384218.html</p>
 
 
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2024/08/09/ByteStream-en/" data-toggle="tooltip" data-placement="top" title="Byte Stream">
-                        Previous<br>
-                        <span>Byte Stream</span>
-                        </a>
-                    </li>
                     
                     
                     <li class="next">
@@ -359,54 +291,6 @@ foreach (var c in ret)
                             
         				
                             
-                				<a href="/tags/#Machine Learning" title="Machine Learning" rel="2">
-                                    Machine Learning
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Project" title="Project" rel="5">
-                                    Project
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#C#" title="C#" rel="6">
-                                    C#
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Unity" title="Unity" rel="4">
-                                    Unity
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Python" title="Python" rel="2">
-                                    Python
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#AWS" title="AWS" rel="4">
-                                    AWS
-                                </a>
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#游戏开发" title="游戏开发" rel="2">
-                                    游戏开发
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Data Stream" title="Data Stream" rel="2">
-                                    Data Stream
-                                </a>
-                            
         				
                             
         				
@@ -420,6 +304,8 @@ foreach (var c in ret)
                 				<a href="/tags/#Internship" title="Internship" rel="2">
                                     Internship
                                 </a>
+                            
+        				
                             
         				
                             
