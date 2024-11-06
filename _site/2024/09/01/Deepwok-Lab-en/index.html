@@ -205,7 +205,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="timeline">TimeLine</h3>
+				<h2 id="ml-internship-at-imperials-ai-lab-deepwok">ML Internship at Imperial’s AI Lab <a href="https://deepwok.github.io/">Deepwok</a></h2>
 <p>Apr - Sep 2024</p>
 
 <h3 id="project-overview">Project Overview</h3>
@@ -215,22 +215,13 @@
 Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine frequently occurring character pairs into single tokens iteratively, creating a hierarchy of tokens that balances between single characters and multi-character sequences.</p>
 
 <h3 id="contribution">Contribution</h3>
+<p>As part of the team to develop a BPE-based DNA LLM, my work mostly involves two parts.</p>
 
-<p>Most of my work is software development on <a href="https://github.com/jianyicheng/mase-tools">MASE</a>, or more specific, on Machop, MASE’s software stack.</p>
+<p>Firstly, I worked on fine-tuning the hyperparameters like the vocab size for BPE, sequence length, context window etc for the DNA LLM. We built our model based on Olmo LLM <a href="https://huggingface.co/allenai/OLMo-1B">1B</a> and <a href="https://huggingface.co/allenai/OLMo-7B">7B</a>.</p>
 
-<p><strong><a href="https://github.com/jianyicheng/mase-tools">Mase (Machine-Learning Accelerator System Exploration Tools)</a></strong> , provides an efficient and scalable approach for exploring accelerator systems to compute large ML models by directly mapping onto an efficient streaming accelerator system.</p>
+<p>Secondly, I mostly worked on developping a modular evaluation framework that integrates our DNA LLM with downstream tasks (e.g. gene prediction, Protein-DNA interaction prediction) and benchmarks e.g. <a href="https://github.com/ML-Bioinfo-CEITEC/genomic_benchmarks">Genomic Benchmarks</a>, enabling automated performance evaluations and comparisons.</p>
 
-<ol>
-  <li>Mase provide Command Line Interface to train a model from scratch using specified dataset. To estimate efficiency of new dataflow accelerator, I integrated RepVGG models support into Mase, organized and documented detailed procedures for future developers.</li>
-</ol>
-
-<p>2.Exploration of the DNN hardware accelerator required hardware-software co-simulation.  I helped with scripts writing that ship metadata to the hardware team, which would helps verify the integrity of the hardware implementation and could help identify discrepancies. Scripts include:</p>
-
-<ul>
-  <li><strong>Transform Script:</strong> Run a transformation pass on the specified model, e.g. quantization or pruning.</li>
-  <li><strong>Search Script:</strong> Apply a given search strategy over a search space to optimize a specified set of hardware/software metrics.</li>
-</ul>
-
+<p>For example, this involves comparing our model’s performance with <a href="https://github.com/MAGICS-LAB/DNABERT_2">DNABERT2</a> and <a href="https://github.com/HazyResearch/hyena-dna">Hyena</a>, both were established State-of-the-Art models on Genomic Benchmarks.</p>
 
 
                 <hr style="visibility: hidden;">

@@ -5,13 +5,13 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 05 Nov 2024 19:07:44 +0000</pubDate>
-    <lastBuildDate>Tue, 05 Nov 2024 19:07:44 +0000</lastBuildDate>
+    <pubDate>Wed, 06 Nov 2024 14:15:17 +0000</pubDate>
+    <lastBuildDate>Wed, 06 Nov 2024 14:15:17 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
         <title>Data Science Internship</title>
-        <description>&lt;h3 id=&quot;timeline&quot;&gt;TimeLine&lt;/h3&gt;
+        <description>&lt;h2 id=&quot;data-science-intern-at-natwest-group&quot;&gt;Data Science Intern at Natwest Group&lt;/h2&gt;
 &lt;p&gt;Jun - Aug 2024&lt;/p&gt;
 
 &lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
@@ -50,7 +50,7 @@
     
       <item>
         <title>Machine Learning Internship</title>
-        <description>&lt;h3 id=&quot;timeline&quot;&gt;TimeLine&lt;/h3&gt;
+        <description>&lt;h2 id=&quot;ml-internship-at-imperials-ai-lab-deepwok&quot;&gt;ML Internship at Imperial’s AI Lab &lt;a href=&quot;https://deepwok.github.io/&quot;&gt;Deepwok&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Apr - Sep 2024&lt;/p&gt;
 
 &lt;h3 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h3&gt;
@@ -60,22 +60,13 @@
 Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine frequently occurring character pairs into single tokens iteratively, creating a hierarchy of tokens that balances between single characters and multi-character sequences.&lt;/p&gt;
 
 &lt;h3 id=&quot;contribution&quot;&gt;Contribution&lt;/h3&gt;
+&lt;p&gt;As part of the team to develop a BPE-based DNA LLM, my work mostly involves two parts.&lt;/p&gt;
 
-&lt;p&gt;Most of my work is software development on &lt;a href=&quot;https://github.com/jianyicheng/mase-tools&quot;&gt;MASE&lt;/a&gt;, or more specific, on Machop, MASE’s software stack.&lt;/p&gt;
+&lt;p&gt;Firstly, I worked on fine-tuning the hyperparameters like the vocab size for BPE, sequence length, context window etc for the DNA LLM. We built our model based on Olmo LLM &lt;a href=&quot;https://huggingface.co/allenai/OLMo-1B&quot;&gt;1B&lt;/a&gt; and &lt;a href=&quot;https://huggingface.co/allenai/OLMo-7B&quot;&gt;7B&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/jianyicheng/mase-tools&quot;&gt;Mase (Machine-Learning Accelerator System Exploration Tools)&lt;/a&gt;&lt;/strong&gt; , provides an efficient and scalable approach for exploring accelerator systems to compute large ML models by directly mapping onto an efficient streaming accelerator system.&lt;/p&gt;
+&lt;p&gt;Secondly, I mostly worked on developping a modular evaluation framework that integrates our DNA LLM with downstream tasks (e.g. gene prediction, Protein-DNA interaction prediction) and benchmarks e.g. &lt;a href=&quot;https://github.com/ML-Bioinfo-CEITEC/genomic_benchmarks&quot;&gt;Genomic Benchmarks&lt;/a&gt;, enabling automated performance evaluations and comparisons.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Mase provide Command Line Interface to train a model from scratch using specified dataset. To estimate efficiency of new dataflow accelerator, I integrated RepVGG models support into Mase, organized and documented detailed procedures for future developers.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;2.Exploration of the DNN hardware accelerator required hardware-software co-simulation.  I helped with scripts writing that ship metadata to the hardware team, which would helps verify the integrity of the hardware implementation and could help identify discrepancies. Scripts include:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Transform Script:&lt;/strong&gt; Run a transformation pass on the specified model, e.g. quantization or pruning.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Search Script:&lt;/strong&gt; Apply a given search strategy over a search space to optimize a specified set of hardware/software metrics.&lt;/li&gt;
-&lt;/ul&gt;
-
+&lt;p&gt;For example, this involves comparing our model’s performance with &lt;a href=&quot;https://github.com/MAGICS-LAB/DNABERT_2&quot;&gt;DNABERT2&lt;/a&gt; and &lt;a href=&quot;https://github.com/HazyResearch/hyena-dna&quot;&gt;Hyena&lt;/a&gt;, both were established State-of-the-Art models on Genomic Benchmarks.&lt;/p&gt;
 </description>
         <pubDate>Sun, 01 Sep 2024 00:00:00 +0100</pubDate>
         <link>http://localhost:4000/2024/09/01/Deepwok-Lab-en/</link>
@@ -94,11 +85,13 @@ Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine fr
     
       <item>
         <title>Optiver &amp; Imperial Trading Academy</title>
-        <description>&lt;h3 id=&quot;timeline&quot;&gt;TimeLine&lt;/h3&gt;
-&lt;p&gt;Nov 2023&lt;/p&gt;
+        <description>&lt;h2 id=&quot;optiver--imperial-trading-academy&quot;&gt;Optiver &amp;amp; Imperial Trading Academy&lt;/h2&gt;
+&lt;p&gt;Nov 7 - 29, 2023&lt;/p&gt;
 
 &lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
+&lt;p&gt;This is an 8-session &lt;a href=&quot;https://optiver.com/recruitment-events/imperial-college-london-x-optiver-trading-academy/&quot;&gt;project&lt;/a&gt; that covers both the foundations of options theory and hands-on algorithm development and testing. At the end of the session, I participated with other student traders together in a real-time trading challenge by designing our own Python trading algorithm based on real financial market data.&lt;/p&gt;
 
+&lt;h3 id=&quot;what-i-did&quot;&gt;What I did&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Developed a delta-hedging trading algorithm that autonomously traded options in Optiver’s simulated exchange, Optibook, leveraging the Black-Scholes model for option pricing.&lt;/li&gt;
   &lt;li&gt;Trained an SVM model to dynamically adjust the credit for bid/ask prices based on liquidity, volatility, time to expiry, and historical price movements.&lt;/li&gt;

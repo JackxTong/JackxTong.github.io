@@ -13,7 +13,7 @@ tags:
     - Machine Learning
     - Internship
 ---
-### TimeLine
+## ML Internship at Imperial's AI Lab [Deepwok](https://deepwok.github.io/)
 Apr - Sep 2024
 
 ### Project Overview
@@ -23,17 +23,10 @@ Tokenization Methods: In DNA language models, tokenization is the process of bre
 Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine frequently occurring character pairs into single tokens iteratively, creating a hierarchy of tokens that balances between single characters and multi-character sequences.
 
 ### Contribution
+As part of the team to develop a BPE-based DNA LLM, my work mostly involves two parts.
 
-Most of my work is software development on [MASE](https://github.com/jianyicheng/mase-tools), or more specific, on Machop, MASE's software stack.
+Firstly, I worked on fine-tuning the hyperparameters like the vocab size for BPE, sequence length, context window etc for the DNA LLM. We built our model based on Olmo LLM [1B](https://huggingface.co/allenai/OLMo-1B) and [7B](https://huggingface.co/allenai/OLMo-7B).
 
-**[Mase (Machine-Learning Accelerator System Exploration Tools)](https://github.com/jianyicheng/mase-tools)** , provides an efficient and scalable approach for exploring accelerator systems to compute large ML models by directly mapping onto an efficient streaming accelerator system.
+Secondly, I mostly worked on developping a modular evaluation framework that integrates our DNA LLM with downstream tasks (e.g. gene prediction, Protein-DNA interaction prediction) and benchmarks e.g. [Genomic Benchmarks](https://github.com/ML-Bioinfo-CEITEC/genomic_benchmarks), enabling automated performance evaluations and comparisons. 
 
-1. Mase provide Command Line Interface to train a model from scratch using specified dataset. To estimate efficiency of new dataflow accelerator, I integrated RepVGG models support into Mase, organized and documented detailed procedures for future developers.
-
-2.Exploration of the DNN hardware accelerator required hardware-software co-simulation.  I helped with scripts writing that ship metadata to the hardware team, which would helps verify the integrity of the hardware implementation and could help identify discrepancies. Scripts include: 
-
--  **Transform Script:** Run a transformation pass on the specified model, e.g. quantization or pruning. 
--  **Search Script:** Apply a given search strategy over a search space to optimize a specified set of hardware/software metrics.
-
-
-
+For example, this involves comparing our model's performance with [DNABERT2](https://github.com/MAGICS-LAB/DNABERT_2) and [Hyena](https://github.com/HazyResearch/hyena-dna), both were established State-of-the-Art models on Genomic Benchmarks. 
