@@ -6,7 +6,7 @@ date:       2024-09-01
 author:     TX
 header-img: img/Queens-tower.png
 catalog: true
-lang: en
+label: CV
 tags:
     - Pytorch
     - LLM

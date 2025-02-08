@@ -10,7 +10,7 @@
     <meta name="keywords"  content="">
     <meta name="theme-color" content="#000000">
     
-    <title>Machine Learning Internship - Tong Xiao</title>
+    <title>DeepSeek - Tong Xiao</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2024/09/01/Deepwok-Lab-en/">
+    <link rel="canonical" href="http://localhost:4000/2025/02/08/DeepSeek/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,13 +154,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/Queens-tower.png" width="0" height="0"> -->
+<!-- <img src="/img/Optiver.jpeg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/Queens-tower.png')
+        background-image: url('/img/Optiver.jpeg')
     }
 
     
@@ -173,21 +173,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Pytorch" title="Pytorch">Pytorch</a>
+                        <a class="tag" href="/tags/#volatility trading" title="volatility trading">volatility trading</a>
                         
-                        <a class="tag" href="/tags/#LLM" title="LLM">LLM</a>
+                        <a class="tag" href="/tags/#equity option pricing" title="equity option pricing">equity option pricing</a>
                         
-                        <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
-                        
-                        <a class="tag" href="/tags/#Internship" title="Internship">Internship</a>
+                        <a class="tag" href="/tags/#quantitative research" title="quantitative research">quantitative research</a>
                         
                     </div>
-                    <h1>Machine Learning Internship</h1>
+                    <h1>DeepSeek</h1>
                     
                     
-                    <h2 class="subheading">UROP at Deepwok Lab Imperial College</h2>
+                    <h2 class="subheading">Real time trading experience</h2>
                     
-                    <span class="meta">Posted by TX on September 1, 2024</span>
+                    <span class="meta">Posted by TX on February 8, 2025</span>
                 </div>
             </div>
         </div>
@@ -205,23 +203,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="ml-internship-at-imperials-ai-lab-deepwok">ML Internship at Imperial’s AI Lab <a href="https://deepwok.github.io/">Deepwok</a></h2>
-<p>Apr - Sep 2024</p>
+				<h2 id="optiver--imperial-trading-academy">Optiver &amp; Imperial Trading Academy</h2>
+<p>Nov 7 - 29, 2023</p>
 
-<h3 id="project-overview">Project Overview</h3>
-<p>DNA language models apply techniques from natural language processing (NLP) to model biological sequences, treating DNA as a “language” to capture patterns, structures, and functional elements in genomic data. These models aim to understand and predict biological phenomena by encoding DNA sequences in a format that machine learning models can use.</p>
+<h3 id="overview">Overview</h3>
+<p>This is an 8-session <a href="https://optiver.com/recruitment-events/imperial-college-london-x-optiver-trading-academy/">project</a> that covers both the foundations of options theory and hands-on algorithm development and testing. At the end of the session, I participated with other student traders together in a real-time trading challenge by designing our own Python trading algorithm based on real financial market data.</p>
 
-<p>Tokenization Methods: In DNA language models, tokenization is the process of breaking down DNA sequences into manageable units, or “tokens,” which represent the genetic information. State-of-the-art DNA models like Hyena used a mere character-level naive tokenizer, simply translating ‘A’, ‘C’, ‘G’, ‘T’ to fixed integers. We were experimenting the adoptation of the 
-Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine frequently occurring character pairs into single tokens iteratively, creating a hierarchy of tokens that balances between single characters and multi-character sequences.</p>
-
-<h3 id="contribution">Contribution</h3>
-<p>As part of the team to develop a BPE-based DNA LLM, my work mostly involves two parts.</p>
-
-<p>Firstly, I worked on fine-tuning the hyperparameters like the vocab size for BPE, sequence length, context window etc for the DNA LLM. We built our model based on Olmo LLM <a href="https://huggingface.co/allenai/OLMo-1B">1B</a> and <a href="https://huggingface.co/allenai/OLMo-7B">7B</a>.</p>
-
-<p>Secondly, I mostly worked on developping a modular evaluation framework that integrates our DNA LLM with downstream tasks (e.g. gene prediction, Protein-DNA interaction prediction) and benchmarks e.g. <a href="https://github.com/ML-Bioinfo-CEITEC/genomic_benchmarks">Genomic Benchmarks</a>, enabling automated performance evaluations and comparisons.</p>
-
-<p>For example, this involves comparing our model’s performance with <a href="https://github.com/MAGICS-LAB/DNABERT_2">DNABERT2</a> and <a href="https://github.com/HazyResearch/hyena-dna">Hyena</a>, both were established State-of-the-Art models on Genomic Benchmarks.</p>
+<h3 id="what-i-did">What I did</h3>
+<ul>
+  <li>Developed a delta-hedging trading algorithm that autonomously traded options in Optiver’s simulated exchange, Optibook, leveraging the Black-Scholes model for option pricing.</li>
+  <li>Trained an SVM model to dynamically adjust the credit for bid/ask prices based on liquidity, volatility, time to expiry, and historical price movements.</li>
+  <li>Achieved positive PnL of $500,000, ranked in top 20% of participants in the contest with over 50 student traders.</li>
+</ul>
 
 
                 <hr style="visibility: hidden;">
@@ -229,19 +222,12 @@ Byte-Pair Encoding (BPE) method used in GPT3 and GPT4. The idea is to combine fr
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/11/01/optiver/" data-toggle="tooltip" data-placement="top" title="Optiver & Imperial Trading Academy">
-                        Previous<br>
-                        <span>Optiver & Imperial Trading Academy</span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="next">
                         <a href="/2024/11/01/Natwest/" data-toggle="tooltip" data-placement="top" title="Data Science Internship">
-                        Next<br>
+                        Previous<br>
                         <span>Data Science Internship</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
