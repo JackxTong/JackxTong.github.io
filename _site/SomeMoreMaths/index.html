@@ -10,7 +10,7 @@
     <meta name="keywords"  content="">
     <meta name="theme-color" content="#000000">
     
-    <title>Tong Xiao</title>
+    <title>SomeMoreMaths - Tong Xiao</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="canonical" href="http://localhost:4000/SomeMoreMaths/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -161,14 +161,14 @@
 </script>
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/imperial.png')">
+<header class="intro-header" style="background-image: url('/img/black_image_2000x1000.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>TX Blog</h1>
+                    <h1>SomeMoreMaths</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Tong Xiao</span>
+                    <span class="subheading">The secret of success lies in the firmness of purpose.</span>
                 </div>
             </div>
         </div>
@@ -189,26 +189,284 @@
                 col-xs-12
                 postlist-container
             ">
-    			<div class="zh post-container">
+    			<!DOCTYPE html>
+<html lang="en">
 
-    <p>Hi, I'm <strong>Tong Xiao</strong>, a Master's student from Imperial College London, majoring in mathematics and statistics. Welcome to my Homepage!</p>
-    
-    <p>I am interested in <strong>Machine Learning and bayesian statistics</strong>, and I'm actively looking for quantitative research opportunities! I can code in python, C++, R and SQL, and love to work at the intersection of maths, coding and finance.</p>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-    
-    <p>Here is my <a href="http://localhost:4000/assets/about/CV.pdf"><strong>CV</strong></a> You can also find more details about my projects and experiences on <strong>Experience</strong> page.</p>
+	<title>Strong convexity · Xingyu Zhou's blog</title>
 
-    <p>I like to play football, and watch the premier league. I support Brighton FC and Barcelona, and my current favorite player is Lamine Yamal. </p>
 
-    <p>I also like to play the piano, and I am currently learning <strong>River Flows in You</strong>. Here is a video:</p>
-    
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/L6SjBQ_O2xk?si=SvXaK1bKzUrhvo0J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="Strong convexity" />
+<meta name="twitter:description" content="Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly...">
 
-    <p>Here's another video of me playing <strong>Mariage D’Amour</strong>:</p>
+<meta name="description" content="Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based a...">
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/plz50xdd71Q?si=nlEfxrNKd-vh49Ts" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+<link rel="icon" href="/blog/assets/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/blog/assets/my-touch-icon.png">
+
+
+
+
+<link rel="stylesheet" href="/blog/assets/core.css">
+<link rel="canonical" href="/blog/notes/strong-convexity">
+<link rel="alternate" type="application/atom+xml" title="Xingyu Zhou's blog" href="/blog/feed.xml" />
+
+
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga( 'create', 'UA-96750668-1', 'auto' );
+		ga( 'send', 'pageview' );
+	</script>
+
+
+
+<!-- 
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+ -->
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+
+  CommonHTML: { linebreaks: { automatic: true } },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+});
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+	</head>
+
+	<body>
+
+
+		<main>
+			<article>
+
+	<div class="center">
+		<h1>Strong convexity</h1>
+		<h2></h2>
+		<time>April 29, 2017</time>
+	</div>
+
+	<div class="divider"></div>
+
+	<p>Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly based on my course project report, I would like to present some useful results on strong convexity.</p>
+
+<p>Let’s us first begin with the definition.</p>
+
+<p>A differentiable function \(f\) is strongly convex if</p>
+
+\[f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}\lVert y-x \rVert^2 \tag{1}\label{eq:def}\]
+
+<p>for some \(\mu &gt; 0\) and all \(x, y\).</p>
+
+<p><strong>Note:</strong> Strong convexity doesn’t necessarily require the function to be differentiable, and the gradient is replaced by the sub-gradient when the function is non-smooth.</p>
+
+<p>Intuitively speaking, strong convexity means that there exists a quadratic lower bound on the growth of the function. This directly implies that a strong convex function is strictly convex since the quadratic lower bound growth is of course strictly grater than the linear growth.</p>
+
+<p>Although the definition in \(\eqref{eq:def}\) is commonly used, it would be quite useful for us to note that there are several equivalent conditions for strong convexity.</p>
+
+<div class="divider"></div>
+
+<h3 id="equivalent-conditions-of-strong-convexity">Equivalent Conditions of Strong Convexity</h3>
+<p>The following proposition gives equivalent conditions for strong convexity. The key insight behind this result and its proof is that we can relate a strongly-convex function (\(e.g., f(x)\)) to another convex function (\(e.g., g(x)\)), which enables us to apply the equivalent conditions for a convex function to obtain the result.</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>The following conditions are all equivalent to the condition that a differentiable function \(f\) is strongly-convex with constant \(\mu &gt; 0\)</em>.
+\(\begin{align}
+		&amp;(i)~f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}\lVert y-x \rVert^2,~\forall x, y.\\
+		&amp;(ii)~g(x) = f(x)-\frac{\mu}{2}\lVert x \rVert^2~\text{is convex},~\forall x.\\
+		&amp;(iii)~(\nabla f(x) - \nabla f(y))^T(x-y) \ge \mu \lVert x-y\rVert^2,~\forall x, y.\\
+		&amp;(iv)~f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}\Vert x-y\rVert^2,~\alpha \in [0,1].\\
+	\end{align}\)</p>
+</blockquote>
+
+<p><em>Proof:</em></p>
+
+<p>\((i) \equiv (ii):\) It follows from the first-order condition for convexity of \(g(x)\), i.e., \(g(x)\) is convex if and only if \(g(y)\ge g(x) + \nabla g(x)^T(y-x),~\forall x,y.\)</p>
+
+<p>\((ii) \equiv (iii):\) It follows from the monotone gradient condition for convexity of \(g(x)\), i.e., \(g(x)\) is convex if and only if \((\nabla g(x) - \nabla g(y))^T(x-y) \ge 0,~\forall x,y.\)</p>
+
+<p>\((ii) \equiv (iv):\) It simply follows from the definition of convexity, i.e., \(g(x)\) is convex if \(g(\alpha x+ (1-\alpha) y) \le \alpha g(x) + (1-\alpha) g(y), ~\forall x,y, \alpha\in [0,1].\) \(\tag*{$\Box$}\)</p>
+
+<p><strong>Note:</strong> The equivalence still holds for non-smooth function with gradient replaced by sub-gradient. For a proof, please refer to Lemma 1 of the <a href="https://arxiv.org/pdf/1803.06573.pdf">note</a>.</p>
+
+<div class="divider"></div>
+
+<h3 id="implications-of-strong-convexity">Implications of Strong Convexity</h3>
+<p>There are also some other conditions that are implied by strong convexity while are not equivalent to strong convexity, which means that these conditions are more general than strong convexity.</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>For a continuously differentiable function \(f\), the following conditions are all implied by strong convexity (SC) condition</em>.
+\(\begin{align}
+		&amp;(a)~\frac{1}{2}\lVert\nabla f(x)\rVert^2\ge \mu (f(x)-f^*),~\forall x.\\
+		&amp;(b)~\lVert\nabla f(x) - \nabla f(y)\rVert \ge \mu \lVert x-y\rVert~\forall x,y.\\
+		&amp;(c)~f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{1}{2\mu}\lVert\nabla f(y)- \nabla f(x)\rVert^2,~\forall x,y.\\
+		&amp;(d)~(\nabla f(x) - \nabla f(y)^T(x-y) \le \frac{1}{\mu} \lVert\nabla f(x)-\nabla f(y)\rVert^2, ~\forall x,y.\\
+	\end{align}\)</p>
+</blockquote>
+
+<p><strong>Note:</strong> The condition (a) is often called Polyak-Lojasiewicz (PL) inequality which is quite useful for establishing linear convergence for a lot of algorithms.</p>
+
+<p><em>Proof:</em></p>
+
+<p>SC \(\rightarrow\) (a): Taking minimization respect to \(y\) on both sides of \(\eqref{eq:def}\) yields</p>
+
+\[f(x^*) \ge f(x)-\frac{1}{2\mu}||\nabla f(x)||^2\]
+
+<p>Re-arranging it we have the PL-inequality.</p>
+
+<p>SC \(\rightarrow\) (b): Using Cauchy-Schwartz on the equivalent condition (iii) in the last Proposition, we have</p>
+
+\[\lVert\nabla f(x) - \nabla f(y)\rVert \lVert x-y \rVert \ge (\nabla f(x) - \nabla f(y)^T(x-y) \ge \mu \lVert x-y\rVert^2\]
+
+<p>and dividing both sides by \(\lVert x-y \rVert\) (assuming \(x \neq y\)) gives (a) (while (a) clearly holds if \(x = y\)).</p>
+
+<p>SC \(\rightarrow\) (c): Let us consider the function \(\phi_x(z) = f(z) - \nabla f(x)^T z\). It is easy to see that \(\phi_x(z)\) is strongly-convex with the same \(\mu\) since</p>
+
+\[(\nabla \phi_x(z_1) - \nabla \phi_x(z_2)^T(z_1-z_2) = (\nabla f(z_1) - \nabla f(z_2)^T(z_1-z_2) \ge \mu \lVert z_1-z_2 \rVert ^2\]
+
+<p>where we again use the equivalent condition (iii) in the last Proposition for strong convexity.</p>
+
+<p>Then, the condition (c) can be directly obtained by applying the PL-inequality to the strongly-convex function \(\phi_x(z)\) with \(z^* = x\)</p>
+
+\[\begin{align}
+(f(y) - \nabla f(x)^T y) - (f(x) - \nabla f(x)^T x) = \phi_x(y) - \phi_x(x) &amp;\le \frac{1}{2\mu}\nabla ||\phi_x(y)||^2 \\
+&amp;= \frac{1}{2\mu}||\nabla f(y) - \nabla f(x)||^2
+\end{align}\]
+
+<p>SC \(\rightarrow\) (d): Interchanging \(x\) and \(y\) in condition (c) yields,</p>
+
+\[f(x)\le f(y)+\nabla f(y)^T(x-y)+\frac{1}{2\mu}\lVert \nabla f(x)- \nabla f(y)\rVert^2 \tag{2}\label{eq:interchange}\]
+
+<p>Condition (d) is obtained by adding \(\eqref{eq:interchange}\) and condition (c). \(\tag*{$\Box$}\)</p>
+
+<div class="divider"></div>
+
+<h3 id="application">Application</h3>
+
+<p>We have already seen the application of condition (iii) in proving useful results in the last section. In this section, let us look at one simple application of condition (iv) for strong convexity.</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>Let \(h = f + g\) where \(f\) is strongly convex function and \(g\) is a convex function, then \(h\) is strongly convex function</em></p>
+</blockquote>
+
+<p><em>Proof:</em></p>
+
+\[\begin{align}
+	h(\alpha x + (1-\alpha)y) &amp;= f(\alpha x + (1-\alpha)y) + g(\alpha x + (1-\alpha)y)\\
+	&amp; \le \alpha f(x) + (1-\alpha)f(y) - \frac{\mu \alpha (1-\alpha)}{2}||x-y||^2 + g(\alpha x + (1-\alpha)y)\\
+	&amp; \le \alpha h(x) + (1-\alpha) h(y) - \frac{\mu \alpha (1-\alpha)}{2}||x-y||^2 
+\end{align}\]
+
+<p>where the first inequality follows from the fact that \(f\) is strongly convex; the second inequality holds since \(g\) is convex. \(\tag*{$\Box$}\)</p>
+
+<p><strong>Note:</strong> Although the proof is simple, it has its own importance. For example, any L2-regularized problem of the form \(h(x) = f(x)+ \lambda \lVert x \rVert^2\), where \(f\) is convex and \(\lambda &gt;0\), is strongly convex.</p>
+
+<div class="divider"></div>
+
+<h3 id="citation">Citation</h3>
+<p>Recently, I have received a lot of emails from my dear readers that inquire about how to cite the content in my blog. I am quite surprised and also glad that my blog posts are more welcome than expected. Fortunately, I have an arXiv paper that summarizes all the results. Here is the citation form:</p>
+
+<blockquote>
+  <p>Zhou, Xingyu. “On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient.” arXiv preprint arXiv:1803.06573 (2018).</p>
+</blockquote>
+
+<p class="center"><strong>THE END</strong></p>
+
+<div class="divider"></div>
+
+<p>Now, it’s time to take a break by appreciating the masterpiece of Monet.</p>
+
+<p class="center"><img src="http://xingyuzhou.org/blog/assets/post_images/impression-sunrise.jpg" alt="Monet" height="400px" width="500px" /></p>
+
+<p class="center"><strong>Impression Sunrise</strong></p>
+<p class="center"><em>courtesy of www.Claude-Monet.com</em></p>
+
+
+
+</article>
+
+<div class="page-navigation">
+	
+    <a class="prev" href="/blog/notes/welcome" title="PREV: Welcome">&lt;&lt;</a>
+		<span> &middot; </span>
+  
+		<a class="home" href="/blog/" title="Back to Homepage">Home</a>
+  
+		<span> &middot; </span>
+    <a class="next" href="/blog/notes/Lipschitz-gradient" title="NEXT: Lipschitz continuous gradient">&gt;&gt;</a>
+
+
+
 </div>
+
+<!-- <div class="page-navigation">
+	
+    <a class="next" href="/blog/notes/Lipschitz-gradient" title="NEXT: Lipschitz continuous gradient">&lt;&lt;</a>
+		<span> &middot; </span>
+  
+		<a class="home" href="/blog/" title="Back to Homepage">Home</a>
+  
+		<span> &middot; </span>
+    <a class="prev" href="/blog/notes/welcome" title="PREV: Welcome">&gt;&gt;</a>
+  
+  
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://xingyuzhou.org/blog//notes/strong-convexity";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "Strong convexity"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xingyublog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
+
+
+
+
+</div> -->
+
+		</main>
+
+		<div class="footer">
+  <!-- <span class="block">&lt;/&gt; <a href="http://github.com/heiswayi/the-plain" title="a minimalist Jekyll theme for personal blog">The Plain theme</a> by <a href="http://heiswayi.github.io">Heiswayi Nrird</a>.</span> -->
+  <span class="block">&copy; 2024 Xingyu Zhou</span>
+</div>
+
+
+	</body>
+
+</html>
+
     		</div>
     <!-- Sidebar Container -->
             <div class="

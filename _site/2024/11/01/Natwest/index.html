@@ -85,6 +85,14 @@
                     </li>
                     
                     <li>
+                        <a href="/MoreMaths/">MoreMaths</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/SomeMoreMaths/">SomeMoreMaths</a>
+                    </li>
+                    
+                    <li>
                         <a href="/experience/">Experience</a>
                     </li>
                     
@@ -309,25 +317,17 @@
                     <div class="tags">
         				
                             
-                				<a href="/tags/#volatility trading" title="volatility trading" rel="2">
-                                    volatility trading
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#LLM" title="LLM" rel="2">
+                                    LLM
                                 </a>
-                            
-        				
-                            
-                				<a href="/tags/#equity option pricing" title="equity option pricing" rel="2">
-                                    equity option pricing
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#quantitative research" title="quantitative research" rel="2">
-                                    quantitative research
-                                </a>
-                            
-        				
-                            
-        				
                             
         				
                             
@@ -336,6 +336,8 @@
                 				<a href="/tags/#Internship" title="Internship" rel="2">
                                     Internship
                                 </a>
+                            
+        				
                             
         				
                             
@@ -386,12 +388,6 @@
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
     async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
-        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
-        // anchors.options = {
-        //   visible: 'always',
-        //   placement: 'right',
-        //   icon: '#'
-        // };
         anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
     })
 </script>
@@ -407,6 +403,24 @@
     }
 </style>
 
+
+
+
+<!-- MathJax for LaTeX rendering -->
+<script type="text/javascript">
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  
+  <script type="text/javascript" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
 
     <!-- Footer -->
 <footer>

@@ -5,34 +5,56 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 08 Feb 2025 16:10:42 +0000</pubDate>
-    <lastBuildDate>Sat, 08 Feb 2025 16:10:42 +0000</lastBuildDate>
+    <pubDate>Sun, 09 Feb 2025 17:57:00 +0000</pubDate>
+    <lastBuildDate>Sun, 09 Feb 2025 17:57:00 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
         <title>DeepSeek</title>
-        <description>&lt;h2 id=&quot;optiver--imperial-trading-academy&quot;&gt;Optiver &amp;amp; Imperial Trading Academy&lt;/h2&gt;
-&lt;p&gt;Nov 7 - 29, 2023&lt;/p&gt;
+        <description>&lt;h2 id=&quot;v3-base&quot;&gt;V3-Base&lt;/h2&gt;
+&lt;p&gt;671B decoder-only transformer
+Self-supervised pre-training:
+No label, train on first half of sentence to predict the second half&lt;/p&gt;
 
-&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
-&lt;p&gt;This is an 8-session &lt;a href=&quot;https://optiver.com/recruitment-events/imperial-college-london-x-optiver-trading-academy/&quot;&gt;project&lt;/a&gt; that covers both the foundations of options theory and hands-on algorithm development and testing. At the end of the session, I participated with other student traders together in a real-time trading challenge by designing our own Python trading algorithm based on real financial market data.&lt;/p&gt;
+&lt;h2 id=&quot;r1-zero&quot;&gt;R1-Zero&lt;/h2&gt;
 
-&lt;h3 id=&quot;what-i-did&quot;&gt;What I did&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Developed a delta-hedging trading algorithm that autonomously traded options in Optiver’s simulated exchange, Optibook, leveraging the Black-Scholes model for option pricing.&lt;/li&gt;
-  &lt;li&gt;Trained an SVM model to dynamically adjust the credit for bid/ask prices based on liquidity, volatility, time to expiry, and historical price movements.&lt;/li&gt;
-  &lt;li&gt;Achieved positive PnL of $500,000, ranked in top 20% of participants in the contest with over 50 student traders.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Trained on v3-base using reinforcement learning:
+Supervised fine tuning (SFT)
+Reinforcement Learning from Human Feedback (RLHF)&lt;/p&gt;
+
+&lt;h2 id=&quot;r1&quot;&gt;R1&lt;/h2&gt;
+
+&lt;p&gt;Use R1-zero to come up with good CoT
+Use those CoT to fine-tune V3-Base
+Then train with SFT to get R1&lt;/p&gt;
+
+&lt;h2 id=&quot;llamaqwen-distilled&quot;&gt;Llama/Qwen Distilled&lt;/h2&gt;
+
+&lt;p&gt;Use R1 to come up with 800k samples, then use those
+to train other open-source models: Meta &amp;amp; Qwen&lt;/p&gt;
+
+&lt;h2 id=&quot;other-techniques&quot;&gt;Other techniques&lt;/h2&gt;
+
+&lt;p&gt;MoE system
+Multihead latent Attention (MLA)
+Distilling using O1
+Low-level programming GPU cores
+Group Relative Policy Optimization (GRPO)&lt;/p&gt;
+
+&lt;h2 id=&quot;some-math&quot;&gt;SOme Math&lt;/h2&gt;
+&lt;p&gt;\(\frac{1}{2}\)&lt;/p&gt;
+
+&lt;p&gt;Euler’s formula: $e^{i\pi} + 1 = 0$&lt;/p&gt;
+
+\[\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\]
 </description>
         <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
         <link>http://localhost:4000/2025/02/08/DeepSeek/</link>
         <guid isPermaLink="true">http://localhost:4000/2025/02/08/DeepSeek/</guid>
         
-        <category>volatility trading</category>
+        <category>Deep learning</category>
         
-        <category>equity option pricing</category>
-        
-        <category>quantitative research</category>
+        <category>LLM</category>
         
         
       </item>

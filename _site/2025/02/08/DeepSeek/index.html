@@ -85,6 +85,14 @@
                     </li>
                     
                     <li>
+                        <a href="/MoreMaths/">MoreMaths</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/SomeMoreMaths/">SomeMoreMaths</a>
+                    </li>
+                    
+                    <li>
                         <a href="/experience/">Experience</a>
                     </li>
                     
@@ -173,11 +181,9 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#volatility trading" title="volatility trading">volatility trading</a>
+                        <a class="tag" href="/tags/#Deep learning" title="Deep learning">Deep learning</a>
                         
-                        <a class="tag" href="/tags/#equity option pricing" title="equity option pricing">equity option pricing</a>
-                        
-                        <a class="tag" href="/tags/#quantitative research" title="quantitative research">quantitative research</a>
+                        <a class="tag" href="/tags/#LLM" title="LLM">LLM</a>
                         
                     </div>
                     <h1>DeepSeek</h1>
@@ -203,18 +209,42 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="optiver--imperial-trading-academy">Optiver &amp; Imperial Trading Academy</h2>
-<p>Nov 7 - 29, 2023</p>
+				<h2 id="v3-base">V3-Base</h2>
+<p>671B decoder-only transformer
+Self-supervised pre-training:
+No label, train on first half of sentence to predict the second half</p>
 
-<h3 id="overview">Overview</h3>
-<p>This is an 8-session <a href="https://optiver.com/recruitment-events/imperial-college-london-x-optiver-trading-academy/">project</a> that covers both the foundations of options theory and hands-on algorithm development and testing. At the end of the session, I participated with other student traders together in a real-time trading challenge by designing our own Python trading algorithm based on real financial market data.</p>
+<h2 id="r1-zero">R1-Zero</h2>
 
-<h3 id="what-i-did">What I did</h3>
-<ul>
-  <li>Developed a delta-hedging trading algorithm that autonomously traded options in Optiver’s simulated exchange, Optibook, leveraging the Black-Scholes model for option pricing.</li>
-  <li>Trained an SVM model to dynamically adjust the credit for bid/ask prices based on liquidity, volatility, time to expiry, and historical price movements.</li>
-  <li>Achieved positive PnL of $500,000, ranked in top 20% of participants in the contest with over 50 student traders.</li>
-</ul>
+<p>Trained on v3-base using reinforcement learning:
+Supervised fine tuning (SFT)
+Reinforcement Learning from Human Feedback (RLHF)</p>
+
+<h2 id="r1">R1</h2>
+
+<p>Use R1-zero to come up with good CoT
+Use those CoT to fine-tune V3-Base
+Then train with SFT to get R1</p>
+
+<h2 id="llamaqwen-distilled">Llama/Qwen Distilled</h2>
+
+<p>Use R1 to come up with 800k samples, then use those
+to train other open-source models: Meta &amp; Qwen</p>
+
+<h2 id="other-techniques">Other techniques</h2>
+
+<p>MoE system
+Multihead latent Attention (MLA)
+Distilling using O1
+Low-level programming GPU cores
+Group Relative Policy Optimization (GRPO)</p>
+
+<h2 id="some-math">SOme Math</h2>
+<p>\(\frac{1}{2}\)</p>
+
+<p>Euler’s formula: $e^{i\pi} + 1 = 0$</p>
+
+\[\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\]
 
 
                 <hr style="visibility: hidden;">
@@ -291,25 +321,17 @@
                     <div class="tags">
         				
                             
-                				<a href="/tags/#volatility trading" title="volatility trading" rel="2">
-                                    volatility trading
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#LLM" title="LLM" rel="2">
+                                    LLM
                                 </a>
-                            
-        				
-                            
-                				<a href="/tags/#equity option pricing" title="equity option pricing" rel="2">
-                                    equity option pricing
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#quantitative research" title="quantitative research" rel="2">
-                                    quantitative research
-                                </a>
-                            
-        				
-                            
-        				
                             
         				
                             
@@ -318,6 +340,8 @@
                 				<a href="/tags/#Internship" title="Internship" rel="2">
                                     Internship
                                 </a>
+                            
+        				
                             
         				
                             
@@ -368,12 +392,6 @@
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
     async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
-        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
-        // anchors.options = {
-        //   visible: 'always',
-        //   placement: 'right',
-        //   icon: '#'
-        // };
         anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
     })
 </script>
@@ -389,6 +407,24 @@
     }
 </style>
 
+
+
+
+<!-- MathJax for LaTeX rendering -->
+<script type="text/javascript">
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  
+  <script type="text/javascript" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
 
     <!-- Footer -->
 <footer>
