@@ -1,0 +1,30 @@
+<h2 id="v3-base">V3-Base</h2>
+<p>671B decoder-only transformer
+Self-supervised pre-training:
+No label, train on first half of sentence to predict the second half</p>
+
+<h2 id="r1-zero">R1-Zero</h2>
+
+<p>Trained on v3-base using reinforcement learning:
+Supervised fine tuning (SFT)
+Reinforcement Learning from Human Feedback (RLHF)</p>
+
+<h2 id="r1">R1</h2>
+
+<p>Use R1-zero to come up with good CoT
+Use those CoT to fine-tune V3-Base
+Then train with SFT to get R1</p>
+
+<h2 id="llamaqwen-distilled">Llama/Qwen Distilled</h2>
+
+<p>Use R1 to come up with 800k samples, then use those
+to train other open-source models: Meta &amp; Qwen</p>
+
+<h2 id="other-techniques">Other techniques</h2>
+
+<p>MoE system
+Multihead latent Attention (MLA)
+Distilling using O1
+Low-level programming GPU cores
+Group Relative Policy Optimization (GRPO)</p>
+
