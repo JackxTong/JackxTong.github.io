@@ -202,9 +202,22 @@
 				<h1 id="what-are-options">What are options?</h1>
 <h2 id="greeks">Greeks</h2>
 <h3 id="delta">Delta</h3>
-<p>0.5 for in the money
-close to 0 for OTM
-close to 1 for ITM</p>
+<ul>
+  <li>ATM call has delta 0.5</li>
+  <li>OTM call has delta 0</li>
+  <li>ITM call has delta 1</li>
+</ul>
+
+<p>Buy Call-Put Parity: $ C - P = S - K e^{-rT} $, buying a call and a shorting a put is 
+equivalent to buying the stock with borrowed money of $K e^{-rT} $</p>
+
+<p>Obviously
+$$</p>
+<ul>
+  <li>C  + (P + S - K e^{-rT})= 0
+$$
+So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash</li>
+</ul>
 
 <h3 id="gamma">Gamma</h3>
 <p>High means convex trade (delta moves faster than underlying)
@@ -380,9 +393,9 @@ df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW</p>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2025/02/08/DeepSeek/" data-toggle="tooltip" data-placement="top" title="Thoughts on DeepSeek">
+                        <a href="/2025/02/12/Coding/" data-toggle="tooltip" data-placement="top" title="Some programming">
                         Previous<br>
-                        <span>Thoughts on DeepSeek</span>
+                        <span>Some programming</span>
                         </a>
                     </li>
                     

@@ -5,8 +5,8 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Feb 2025 16:01:26 +0000</pubDate>
-    <lastBuildDate>Wed, 12 Feb 2025 16:01:26 +0000</lastBuildDate>
+    <pubDate>Thu, 13 Feb 2025 04:10:17 +0000</pubDate>
+    <lastBuildDate>Thu, 13 Feb 2025 04:10:17 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -14,9 +14,22 @@
         <description>&lt;h1 id=&quot;what-are-options&quot;&gt;What are options?&lt;/h1&gt;
 &lt;h2 id=&quot;greeks&quot;&gt;Greeks&lt;/h2&gt;
 &lt;h3 id=&quot;delta&quot;&gt;Delta&lt;/h3&gt;
-&lt;p&gt;0.5 for in the money
-close to 0 for OTM
-close to 1 for ITM&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ATM call has delta 0.5&lt;/li&gt;
+  &lt;li&gt;OTM call has delta 0&lt;/li&gt;
+  &lt;li&gt;ITM call has delta 1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Buy Call-Put Parity: $ C - P = S - K e^{-rT} $, buying a call and a shorting a put is 
+equivalent to buying the stock with borrowed money of $K e^{-rT} $&lt;/p&gt;
+
+&lt;p&gt;Obviously
+$$&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;C  + (P + S - K e^{-rT})= 0
+$$
+So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;gamma&quot;&gt;Gamma&lt;/h3&gt;
 &lt;p&gt;High means convex trade (delta moves faster than underlying)
@@ -191,6 +204,448 @@ df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW&lt;/p&gt;
         <guid isPermaLink="true">http://localhost:4000/2025/02/12/Finance/</guid>
         
         <category>Quant Finance</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Some programming</title>
+        <description>&lt;h1 id=&quot;general-computer-science-questions&quot;&gt;General Computer Science questions&lt;/h1&gt;
+
+&lt;h2 id=&quot;hash-tables&quot;&gt;&lt;strong&gt;Hash Tables&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;what-is-a-hash-table-and-how-does-it-work&quot;&gt;What is a hash table, and how does it work?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A hash table is a data structure that maps keys to values using a hash function to compute an index into an array of buckets.&lt;/li&gt;
+  &lt;li&gt;It allows for fast lookups, inserts, and deletions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Time Complexity&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Average Case&lt;/strong&gt;: ( O(1) ) for insertion, search, and delete.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Worst Case&lt;/strong&gt;: ( O(n) ) for all three operations when all keys map to the same bucket due to collisions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-a-hash-collision-and-how-can-it-be-handled&quot;&gt;What is a hash collision, and how can it be handled?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A hash collision occurs when two different keys hash to the same index.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Collision Handling Techniques&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Chaining&lt;/strong&gt;: Use linked lists to store multiple keys in the same bucket.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Open Addressing&lt;/strong&gt;: Probes the next available slot in the array.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-a-good-hash-function&quot;&gt;What is a good hash function?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Uniformly distributes keys across the hash table.&lt;/li&gt;
+  &lt;li&gt;Minimizes collisions.&lt;/li&gt;
+  &lt;li&gt;Efficient to compute.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;heap&quot;&gt;&lt;strong&gt;Heap&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;what-is-a-heap-and-how-is-it-used&quot;&gt;What is a heap, and how is it used?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A heap is a specialized binary tree used to maintain a priority queue.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Min-Heap&lt;/strong&gt;: The smallest element is at the root.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Max-Heap&lt;/strong&gt;: The largest element is at the root.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Time Complexity&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Find Min/Max&lt;/strong&gt;: ( O(1) )&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Insert/Delete&lt;/strong&gt;: ( O(\log n) )&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Building a Heap&lt;/strong&gt;: ( O(n) )&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Heap Sort&lt;/strong&gt;: ( O(n \log n) )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;bst-vs-heap&quot;&gt;&lt;strong&gt;BST vs. Heap&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Heap&lt;/strong&gt;: Ensures the highest/lowest priority element is always at the root.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;BST&lt;/strong&gt;: Maintains an ordered structure where the left child is smaller and the right child is larger than the parent.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Time Complexity&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Search in BST&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Average&lt;/strong&gt;: ( O(\log n) )&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Worst Case (Unbalanced)&lt;/strong&gt;: ( O(n) )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;sql-concepts&quot;&gt;&lt;strong&gt;SQL Concepts&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;what-is-the-difference-between-a-primary-key-and-a-unique-key&quot;&gt;What is the difference between a primary key and a unique key?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Primary Key&lt;/strong&gt;: Uniquely identifies a row and cannot have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; values.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Unique Key&lt;/strong&gt;: Ensures uniqueness but allows one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; value.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-the-purpose-of-indexing-in-a-database&quot;&gt;What is the purpose of indexing in a database?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Indexes improve the speed of data retrieval by allowing faster row lookups compared to scanning the entire table.&lt;/li&gt;
+  &lt;li&gt;Especially useful for large datasets.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-normalization-in-sql&quot;&gt;What is normalization in SQL?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;The process of organizing a database to:
+    &lt;ul&gt;
+      &lt;li&gt;Reduce redundancy.&lt;/li&gt;
+      &lt;li&gt;Improve data integrity.&lt;/li&gt;
+      &lt;li&gt;Achieved by dividing large tables into smaller ones and defining relationships between them.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-a-foreign-key-in-sql&quot;&gt;What is a foreign key in SQL?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A column (or group of columns) that establishes a link between data in two tables.&lt;/li&gt;
+  &lt;li&gt;Enforces &lt;strong&gt;referential integrity&lt;/strong&gt; by ensuring a value in one table matches a value in another.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-the-difference-between-inner-join-and-outer-join&quot;&gt;What is the difference between INNER JOIN and OUTER JOIN?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;INNER JOIN&lt;/strong&gt;: Returns rows with matching values in both tables.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;OUTER JOIN&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;LEFT OUTER JOIN&lt;/strong&gt;: Includes all rows from the left table, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; for unmatched rows in the right table.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;RIGHT OUTER JOIN&lt;/strong&gt;: Includes all rows from the right table, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; for unmatched rows in the left table.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;FULL OUTER JOIN&lt;/strong&gt;: Includes all rows from both tables, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; for unmatched rows.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;big-o-notation&quot;&gt;&lt;strong&gt;Big O Notation&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;( f(x) = O(g(x)) ) if there exist constants ( M &amp;gt; 0 ) and ( n &amp;gt; 0 ) such that:
+[
+|f(x)| \leq M \cdot |g(x)| \text{ for all } x &amp;gt; n.
+]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;linked-list-vs-array&quot;&gt;&lt;strong&gt;Linked List vs. Array&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;| &lt;strong&gt;Operation&lt;/strong&gt;               | &lt;strong&gt;Linked List&lt;/strong&gt; | &lt;strong&gt;Array&lt;/strong&gt;          |
+|——————————|—————–|——————–|
+| &lt;strong&gt;Access by Index&lt;/strong&gt;          | ( O(n) )      | ( O(1) )         |
+| &lt;strong&gt;Search (Sorted)&lt;/strong&gt;          | ( O(n) )      | ( O(\log n) )    |
+| &lt;strong&gt;Insertion/Deletion at Head&lt;/strong&gt; | ( O(1) )      | ( O(n) ) (may require resizing) |
+| &lt;strong&gt;Insertion/Deletion at Index&lt;/strong&gt; | ( O(n) )      | ( O(n) )         |&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;c-concepts&quot;&gt;&lt;strong&gt;C++ Concepts&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;key-features&quot;&gt;&lt;strong&gt;Key Features&lt;/strong&gt;&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Speed and Low Latency&lt;/strong&gt;: Ideal for real-time risk analysis and pricing.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Memory Allocation&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;malloc()&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;free()&lt;/code&gt; for heap memory (manual management).&lt;/li&gt;
+      &lt;li&gt;Classes typically use static memory (automatically managed).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;multithreading&quot;&gt;&lt;strong&gt;Multithreading&lt;/strong&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Unlike Python, C++ does not have a Global Interpreter Lock (GIL), enabling true multithreading.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;namespaces&quot;&gt;&lt;strong&gt;Namespaces&lt;/strong&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Avoid name collisions by organizing code logically.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;object-oriented-programming-oop&quot;&gt;&lt;strong&gt;Object-Oriented Programming (OOP)&lt;/strong&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Inheritance&lt;/strong&gt;: Base and derived classes.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Polymorphism&lt;/strong&gt;: Runtime behavior via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtual&lt;/code&gt; functions.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Encapsulation&lt;/strong&gt;: Hiding data within classes.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Abstraction&lt;/strong&gt;: Simplifying complex systems.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;structs&quot;&gt;&lt;strong&gt;Structs&lt;/strong&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Groups different data types into a single entity.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;floating-point-types&quot;&gt;&lt;strong&gt;Floating-Point Types&lt;/strong&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;float&lt;/code&gt;: 32-bit precision.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;double&lt;/code&gt;: 64-bit precision.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;virtual-functions&quot;&gt;&lt;strong&gt;Virtual Functions&lt;/strong&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Enable runtime polymorphism and allow overriding parent methods.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pure-virtual-function&quot;&gt;&lt;strong&gt;Pure virtual function&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;a virtual function that is declared within a base class but has no implementation in that class&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;pure virtual vs virtual:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Aspect&lt;/th&gt;
+      &lt;th&gt;Pure Virtual&lt;/th&gt;
+      &lt;th&gt;Virtual&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Definition&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Declared with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;= 0&lt;/code&gt;, no implementation in the base class.&lt;/td&gt;
+      &lt;td&gt;Can have an implementation in the base class.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Syntax&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtual void func() = 0;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtual void func() { ... };&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Aspect&lt;/th&gt;
+      &lt;th&gt;Pure Virtual&lt;/th&gt;
+      &lt;th&gt;Virtual&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Primary Purpose&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Defines an &lt;strong&gt;interface&lt;/strong&gt; in the base class.&lt;/td&gt;
+      &lt;td&gt;Provides a &lt;strong&gt;default behavior&lt;/strong&gt; in the base class.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Requirement&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Derived classes &lt;strong&gt;must&lt;/strong&gt; override the function unless the derived class is also abstract.&lt;/td&gt;
+      &lt;td&gt;Derived classes &lt;strong&gt;may&lt;/strong&gt; override the function, but it is not required.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Base Class Usage&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Makes the base class &lt;strong&gt;abstract&lt;/strong&gt; (non-instantiable).&lt;/td&gt;
+      &lt;td&gt;The base class can still be instantiated.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Polymorphism&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Ensures all derived classes implement the same interface.&lt;/td&gt;
+      &lt;td&gt;Allows derived classes to optionally customize behavior.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;hiding-in-c&quot;&gt;&lt;strong&gt;hiding in C++&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Derived class also define function in same name as base class (just like polymorphism with virtual).&lt;/p&gt;
+
+&lt;p&gt;but provide a new definition in the derived class that is unrelated to the base class member.&lt;/p&gt;
+
+&lt;p&gt;The function in base class is just void, not virtual.&lt;/p&gt;
+
+&lt;p&gt;Hiding uses compile-time binding, virtual functions uses runtime binding.&lt;/p&gt;
+
+&lt;h3 id=&quot;memory-leak-memory-overhead-memory-overflow-memory-corruption&quot;&gt;memory leak, memory overhead, memory overflow, memory corruption&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Memory leak: Program fails to release memory, should free memory after use&lt;/li&gt;
+  &lt;li&gt;Memory overhead: Program requiring extra memory (e.g. dynamic memory allocation)&lt;/li&gt;
+  &lt;li&gt;Memory overflow: Program uses more memory than available&lt;br /&gt;
+(e.g. stack overflow, call stack reaches max recursion depth)&lt;/li&gt;
+  &lt;li&gt;Memory corruption: Program modifies memory it does not own&lt;br /&gt;
+Can lead to crashes and data loss&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;python&quot;&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;How to handle exceptions?&lt;/strong&gt;&lt;br /&gt;
+Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;try&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;except&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;else&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finally&lt;/code&gt; blocks to catch and handle exceptions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Difference between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deepcopy&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shallowcopy&lt;/code&gt;?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Deepcopy&lt;/strong&gt;: Copies all objects recursively.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Shallowcopy&lt;/strong&gt;: Only copies the reference for nested objects.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Pandas&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;How is a Pandas DataFrame different from an SQL table?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Both represent tabular data, but a Pandas DataFrame is an in-memory object for data manipulation in Python, while an SQL table is part of a relational database.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How to detect missing data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;isnull()&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Difference between loc and iloc?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;loc uses column/row labels&lt;br /&gt;
+iloc uses integet indices&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;concat vs merge vs join&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;concat(): Stacks DataFrames along rows or columns.&lt;br /&gt;
+merge(): Combines DataFrames based on common columns or indices, similar to SQL joins.&lt;br /&gt;
+join(): Combines DataFrames based on their indices.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h2 id=&quot;multithreading-vs-multiprocessing&quot;&gt;&lt;strong&gt;Multithreading vs Multiprocessing&lt;/strong&gt;&lt;/h2&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;excel&quot;&gt;&lt;strong&gt;Excel&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Relative, absolute, and mixed references?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Relative&lt;/strong&gt;: Adjusts as you copy (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A1&lt;/code&gt;).&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Absolute&lt;/strong&gt;: Fixed reference (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$A$1&lt;/code&gt;).&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Mixed&lt;/strong&gt;: Fixes row or column (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$A1&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A$1&lt;/code&gt;).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Conditional formatting?&lt;/strong&gt;&lt;br /&gt;
+Apply rules to highlight cells based on criteria, like highlighting values &amp;gt; 100.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Common functions?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VLOOKUP&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HLOOKUP&lt;/code&gt;: Find values in rows/columns.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;INDEX-MATCH&lt;/code&gt;: Dynamic lookups.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IF&lt;/code&gt;: Conditional logic.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMIF&lt;/code&gt;: Sum based on a condition.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Pivot tables?&lt;/strong&gt;&lt;br /&gt;
+Summarize, group, and analyze data dynamically by dragging fields into rows, columns, and values.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Data validation?&lt;/strong&gt;&lt;br /&gt;
+Restricts user input in cells, e.g., dropdown lists or numeric limits.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;vba&quot;&gt;&lt;strong&gt;VBA&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is VBA?&lt;/strong&gt;&lt;br /&gt;
+A programming language in Excel used for automation, macros, and creating custom functions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Key VBA objects?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Workbook&lt;/strong&gt;: The Excel file.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Worksheet&lt;/strong&gt;: A sheet in the workbook.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Range&lt;/strong&gt;: A cell or group of cells.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;How to debug VBA code?&lt;/strong&gt;&lt;br /&gt;
+Use breakpoints, the Immediate Window, and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Debug.Print&lt;/code&gt; method.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;How to run a macro?&lt;/strong&gt;&lt;br /&gt;
+Use the Developer tab &amp;gt; Macros or assign it to a button.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;VBA for data analysis?&lt;/strong&gt;&lt;br /&gt;
+Automates repetitive tasks like importing data, formatting, and creating charts.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;sql&quot;&gt;&lt;strong&gt;SQL&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Primary key vs unique key?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Primary Key&lt;/strong&gt;: Ensures uniqueness and no &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; values.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Unique Key&lt;/strong&gt;: Ensures uniqueness but allows one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULL&lt;/code&gt; value.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;e.g. For a table of students, StudentID can be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;primary key&lt;/code&gt; (must-have, unique, cannot be null)&lt;br /&gt;
+Student_name can be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unique key&lt;/code&gt; also unique but can be null&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is indexing?&lt;/strong&gt;&lt;br /&gt;
+Improves query speed by creating a data structure for fast lookups on columns.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is normalization?&lt;/strong&gt;&lt;br /&gt;
+Organizing data to reduce redundancy and ensure integrity by dividing tables logically.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is a foreign key?&lt;/strong&gt;&lt;br /&gt;
+Links data between tables, enforcing that values in one table exist in another.&lt;br /&gt;
+e.g. In another table called Course_Enrolment, can have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StudentID&lt;/code&gt; columns referencing students taking this course&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;INNER JOIN vs OUTER JOIN?&lt;/strong&gt;&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;INNER JOIN&lt;/strong&gt;: Returns only matching rows.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;OUTER JOIN&lt;/strong&gt;: Includes unmatched rows with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NULLs&lt;/code&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;r&quot;&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is R used for?&lt;/strong&gt;&lt;br /&gt;
+Statistical computing, data visualization, and machine learning.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;What are R’s data structures?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Vectors&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Matrices&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Data Frames&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Lists&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;How to install packages in R?&lt;/strong&gt;&lt;br /&gt;
+Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;install.packages(&quot;package_name&quot;)&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library(package_name)&lt;/code&gt; to load.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;What is ggplot2?&lt;/strong&gt;&lt;br /&gt;
+A popular R library for creating customizable visualizations.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;How to handle missing data?&lt;/strong&gt;&lt;br /&gt;
+Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;na.omit()&lt;/code&gt; to remove or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;impute()&lt;/code&gt; to fill missing values.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 12 Feb 2025 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2025/02/12/Coding/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025/02/12/Coding/</guid>
+        
+        <category>programming</category>
         
         
       </item>
