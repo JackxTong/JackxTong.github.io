@@ -5,9 +5,22 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Feb 2025 04:10:17 +0000</pubDate>
-    <lastBuildDate>Thu, 13 Feb 2025 04:10:17 +0000</lastBuildDate>
+    <pubDate>Thu, 13 Feb 2025 16:48:43 +0000</pubDate>
+    <lastBuildDate>Thu, 13 Feb 2025 16:48:43 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Brainteasers</title>
+        <description>
+</description>
+        <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2025/02/13/brainteasers/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025/02/13/brainteasers/</guid>
+        
+        <category>Quant Finance</category>
+        
+        
+      </item>
     
       <item>
         <title>Some Quant Finance</title>
@@ -23,29 +36,36 @@
 &lt;p&gt;Buy Call-Put Parity: $ C - P = S - K e^{-rT} $, buying a call and a shorting a put is 
 equivalent to buying the stock with borrowed money of $K e^{-rT} $&lt;/p&gt;
 
-&lt;p&gt;Obviously
-$$&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;C  + (P + S - K e^{-rT})= 0
-$$
-So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Obviously&lt;/p&gt;
+
+&lt;div class=&quot;kdmath&quot;&gt;$$
+- C  + (P + S - K e^{-rT})= 0
+$$&lt;/div&gt;
+
+&lt;p&gt;So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash&lt;/p&gt;
 
 &lt;h3 id=&quot;gamma&quot;&gt;Gamma&lt;/h3&gt;
-&lt;p&gt;High means convex trade (delta moves faster than underlying)
-Highest for ATM
-Close to 0 for OTM and ITM&lt;/p&gt;
+&lt;p&gt;High means convex trade (delta moves faster than underlying)&lt;/p&gt;
+
+&lt;p&gt;Highest for ATM&lt;/p&gt;
+
+&lt;p&gt;Close to 0 for OTM and ITM&lt;/p&gt;
 
 &lt;h3 id=&quot;vega&quot;&gt;Vega&lt;/h3&gt;
-&lt;p&gt;WRT Change in implied vol
-Same for calls and puts&lt;/p&gt;
+&lt;p&gt;WRT Change in implied vol&lt;/p&gt;
 
 &lt;p&gt;Gamma and vega usually always positive&lt;/p&gt;
+
+&lt;p&gt;IV is usually higher for ITM and OTM options than ATM&lt;/p&gt;
+
+&lt;p&gt;Shorting Vega means selling options and profiting from the risk premium
+(but faces an unlimited risk)&lt;/p&gt;
 
 &lt;h3 id=&quot;volatility&quot;&gt;Volatility&lt;/h3&gt;
 &lt;p&gt;Standard deviation of log return of some risky assets&lt;/p&gt;
 
-&lt;h2 id=&quot;equity-options&quot;&gt;Equity Options&lt;/h2&gt;
+&lt;p&gt;Stocks usually exhibit volatility clustering (volatile days follow volatile days)&lt;/p&gt;
+
 &lt;h3 id=&quot;brownian-motion&quot;&gt;Brownian motion&lt;/h3&gt;
 
 &lt;p&gt;1.B_0 = 0, for any  0,t1…,tn, increment Bt2 - Bt1, are independent&lt;br /&gt;
@@ -122,7 +142,10 @@ swaps - agreement to exchange cash flow, priced on net present value
 futures - S0 * e^rT (no up-front payment)&lt;/p&gt;
 
 &lt;h3 id=&quot;garch-for-volatility-forecast&quot;&gt;GARCH for volatility forecast&lt;/h3&gt;
-&lt;p&gt;sig_t^2 = long_term_vol + a * eps_t-1^2 + b * sig_t-1^2&lt;/p&gt;
+
+&lt;div class=&quot;kdmath&quot;&gt;$$
+\sigma_t^2 = long_term_vol + a * \epsilon_{t-1}^2 + b * \sigma_{t-1}^2
+$$&lt;/div&gt;
 
 &lt;p&gt;long_term_vol: fixed constant&lt;br /&gt;
 eps_t-1: residual derived from log return log(Rt/Rt-1) with mean removed&lt;br /&gt;
@@ -652,22 +675,28 @@ Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;na.omit()
     
       <item>
         <title>Thoughts on DeepSeek</title>
-        <description>&lt;h2 id=&quot;v3-base&quot;&gt;V3-Base&lt;/h2&gt;
-&lt;p&gt;671B decoder-only transformer
-Self-supervised pre-training:
-No label, train on first half of sentence to predict the second half&lt;/p&gt;
+        <description>&lt;h1 id=&quot;innovations-of-deepseek&quot;&gt;Innovations of DeepSeek&lt;/h1&gt;
+&lt;h2 id=&quot;v3-base&quot;&gt;V3-Base&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;671B decoder-only transformer&lt;/li&gt;
+  &lt;li&gt;Self-supervised pre-training:
+No label, train on first half of sentence to predict the second half&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;r1-zero&quot;&gt;R1-Zero&lt;/h2&gt;
 
-&lt;p&gt;Trained on v3-base using reinforcement learning:
-Supervised fine tuning (SFT)
-Reinforcement Learning from Human Feedback (RLHF)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Trained on v3-base using reinforcement learning:&lt;/li&gt;
+  &lt;li&gt;Supervised fine tuning (SFT)&lt;/li&gt;
+  &lt;li&gt;Reinforcement Learning from Human Feedback (RLHF)&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;r1&quot;&gt;R1&lt;/h2&gt;
 
-&lt;p&gt;Use R1-zero to come up with good CoT
-Use those CoT to fine-tune V3-Base
-Then train with SFT to get R1&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Use R1-zero to come up with good CoT&lt;/li&gt;
+  &lt;li&gt;Use those CoT to fine-tune V3-Base, Then train with SFT to get R1&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;llamaqwen-distilled&quot;&gt;Llama/Qwen Distilled&lt;/h2&gt;
 
@@ -676,12 +705,69 @@ to train other open-source models: Meta &amp;amp; Qwen&lt;/p&gt;
 
 &lt;h2 id=&quot;other-techniques&quot;&gt;Other techniques&lt;/h2&gt;
 
-&lt;p&gt;MoE system
-Multihead latent Attention (MLA)
-Distilling using O1
-Low-level programming GPU cores
-Group Relative Policy Optimization (GRPO)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;MoE system&lt;/li&gt;
+  &lt;li&gt;Multihead latent Attention (MLA)&lt;/li&gt;
+  &lt;li&gt;Distilling using O1&lt;/li&gt;
+  &lt;li&gt;Low-level programming GPU cores&lt;/li&gt;
+  &lt;li&gt;Group Relative Policy Optimization (GRPO)&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h1 id=&quot;implementing-deepseek-locally&quot;&gt;Implementing DeepSeek Locally&lt;/h1&gt;
+
+&lt;h2 id=&quot;ollama&quot;&gt;OLlama&lt;/h2&gt;
+&lt;p&gt;This is the easier way.&lt;/p&gt;
+
+&lt;p&gt;Simply go to &lt;a href=&quot;https://ollama.com/library/deepseek-r1&quot;&gt;Ollama&lt;/a&gt;, and select a model to download.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;7b which takes 4.7GB of local disk space actually works pretty well. 
+When you serve it locally, it takes only 600Mb of RAM on my M1 Mac&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;14b which takes 9.0GB is also a feasible choice&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then locally run&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ollama run deepseek-r1:7b
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A good UI is &lt;a href=&quot;https://chromewebstore.google.com/detail/page-assist-a-web-ui-for/jfgfiigpkhlkbnfnbobbkinehhfdhndo?hl=en&amp;amp;pli=1&quot;&gt;Page Assist&lt;/a&gt;, which you can install as an extention on your chrome. Then simply open the extention and you get a nice chat box to talk to your own 7b model locally. 7b is actually way smarter than Llama 70b in my opinion&lt;/p&gt;
+
+&lt;h2 id=&quot;vllm&quot;&gt;VLLM&lt;/h2&gt;
+
+&lt;p&gt;This is the official supported option of DeepSeek, but requires more setup.&lt;/p&gt;
+
+&lt;p&gt;You can checkout my setup &lt;a href=&quot;https://github.com/JackxTong/DeepSeek-local&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This allows you to serve your local model on your Linux HPC, customizing the number of GPUs to use, quantized datatype( bfloat16), model length etc, e.g.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CUDA_VISIBLE_DEVICES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1,2
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-14B &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--dtype&lt;/span&gt; bfloat16 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--tensor-parallel-size&lt;/span&gt; 2 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;--max-model-len&lt;/span&gt; 4096
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The disadvantage is you don’t get a nice UI extension like Page Assistant.
+Instead, you can prompt it in terminal like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://localhost:8000/v1/completions &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Content-Type: application/json&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{
+    &quot;model&quot;: &quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-14B&quot;,
+    &quot;prompt&quot;: &quot;蔡徐坤擅长唱跳和什么？&quot;,
+    &quot;temperature&quot;: 0.6,
+    &quot;max_tokens&quot;: 512
+  }&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And receive its response also in terminal like this:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;cmpl-78xxxxx&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;object&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;text_completion&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;created&quot;&lt;/span&gt;:1738xxxxx,&lt;span class=&quot;s2&quot;&gt;&quot;model&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-14B&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;choices&quot;&lt;/span&gt;:[&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;index&quot;&lt;/span&gt;:0,&lt;span class=&quot;s2&quot;&gt;&quot;text&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot; 蔡徐坤擅长唱跳和什么？&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;好，用户问蔡徐坤擅长唱跳和什么。首先，我需要确认蔡徐坤的主要才能。他确实是唱跳歌手，所以唱跳肯定是他的强项。接下来，他还有什么特别的技能呢？&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;我记得他参加过《偶像练习生》节目，表现出色，所以可能还有其他的才能。比如，他有没有特别擅长的舞蹈风格？或者他在音乐创作方面有贡献？&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;另外，蔡徐坤可能在其他领域也有涉猎，比如时尚或者主持。这些可能也是他的强项。需要详细列举出来，让用户全面了解。&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;所以，整理一下，我会回答说他唱跳rap篮球&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;/think&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;蔡徐坤擅长唱跳rap篮球，练习两年半。&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;logprobs&quot;&lt;/span&gt;:null,&lt;span class=&quot;s2&quot;&gt;&quot;finish_reason&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;stop&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;stop_reason&quot;&lt;/span&gt;:null,&lt;span class=&quot;s2&quot;&gt;&quot;prompt_logprobs&quot;&lt;/span&gt;:null&lt;span class=&quot;o&quot;&gt;}]&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;usage&quot;&lt;/span&gt;:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;prompt_tokens&quot;&lt;/span&gt;:10,&lt;span class=&quot;s2&quot;&gt;&quot;total_tokens&quot;&lt;/span&gt;:295,&lt;span class=&quot;s2&quot;&gt;&quot;completion_tokens&quot;&lt;/span&gt;:285,&lt;span class=&quot;s2&quot;&gt;&quot;prompt_tokens_details&quot;&lt;/span&gt;:null&lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
         <link>http://localhost:4000/2025/02/08/DeepSeek/</link>
@@ -701,16 +787,18 @@ Group Relative Policy Optimization (GRPO)&lt;/p&gt;
 
 &lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
 
-&lt;p&gt;I was placed into the Data Science team within Natwest Group Solutions, the part of Natwest that focuses on coming up with digital solutions for other parts of the bank. In particular, I was in charge of improving the machine learning classifier for the Suspicious Activity Reports (SAR) which the FinCrime team need to analyze.&lt;/p&gt;
+&lt;p&gt;I was placed into the Data Science team within Natwest Group Solutions&lt;/p&gt;
+
+&lt;p&gt;I was in charge of improving the machine learning classifier for the Suspicious Activity Reports (SAR) which the FinCrime team need to analyze.&lt;/p&gt;
 
 &lt;h3 id=&quot;challenges&quot;&gt;Challenges&lt;/h3&gt;
 
-&lt;p&gt;The SAR are written by different humans, without a set strict format in general. The purpose is to classify each SAR into a category (e.g. Money laundering, gambling, fraud etc), for further analysis. The old classifier used by the FinCrime team is a rule-based model (based on a bunch of if-elses), and can lead to low classication accuracy especially in terms of minority groups. A major challenge for using a machine learning model that can be trained for higher accuracy is the lack of labeled data. While the bank has several thousand SARs per month, human labor are needed to label each SAR with the right category, and we had only 50ish labeled SARs per month.&lt;/p&gt;
+&lt;p&gt;The SAR are written by different humans, without a set strict format in general.&lt;/p&gt;
+
+&lt;p&gt;The purpose is to classify each SAR into a category (e.g. Money laundering, gambling, fraud etc), for further analysis. The old classifier used by the FinCrime team is a rule-based model (based on a bunch of if-elses), and can lead to low classication accuracy especially in terms of minority groups. A major challenge for using a machine learning model that can be trained for higher accuracy is the lack of labeled data. While the bank has several thousand SARs per month, human labor are needed to label each SAR with the right category, and we had only 50ish labeled SARs per month.&lt;/p&gt;
 
 &lt;h3 id=&quot;my-approach&quot;&gt;My Approach&lt;/h3&gt;
-&lt;p&gt;I developed a novel approach by using LLM to generate synthetic SARs for each category. This way we can scale up the data and allow the training of ML classifiers. To ensure the quality, we employed clustering analysis by looking at the vector embeddings of the original data and the generated data, both fed into the embedding layer of an LLM into a (1546,) vector. We used PCA to find the two most important dimension for plotting the data vectors, computed average consine similarity for both old and new data, and also constructed a cosine-distance based KNN graph. All evidence suggested there isn’t a systematic difference between the old and the new synthetic text data.&lt;/p&gt;
-
-&lt;p&gt;Hence we were able to train a random forest model on top of all the data and achieved a big increase in average classication accuracy across all categories.&lt;/p&gt;
+&lt;p&gt;We used LLM to generate synthetic SARs for each category. To ensure the quality, we employed clustering analysis by looking at the vector embeddings of the original data and the generated data, both fed into the embedding layer of an LLM into a (1546,) vector. We used PCA to find the two most important dimension for plotting the data vectors, computed average consine similarity for both old and new data, and also constructed a cosine-distance based KNN graph. All evidence suggested there isn’t a systematic difference between the old and the new synthetic text data.&lt;/p&gt;
 
 &lt;p&gt;An alternative approach where we directly prompt the LLM to do the classication also worked, though it still suffers from hallucinations and occasionally create categories that didn’t exist.&lt;/p&gt;
 

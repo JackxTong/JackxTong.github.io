@@ -109,6 +109,22 @@ layout: default
     </div>
 </article>
 
+<!-- MathJax for LaTeX rendering -->
+<script type="text/javascript">
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],  // Ensures inline math works properly
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]  // Ensures block math is detected
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  
+<script type="text/javascript" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+  
+
 
 {% if site.disqus_username %}
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->

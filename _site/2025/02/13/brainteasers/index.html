@@ -10,7 +10,7 @@
     <meta name="keywords"  content="">
     <meta name="theme-color" content="#000000">
     
-    <title>Data Science Internship - Tong Xiao</title>
+    <title>Brainteasers - Tong Xiao</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2024/11/01/Natwest/">
+    <link rel="canonical" href="http://localhost:4000/2025/02/13/brainteasers/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,13 +154,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-cook.jpg" width="0" height="0"> -->
+<!-- <img src="/img/black_image_2000x1000.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-cook.jpg')
+        background-image: url('/img/black_image_2000x1000.jpg')
     }
 
     
@@ -173,19 +173,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#python" title="python">python</a>
-                        
-                        <a class="tag" href="/tags/#AWS" title="AWS">AWS</a>
-                        
-                        <a class="tag" href="/tags/#Internship" title="Internship">Internship</a>
+                        <a class="tag" href="/tags/#Quant Finance" title="Quant Finance">Quant Finance</a>
                         
                     </div>
-                    <h1>Data Science Internship</h1>
+                    <h1>Brainteasers</h1>
                     
                     
-                    <h2 class="subheading">Natwest Group</h2>
+                    <h2 class="subheading"></h2>
                     
-                    <span class="meta">Posted by TX on November 1, 2024</span>
+                    <span class="meta">Posted by TX on February 13, 2025</span>
                 </div>
             </div>
         </div>
@@ -203,31 +199,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="data-science-intern-at-natwest-group">Data Science Intern at Natwest Group</h2>
-<p>Jun - Aug 2024</p>
-
-<h3 id="overview">Overview</h3>
-
-<p>I was placed into the Data Science team within Natwest Group Solutions</p>
-
-<p>I was in charge of improving the machine learning classifier for the Suspicious Activity Reports (SAR) which the FinCrime team need to analyze.</p>
-
-<h3 id="challenges">Challenges</h3>
-
-<p>The SAR are written by different humans, without a set strict format in general.</p>
-
-<p>The purpose is to classify each SAR into a category (e.g. Money laundering, gambling, fraud etc), for further analysis. The old classifier used by the FinCrime team is a rule-based model (based on a bunch of if-elses), and can lead to low classication accuracy especially in terms of minority groups. A major challenge for using a machine learning model that can be trained for higher accuracy is the lack of labeled data. While the bank has several thousand SARs per month, human labor are needed to label each SAR with the right category, and we had only 50ish labeled SARs per month.</p>
-
-<h3 id="my-approach">My Approach</h3>
-<p>We used LLM to generate synthetic SARs for each category. To ensure the quality, we employed clustering analysis by looking at the vector embeddings of the original data and the generated data, both fed into the embedding layer of an LLM into a (1546,) vector. We used PCA to find the two most important dimension for plotting the data vectors, computed average consine similarity for both old and new data, and also constructed a cosine-distance based KNN graph. All evidence suggested there isn’t a systematic difference between the old and the new synthetic text data.</p>
-
-<p>An alternative approach where we directly prompt the LLM to do the classication also worked, though it still suffers from hallucinations and occasionally create categories that didn’t exist.</p>
-
-<h3 id="technologies-used">Technologies Used</h3>
-<p>We used OpenAI API through Azure.</p>
-
-<p>The coding environment was based on the AWS Sagemaker Studio, and data are stored in the AWS S3 database.</p>
-
+				
 
 
                 <hr style="visibility: hidden;">
@@ -235,19 +207,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2024/09/01/Deepwok-Lab-en/" data-toggle="tooltip" data-placement="top" title="Machine Learning Internship">
+                        <a href="/2025/02/12/Finance/" data-toggle="tooltip" data-placement="top" title="Some Quant Finance">
                         Previous<br>
-                        <span>Machine Learning Internship</span>
+                        <span>Some Quant Finance</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2025/02/08/DeepSeek/" data-toggle="tooltip" data-placement="top" title="Thoughts on DeepSeek">
-                        Next<br>
-                        <span>Thoughts on DeepSeek</span>
-                        </a>
-                    </li>
                     
                 </ul>
             </div>  

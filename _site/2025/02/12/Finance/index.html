@@ -211,29 +211,36 @@
 <p>Buy Call-Put Parity: $ C - P = S - K e^{-rT} $, buying a call and a shorting a put is 
 equivalent to buying the stock with borrowed money of $K e^{-rT} $</p>
 
-<p>Obviously
-$$</p>
-<ul>
-  <li>C  + (P + S - K e^{-rT})= 0
-$$
-So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash</li>
-</ul>
+<p>Obviously</p>
+
+<div class="kdmath">$$
+- C  + (P + S - K e^{-rT})= 0
+$$</div>
+
+<p>So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash</p>
 
 <h3 id="gamma">Gamma</h3>
-<p>High means convex trade (delta moves faster than underlying)
-Highest for ATM
-Close to 0 for OTM and ITM</p>
+<p>High means convex trade (delta moves faster than underlying)</p>
+
+<p>Highest for ATM</p>
+
+<p>Close to 0 for OTM and ITM</p>
 
 <h3 id="vega">Vega</h3>
-<p>WRT Change in implied vol
-Same for calls and puts</p>
+<p>WRT Change in implied vol</p>
 
 <p>Gamma and vega usually always positive</p>
+
+<p>IV is usually higher for ITM and OTM options than ATM</p>
+
+<p>Shorting Vega means selling options and profiting from the risk premium
+(but faces an unlimited risk)</p>
 
 <h3 id="volatility">Volatility</h3>
 <p>Standard deviation of log return of some risky assets</p>
 
-<h2 id="equity-options">Equity Options</h2>
+<p>Stocks usually exhibit volatility clustering (volatile days follow volatile days)</p>
+
 <h3 id="brownian-motion">Brownian motion</h3>
 
 <p>1.B_0 = 0, for any  0,t1…,tn, increment Bt2 - Bt1, are independent<br />
@@ -310,7 +317,10 @@ swaps - agreement to exchange cash flow, priced on net present value
 futures - S0 * e^rT (no up-front payment)</p>
 
 <h3 id="garch-for-volatility-forecast">GARCH for volatility forecast</h3>
-<p>sig_t^2 = long_term_vol + a * eps_t-1^2 + b * sig_t-1^2</p>
+
+<div class="kdmath">$$
+\sigma_t^2 = long_term_vol + a * \epsilon_{t-1}^2 + b * \sigma_{t-1}^2
+$$</div>
 
 <p>long_term_vol: fixed constant<br />
 eps_t-1: residual derived from log return log(Rt/Rt-1) with mean removed<br />
@@ -400,6 +410,13 @@ df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW</p>
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/2025/02/13/brainteasers/" data-toggle="tooltip" data-placement="top" title="Brainteasers">
+                        Next<br>
+                        <span>Brainteasers</span>
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>  
 
@@ -429,6 +446,22 @@ df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW</p>
         </div>
     </div>
 </article>
+
+<!-- MathJax for LaTeX rendering -->
+<script type="text/javascript">
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],  // Ensures inline math works properly
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]  // Ensures block math is detected
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  
+<script type="text/javascript" async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+  
 
 
 
