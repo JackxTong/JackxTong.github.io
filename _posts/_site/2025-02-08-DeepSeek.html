@@ -1,19 +1,25 @@
+<h1 id="innovations-of-deepseek">Innovations of DeepSeek</h1>
 <h2 id="v3-base">V3-Base</h2>
-<p>671B decoder-only transformer
-Self-supervised pre-training:
-No label, train on first half of sentence to predict the second half</p>
+<ul>
+  <li>671B decoder-only transformer</li>
+  <li>Self-supervised pre-training:
+No label, train on first half of sentence to predict the second half</li>
+</ul>
 
 <h2 id="r1-zero">R1-Zero</h2>
 
-<p>Trained on v3-base using reinforcement learning:
-Supervised fine tuning (SFT)
-Reinforcement Learning from Human Feedback (RLHF)</p>
+<ul>
+  <li>Trained on v3-base using reinforcement learning:</li>
+  <li>Supervised fine tuning (SFT)</li>
+  <li>Reinforcement Learning from Human Feedback (RLHF)</li>
+</ul>
 
 <h2 id="r1">R1</h2>
 
-<p>Use R1-zero to come up with good CoT
-Use those CoT to fine-tune V3-Base
-Then train with SFT to get R1</p>
+<ul>
+  <li>Use R1-zero to come up with good CoT</li>
+  <li>Use those CoT to fine-tune V3-Base, Then train with SFT to get R1</li>
+</ul>
 
 <h2 id="llamaqwen-distilled">Llama/Qwen Distilled</h2>
 
@@ -22,9 +28,66 @@ to train other open-source models: Meta &amp; Qwen</p>
 
 <h2 id="other-techniques">Other techniques</h2>
 
-<p>MoE system
-Multihead latent Attention (MLA)
-Distilling using O1
-Low-level programming GPU cores
-Group Relative Policy Optimization (GRPO)</p>
+<ul>
+  <li>MoE system</li>
+  <li>Multihead latent Attention (MLA)</li>
+  <li>Distilling using O1</li>
+  <li>Low-level programming GPU cores</li>
+  <li>Group Relative Policy Optimization (GRPO)</li>
+</ul>
 
+<h1 id="implementing-deepseek-locally">Implementing DeepSeek Locally</h1>
+
+<h2 id="ollama">OLlama</h2>
+<p>This is the easier way.</p>
+
+<p>Simply go to <a href="https://ollama.com/library/deepseek-r1">Ollama</a>, and select a model to download.</p>
+
+<ul>
+  <li>
+    <p>7b which takes 4.7GB of local disk space actually works pretty well. 
+When you serve it locally, it takes only 600Mb of RAM on my M1 Mac</p>
+  </li>
+  <li>
+    <p>14b which takes 9.0GB is also a feasible choice</p>
+  </li>
+</ul>
+
+<p>Then locally run</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ollama run deepseek-r1:7b
+</code></pre></div></div>
+
+<p>A good UI is <a href="https://chromewebstore.google.com/detail/page-assist-a-web-ui-for/jfgfiigpkhlkbnfnbobbkinehhfdhndo?hl=en&amp;pli=1">Page Assist</a>, which you can install as an extention on your chrome. Then simply open the extention and you get a nice chat box to talk to your own 7b model locally. 7b is actually way smarter than Llama 70b in my opinion</p>
+
+<h2 id="vllm">VLLM</h2>
+
+<p>This is the official supported option of DeepSeek, but requires more setup.</p>
+
+<p>You can checkout my setup <a href="https://github.com/JackxTong/DeepSeek-local">here</a></p>
+
+<p>This allows you to serve your local model on your Linux HPC, customizing the number of GPUs to use, quantized datatype( bfloat16), model length etc, e.g.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>1,2
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-14B <span class="se">\</span>
+  <span class="nt">--dtype</span> bfloat16 <span class="se">\</span>
+  <span class="nt">--tensor-parallel-size</span> 2 <span class="se">\</span>
+  <span class="nt">--max-model-len</span> 4096
+</code></pre></div></div>
+
+<p>The disadvantage is you don’t get a nice UI extension like Page Assistant.
+Instead, you can prompt it in terminal like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://localhost:8000/v1/completions <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+    "prompt": "蔡徐坤擅长唱跳和什么？",
+    "temperature": 0.6,
+    "max_tokens": 512
+  }'</span>
+</code></pre></div></div>
+
+<p>And receive its response also in terminal like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"id"</span>:<span class="s2">"cmpl-78xxxxx"</span>,<span class="s2">"object"</span>:<span class="s2">"text_completion"</span>,<span class="s2">"created"</span>:1738xxxxx,<span class="s2">"model"</span>:<span class="s2">"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"</span>,<span class="s2">"choices"</span>:[<span class="o">{</span><span class="s2">"index"</span>:0,<span class="s2">"text"</span>:<span class="s2">" 蔡徐坤擅长唱跳和什么？</span><span class="se">\n</span><span class="s2">好，用户问蔡徐坤擅长唱跳和什么。首先，我需要确认蔡徐坤的主要才能。他确实是唱跳歌手，所以唱跳肯定是他的强项。接下来，他还有什么特别的技能呢？</span><span class="se">\n\n</span><span class="s2">我记得他参加过《偶像练习生》节目，表现出色，所以可能还有其他的才能。比如，他有没有特别擅长的舞蹈风格？或者他在音乐创作方面有贡献？</span><span class="se">\n\n</span><span class="s2">另外，蔡徐坤可能在其他领域也有涉猎，比如时尚或者主持。这些可能也是他的强项。需要详细列举出来，让用户全面了解。</span><span class="se">\n\n</span><span class="s2">所以，整理一下，我会回答说他唱跳rap篮球</span><span class="se">\n</span><span class="s2">&lt;/think&gt;</span><span class="se">\n\n</span><span class="s2">蔡徐坤擅长唱跳rap篮球，练习两年半。"</span>,<span class="s2">"logprobs"</span>:null,<span class="s2">"finish_reason"</span>:<span class="s2">"stop"</span>,<span class="s2">"stop_reason"</span>:null,<span class="s2">"prompt_logprobs"</span>:null<span class="o">}]</span>,<span class="s2">"usage"</span>:<span class="o">{</span><span class="s2">"prompt_tokens"</span>:10,<span class="s2">"total_tokens"</span>:295,<span class="s2">"completion_tokens"</span>:285,<span class="s2">"prompt_tokens_details"</span>:null<span class="o">}}</span>
+</code></pre></div></div>

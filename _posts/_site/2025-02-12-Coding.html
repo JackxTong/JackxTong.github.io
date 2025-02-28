@@ -1,0 +1,430 @@
+<h1 id="general-computer-science-questions">General Computer Science questions</h1>
+
+<h2 id="hash-tables"><strong>Hash Tables</strong></h2>
+<h3 id="what-is-a-hash-table-and-how-does-it-work">What is a hash table, and how does it work?</h3>
+<ul>
+  <li>A hash table is a data structure that maps keys to values using a hash function to compute an index into an array of buckets.</li>
+  <li>It allows for fast lookups, inserts, and deletions.</li>
+</ul>
+
+<p><strong>Time Complexity</strong>:</p>
+<ul>
+  <li><strong>Average Case</strong>: ( O(1) ) for insertion, search, and delete.</li>
+  <li><strong>Worst Case</strong>: ( O(n) ) for all three operations when all keys map to the same bucket due to collisions.</li>
+</ul>
+
+<h3 id="what-is-a-hash-collision-and-how-can-it-be-handled">What is a hash collision, and how can it be handled?</h3>
+<ul>
+  <li>A hash collision occurs when two different keys hash to the same index.</li>
+  <li><strong>Collision Handling Techniques</strong>:
+    <ul>
+      <li><strong>Chaining</strong>: Use linked lists to store multiple keys in the same bucket.</li>
+      <li><strong>Open Addressing</strong>: Probes the next available slot in the array.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="what-is-a-good-hash-function">What is a good hash function?</h3>
+<ul>
+  <li>Uniformly distributes keys across the hash table.</li>
+  <li>Minimizes collisions.</li>
+  <li>Efficient to compute.</li>
+</ul>
+
+<hr />
+
+<h2 id="heap"><strong>Heap</strong></h2>
+<h3 id="what-is-a-heap-and-how-is-it-used">What is a heap, and how is it used?</h3>
+<ul>
+  <li>A heap is a specialized binary tree used to maintain a priority queue.</li>
+  <li><strong>Min-Heap</strong>: The smallest element is at the root.</li>
+  <li><strong>Max-Heap</strong>: The largest element is at the root.</li>
+</ul>
+
+<p><strong>Time Complexity</strong>:</p>
+<ul>
+  <li><strong>Find Min/Max</strong>: ( O(1) )</li>
+  <li><strong>Insert/Delete</strong>: ( O(\log n) )</li>
+  <li><strong>Building a Heap</strong>: ( O(n) )</li>
+  <li><strong>Heap Sort</strong>: ( O(n \log n) )</li>
+</ul>
+
+<h3 id="bst-vs-heap"><strong>BST vs. Heap</strong></h3>
+<ul>
+  <li><strong>Heap</strong>: Ensures the highest/lowest priority element is always at the root.</li>
+  <li><strong>BST</strong>: Maintains an ordered structure where the left child is smaller and the right child is larger than the parent.</li>
+</ul>
+
+<p><strong>Time Complexity</strong>:</p>
+<ul>
+  <li><strong>Search in BST</strong>:
+    <ul>
+      <li><strong>Average</strong>: ( O(\log n) )</li>
+      <li><strong>Worst Case (Unbalanced)</strong>: ( O(n) )</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="sql-concepts"><strong>SQL Concepts</strong></h2>
+<h3 id="what-is-the-difference-between-a-primary-key-and-a-unique-key">What is the difference between a primary key and a unique key?</h3>
+<ul>
+  <li><strong>Primary Key</strong>: Uniquely identifies a row and cannot have <code class="language-plaintext highlighter-rouge">NULL</code> values.</li>
+  <li><strong>Unique Key</strong>: Ensures uniqueness but allows one <code class="language-plaintext highlighter-rouge">NULL</code> value.</li>
+</ul>
+
+<h3 id="what-is-the-purpose-of-indexing-in-a-database">What is the purpose of indexing in a database?</h3>
+<ul>
+  <li>Indexes improve the speed of data retrieval by allowing faster row lookups compared to scanning the entire table.</li>
+  <li>Especially useful for large datasets.</li>
+</ul>
+
+<h3 id="what-is-normalization-in-sql">What is normalization in SQL?</h3>
+<ul>
+  <li>The process of organizing a database to:
+    <ul>
+      <li>Reduce redundancy.</li>
+      <li>Improve data integrity.</li>
+      <li>Achieved by dividing large tables into smaller ones and defining relationships between them.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="what-is-a-foreign-key-in-sql">What is a foreign key in SQL?</h3>
+<ul>
+  <li>A column (or group of columns) that establishes a link between data in two tables.</li>
+  <li>Enforces <strong>referential integrity</strong> by ensuring a value in one table matches a value in another.</li>
+</ul>
+
+<h3 id="what-is-the-difference-between-inner-join-and-outer-join">What is the difference between INNER JOIN and OUTER JOIN?</h3>
+<ul>
+  <li><strong>INNER JOIN</strong>: Returns rows with matching values in both tables.</li>
+  <li><strong>OUTER JOIN</strong>:
+    <ul>
+      <li><strong>LEFT OUTER JOIN</strong>: Includes all rows from the left table, with <code class="language-plaintext highlighter-rouge">NULL</code> for unmatched rows in the right table.</li>
+      <li><strong>RIGHT OUTER JOIN</strong>: Includes all rows from the right table, with <code class="language-plaintext highlighter-rouge">NULL</code> for unmatched rows in the left table.</li>
+      <li><strong>FULL OUTER JOIN</strong>: Includes all rows from both tables, with <code class="language-plaintext highlighter-rouge">NULL</code> for unmatched rows.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="big-o-notation"><strong>Big O Notation</strong></h2>
+<ul>
+  <li>( f(x) = O(g(x)) ) if there exist constants ( M &gt; 0 ) and ( n &gt; 0 ) such that:
+[
+|f(x)| \leq M \cdot |g(x)| \text{ for all } x &gt; n.
+]</li>
+</ul>
+
+<hr />
+
+<h2 id="linked-list-vs-array"><strong>Linked List vs. Array</strong></h2>
+<p>| <strong>Operation</strong>               | <strong>Linked List</strong> | <strong>Array</strong>          |
+|——————————|—————–|——————–|
+| <strong>Access by Index</strong>          | ( O(n) )      | ( O(1) )         |
+| <strong>Search (Sorted)</strong>          | ( O(n) )      | ( O(\log n) )    |
+| <strong>Insertion/Deletion at Head</strong> | ( O(1) )      | ( O(n) ) (may require resizing) |
+| <strong>Insertion/Deletion at Index</strong> | ( O(n) )      | ( O(n) )         |</p>
+
+<hr />
+
+<h2 id="c-concepts"><strong>C++ Concepts</strong></h2>
+<h3 id="key-features"><strong>Key Features</strong></h3>
+<ol>
+  <li><strong>Speed and Low Latency</strong>: Ideal for real-time risk analysis and pricing.</li>
+  <li><strong>Memory Allocation</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">malloc()</code> and <code class="language-plaintext highlighter-rouge">free()</code> for heap memory (manual management).</li>
+      <li>Classes typically use static memory (automatically managed).</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="multithreading"><strong>Multithreading</strong>:</h3>
+<ul>
+  <li>Unlike Python, C++ does not have a Global Interpreter Lock (GIL), enabling true multithreading.</li>
+</ul>
+
+<h3 id="namespaces"><strong>Namespaces</strong>:</h3>
+<ul>
+  <li>Avoid name collisions by organizing code logically.</li>
+</ul>
+
+<h3 id="object-oriented-programming-oop"><strong>Object-Oriented Programming (OOP)</strong>:</h3>
+<ul>
+  <li><strong>Inheritance</strong>: Base and derived classes.</li>
+  <li><strong>Polymorphism</strong>: Runtime behavior via <code class="language-plaintext highlighter-rouge">virtual</code> functions.</li>
+  <li><strong>Encapsulation</strong>: Hiding data within classes.</li>
+  <li><strong>Abstraction</strong>: Simplifying complex systems.</li>
+</ul>
+
+<h3 id="structs"><strong>Structs</strong>:</h3>
+<ul>
+  <li>Groups different data types into a single entity.</li>
+</ul>
+
+<h3 id="floating-point-types"><strong>Floating-Point Types</strong>:</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">float</code>: 32-bit precision.</li>
+  <li><code class="language-plaintext highlighter-rouge">double</code>: 64-bit precision.</li>
+</ul>
+
+<h3 id="virtual-functions"><strong>Virtual Functions</strong>:</h3>
+<ul>
+  <li>Enable runtime polymorphism and allow overriding parent methods.</li>
+</ul>
+
+<h3 id="pure-virtual-function"><strong>Pure virtual function</strong></h3>
+<ul>
+  <li>a virtual function that is declared within a base class but has no implementation in that class</li>
+</ul>
+
+<p>pure virtual vs virtual:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Pure Virtual</th>
+      <th>Virtual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Definition</strong></td>
+      <td>Declared with <code class="language-plaintext highlighter-rouge">= 0</code>, no implementation in the base class.</td>
+      <td>Can have an implementation in the base class.</td>
+    </tr>
+    <tr>
+      <td><strong>Syntax</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">virtual void func() = 0;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">virtual void func() { ... };</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Pure Virtual</th>
+      <th>Virtual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Primary Purpose</strong></td>
+      <td>Defines an <strong>interface</strong> in the base class.</td>
+      <td>Provides a <strong>default behavior</strong> in the base class.</td>
+    </tr>
+    <tr>
+      <td><strong>Requirement</strong></td>
+      <td>Derived classes <strong>must</strong> override the function unless the derived class is also abstract.</td>
+      <td>Derived classes <strong>may</strong> override the function, but it is not required.</td>
+    </tr>
+    <tr>
+      <td><strong>Base Class Usage</strong></td>
+      <td>Makes the base class <strong>abstract</strong> (non-instantiable).</td>
+      <td>The base class can still be instantiated.</td>
+    </tr>
+    <tr>
+      <td><strong>Polymorphism</strong></td>
+      <td>Ensures all derived classes implement the same interface.</td>
+      <td>Allows derived classes to optionally customize behavior.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="hiding-in-c"><strong>hiding in C++</strong></h3>
+<p>Derived class also define function in same name as base class (just like polymorphism with virtual).</p>
+
+<p>but provide a new definition in the derived class that is unrelated to the base class member.</p>
+
+<p>The function in base class is just void, not virtual.</p>
+
+<p>Hiding uses compile-time binding, virtual functions uses runtime binding.</p>
+
+<h3 id="memory-leak-memory-overhead-memory-overflow-memory-corruption">memory leak, memory overhead, memory overflow, memory corruption</h3>
+<ul>
+  <li>Memory leak: Program fails to release memory, should free memory after use</li>
+  <li>Memory overhead: Program requiring extra memory (e.g. dynamic memory allocation)</li>
+  <li>Memory overflow: Program uses more memory than available<br />
+(e.g. stack overflow, call stack reaches max recursion depth)</li>
+  <li>Memory corruption: Program modifies memory it does not own<br />
+Can lead to crashes and data loss</li>
+</ul>
+
+<h2 id="python"><strong>Python</strong></h2>
+<ol>
+  <li>
+    <p><strong>How to handle exceptions?</strong><br />
+Use <code class="language-plaintext highlighter-rouge">try</code>, <code class="language-plaintext highlighter-rouge">except</code>, <code class="language-plaintext highlighter-rouge">else</code>, and <code class="language-plaintext highlighter-rouge">finally</code> blocks to catch and handle exceptions.</p>
+  </li>
+  <li><strong>Difference between <code class="language-plaintext highlighter-rouge">deepcopy</code> and <code class="language-plaintext highlighter-rouge">shallowcopy</code>?</strong>
+    <ul>
+      <li><strong>Deepcopy</strong>: Copies all objects recursively.</li>
+      <li><strong>Shallowcopy</strong>: Only copies the reference for nested objects.</li>
+    </ul>
+  </li>
+  <li><strong>Pandas</strong>
+    <ul>
+      <li>How is a Pandas DataFrame different from an SQL table?</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Both represent tabular data, but a Pandas DataFrame is an in-memory object for data manipulation in Python, while an SQL table is part of a relational database.</p>
+
+<ul>
+  <li>How to detect missing data</li>
+</ul>
+
+<p>isnull()</p>
+
+<ul>
+  <li>Difference between loc and iloc?</li>
+</ul>
+
+<p>loc uses column/row labels<br />
+iloc uses integet indices</p>
+
+<ul>
+  <li>concat vs merge vs join</li>
+</ul>
+
+<p>concat(): Stacks DataFrames along rows or columns.<br />
+merge(): Combines DataFrames based on common columns or indices, similar to SQL joins.<br />
+join(): Combines DataFrames based on their indices.</p>
+
+<ol>
+  <li>
+    <h2 id="multithreading-vs-multiprocessing"><strong>Multithreading vs Multiprocessing</strong></h2>
+  </li>
+</ol>
+
+<h2 id="excel"><strong>Excel</strong></h2>
+<ol>
+  <li><strong>Relative, absolute, and mixed references?</strong>
+    <ul>
+      <li><strong>Relative</strong>: Adjusts as you copy (<code class="language-plaintext highlighter-rouge">A1</code>).</li>
+      <li><strong>Absolute</strong>: Fixed reference (<code class="language-plaintext highlighter-rouge">$A$1</code>).</li>
+      <li><strong>Mixed</strong>: Fixes row or column (<code class="language-plaintext highlighter-rouge">$A1</code> or <code class="language-plaintext highlighter-rouge">A$1</code>).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Conditional formatting?</strong><br />
+Apply rules to highlight cells based on criteria, like highlighting values &gt; 100.</p>
+  </li>
+  <li><strong>Common functions?</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">VLOOKUP</code>/<code class="language-plaintext highlighter-rouge">HLOOKUP</code>: Find values in rows/columns.</li>
+      <li><code class="language-plaintext highlighter-rouge">INDEX-MATCH</code>: Dynamic lookups.</li>
+      <li><code class="language-plaintext highlighter-rouge">IF</code>: Conditional logic.</li>
+      <li><code class="language-plaintext highlighter-rouge">SUMIF</code>: Sum based on a condition.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Pivot tables?</strong><br />
+Summarize, group, and analyze data dynamically by dragging fields into rows, columns, and values.</p>
+  </li>
+  <li><strong>Data validation?</strong><br />
+Restricts user input in cells, e.g., dropdown lists or numeric limits.</li>
+</ol>
+
+<hr />
+
+<h2 id="vba"><strong>VBA</strong></h2>
+<ol>
+  <li>
+    <p><strong>What is VBA?</strong><br />
+A programming language in Excel used for automation, macros, and creating custom functions.</p>
+  </li>
+  <li><strong>Key VBA objects?</strong>
+    <ul>
+      <li><strong>Workbook</strong>: The Excel file.</li>
+      <li><strong>Worksheet</strong>: A sheet in the workbook.</li>
+      <li><strong>Range</strong>: A cell or group of cells.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>How to debug VBA code?</strong><br />
+Use breakpoints, the Immediate Window, and the <code class="language-plaintext highlighter-rouge">Debug.Print</code> method.</p>
+  </li>
+  <li>
+    <p><strong>How to run a macro?</strong><br />
+Use the Developer tab &gt; Macros or assign it to a button.</p>
+  </li>
+  <li><strong>VBA for data analysis?</strong><br />
+Automates repetitive tasks like importing data, formatting, and creating charts.</li>
+</ol>
+
+<hr />
+
+<h2 id="sql"><strong>SQL</strong></h2>
+<ol>
+  <li><strong>Primary key vs unique key?</strong>
+    <ul>
+      <li><strong>Primary Key</strong>: Ensures uniqueness and no <code class="language-plaintext highlighter-rouge">NULL</code> values.</li>
+      <li><strong>Unique Key</strong>: Ensures uniqueness but allows one <code class="language-plaintext highlighter-rouge">NULL</code> value.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>e.g. For a table of students, StudentID can be <code class="language-plaintext highlighter-rouge">primary key</code> (must-have, unique, cannot be null)<br />
+Student_name can be <code class="language-plaintext highlighter-rouge">unique key</code> also unique but can be null</p>
+
+<ol>
+  <li>
+    <p><strong>What is indexing?</strong><br />
+Improves query speed by creating a data structure for fast lookups on columns.</p>
+  </li>
+  <li>
+    <p><strong>What is normalization?</strong><br />
+Organizing data to reduce redundancy and ensure integrity by dividing tables logically.</p>
+  </li>
+  <li>
+    <p><strong>What is a foreign key?</strong><br />
+Links data between tables, enforcing that values in one table exist in another.<br />
+e.g. In another table called Course_Enrolment, can have <code class="language-plaintext highlighter-rouge">StudentID</code> columns referencing students taking this course</p>
+  </li>
+  <li>
+    <p><strong>INNER JOIN vs OUTER JOIN?</strong></p>
+    <ul>
+      <li><strong>INNER JOIN</strong>: Returns only matching rows.</li>
+      <li><strong>OUTER JOIN</strong>: Includes unmatched rows with <code class="language-plaintext highlighter-rouge">NULLs</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="r"><strong>R</strong></h2>
+<ol>
+  <li>
+    <p><strong>What is R used for?</strong><br />
+Statistical computing, data visualization, and machine learning.</p>
+  </li>
+  <li><strong>What are R’s data structures?</strong>
+    <ul>
+      <li><strong>Vectors</strong></li>
+      <li><strong>Matrices</strong></li>
+      <li><strong>Data Frames</strong></li>
+      <li><strong>Lists</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>How to install packages in R?</strong><br />
+Use <code class="language-plaintext highlighter-rouge">install.packages("package_name")</code> and <code class="language-plaintext highlighter-rouge">library(package_name)</code> to load.</p>
+  </li>
+  <li>
+    <p><strong>What is ggplot2?</strong><br />
+A popular R library for creating customizable visualizations.</p>
+  </li>
+  <li><strong>How to handle missing data?</strong><br />
+Use <code class="language-plaintext highlighter-rouge">na.omit()</code> to remove or <code class="language-plaintext highlighter-rouge">impute()</code> to fill missing values.</li>
+</ol>

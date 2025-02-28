@@ -1,25 +1,43 @@
 <h1 id="what-are-options">What are options?</h1>
 <h2 id="greeks">Greeks</h2>
 <h3 id="delta">Delta</h3>
-<p>0.5 for in the money
-close to 0 for OTM
-close to 1 for ITM</p>
+<ul>
+  <li>ATM call has delta 0.5</li>
+  <li>OTM call has delta 0</li>
+  <li>ITM call has delta 1</li>
+</ul>
+
+<p>Buy Call-Put Parity: $ C - P = S - K e^{-rT} $, buying a call and a shorting a put is 
+equivalent to buying the stock with borrowed money of $K e^{-rT} $</p>
+
+<p>Obviously</p>
+
+\[- C  + (P + S - K e^{-rT})= 0\]
+
+<p>So to hedge a short position in call, one would need to long the stock, buy a put, and borrow $K e^{-rT} $ of cash</p>
 
 <h3 id="gamma">Gamma</h3>
-<p>High means convex trade (delta moves faster than underlying)
-Highest for ATM
-Close to 0 for OTM and ITM</p>
+<p>High means convex trade (delta moves faster than underlying)</p>
+
+<p>Highest for ATM</p>
+
+<p>Close to 0 for OTM and ITM</p>
 
 <h3 id="vega">Vega</h3>
-<p>WRT Change in implied vol
-Same for calls and puts</p>
+<p>WRT Change in implied vol</p>
 
 <p>Gamma and vega usually always positive</p>
+
+<p>IV is usually higher for ITM and OTM options than ATM</p>
+
+<p>Shorting Vega means selling options and profiting from the risk premium
+(but faces an unlimited risk)</p>
 
 <h3 id="volatility">Volatility</h3>
 <p>Standard deviation of log return of some risky assets</p>
 
-<h2 id="equity-options">Equity Options</h2>
+<p>Stocks usually exhibit volatility clustering (volatile days follow volatile days)</p>
+
 <h3 id="brownian-motion">Brownian motion</h3>
 
 <p>1.B_0 = 0, for any  0,t1…,tn, increment Bt2 - Bt1, are independent<br />
@@ -96,7 +114,8 @@ swaps - agreement to exchange cash flow, priced on net present value
 futures - S0 * e^rT (no up-front payment)</p>
 
 <h3 id="garch-for-volatility-forecast">GARCH for volatility forecast</h3>
-<p>sig_t^2 = long_term_vol + a * eps_t-1^2 + b * sig_t-1^2</p>
+
+\[\sigma_t^2 = long_term_vol + a * \epsilon_{t-1}^2 + b * \sigma_{t-1}^2\]
 
 <p>long_term_vol: fixed constant<br />
 eps_t-1: residual derived from log return log(Rt/Rt-1) with mean removed<br />
