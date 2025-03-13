@@ -16,6 +16,8 @@ tags:
 ## ML Internship at Imperial's AI Lab [Deepwok](https://deepwok.github.io/)
 Apr - Sep 2024
 
+ethan
+
 ### Project Overview
 DNA language models apply techniques from natural language processing (NLP) to model biological sequences, treating DNA as a "language" to capture patterns, structures, and functional elements in genomic data. These models aim to understand and predict biological phenomena by encoding DNA sequences in a format that machine learning models can use.
 

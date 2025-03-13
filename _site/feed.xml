@@ -5,12 +5,12 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 28 Feb 2025 00:22:41 +0000</pubDate>
-    <lastBuildDate>Fri, 28 Feb 2025 00:22:41 +0000</lastBuildDate>
+    <pubDate>Thu, 13 Mar 2025 19:37:40 +0000</pubDate>
+    <lastBuildDate>Thu, 13 Mar 2025 19:37:40 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
-        <title>Brainteasers</title>
+        <title>Stochastic Simulation</title>
         <description>&lt;h1 id=&quot;chapter-1---introduction&quot;&gt;Chapter 1 - Introduction&lt;/h1&gt;
 
 &lt;p&gt;To keep things simple, we will only use the following Python libraries:&lt;/p&gt;
@@ -110,7 +110,9 @@ holds. Let us do this as follows. We will do some extra steps to demonstrate the
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;chapter-1%20copy_files/chapter-1%20copy_8_0.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;!-- ![png](chapter-1%20copy_files/chapter-1%20copy_8_0.png)
+ --&gt;
+&lt;p&gt;&lt;img src=&quot;plots/plot1.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;discrete-probability-on-a-computer&quot;&gt;Discrete Probability on a Computer&lt;/h3&gt;
 
@@ -139,7 +141,7 @@ In code this would correspond to the following.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;StemContainer object of 3 artists&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;chapter-1%20copy_files/chapter-1%20copy_11_1.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;plots/plot2.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can also easily plot its CDF.&lt;/p&gt;
 
@@ -151,7 +153,7 @@ In code this would correspond to the following.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[&amp;lt;matplotlib.lines.Line2D at 0x10d48d480&amp;gt;]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;chapter-1%20copy_files/chapter-1%20copy_13_1.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;plots/plot3.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -979,6 +981,8 @@ Instead, you can prompt it in terminal like this:&lt;/p&gt;
         <title>Machine Learning Internship</title>
         <description>&lt;h2 id=&quot;ml-internship-at-imperials-ai-lab-deepwok&quot;&gt;ML Internship at Imperial’s AI Lab &lt;a href=&quot;https://deepwok.github.io/&quot;&gt;Deepwok&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Apr - Sep 2024&lt;/p&gt;
+
+&lt;p&gt;ethan&lt;/p&gt;
 
 &lt;h3 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h3&gt;
 &lt;p&gt;DNA language models apply techniques from natural language processing (NLP) to model biological sequences, treating DNA as a “language” to capture patterns, structures, and functional elements in genomic data. These models aim to understand and predict biological phenomena by encoding DNA sequences in a format that machine learning models can use.&lt;/p&gt;
