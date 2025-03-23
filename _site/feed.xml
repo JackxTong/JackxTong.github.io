@@ -5,182 +5,13 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 17 Mar 2025 01:22:17 +0000</pubDate>
-    <lastBuildDate>Mon, 17 Mar 2025 01:22:17 +0000</lastBuildDate>
+    <pubDate>Sun, 23 Mar 2025 17:57:21 +0000</pubDate>
+    <lastBuildDate>Sun, 23 Mar 2025 17:57:21 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
-        <title>Stochastic Simulation</title>
-        <description>&lt;h1 id=&quot;chapter-1---introduction&quot;&gt;Chapter 1 - Introduction&lt;/h1&gt;
-
-&lt;p&gt;To keep things simple, we will only use the following Python libraries:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt; for numerical operations&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt; for plotting&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scipy&lt;/code&gt; for scientific computing (when needed)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Remember that our aim is to draw &lt;em&gt;random numbers&lt;/em&gt; from a given probability distribution. In most of the cases, our typical code will start with the following lines:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It is then a good idea to learn a few tricks about fixing random states. As we mentioned in the course, pseudorandom numbers often have a &lt;em&gt;seed&lt;/em&gt; that can be used to reproduce the same sequence of numbers. This is very useful for debugging purposes. For example, if you want to check that your code is working as expected, you can fix the seed and check that the output is the same as the one you obtained before. This is also useful for sharing your code with others, as they can reproduce your results.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt; has a function called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.random.seed()&lt;/code&gt; to fix the random state. The use of this global method to fix randomness is now being discouraged and it is recommended to use the methods of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Generator&lt;/code&gt; instance. Let us define one seed (Thanks to &lt;a href=&quot;https://scholar.google.co.uk/citations?user=Nv7DaiwAAAAJ&amp;amp;hl=en&quot;&gt;Ayman Boustati&lt;/a&gt; who made me aware of it).&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;default_rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rng&lt;/code&gt; we just defined, we can draw random numbers. Note that this replaces usual &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.random&lt;/code&gt; calls, so if you see example codes like these, you need to convert them (although they still would work and is acceptable in this course). We can now generate random numbers with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rng&lt;/code&gt;, say uniform below.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[0.77395605 0.43887844 0.85859792 0.69736803 0.09417735 0.97562235
- 0.7611397  0.78606431 0.12811363 0.45038594]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;estimating-pi&quot;&gt;Estimating $\pi$&lt;/h3&gt;
-
-&lt;p&gt;Let us now consider a demonstration of the Monte Carlo method to estimate $\pi$. As seen in the lecture, this can be achieved by placing a circle inside a square on $[-1, 1] \times [-1, 1]$ and then drawing random points inside the square. We can then check whether these points are in the circle by checking for every random $(x,y)$ point whether
-\begin{align&lt;em&gt;}
-x^2 + y^2 \leq 1
-\end{align&lt;/em&gt;}
-holds. Let us do this as follows. We will do some extra steps to demonstrate the convergence.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;default_rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# calling it again to have consistent generation in the cell
-&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;pi_estimate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;inside_circle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]])&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# for colouring
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outside_circle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]])&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# for colouring
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inside&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# for counting the number of points inside the circle
-&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;printIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# to draw from [-1, 1]
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# to draw from [-1, 1]
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;# We will see the reason for this in next weeks
-&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;inside&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;inside_circle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inside_circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;outside_circle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outside_circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-    &lt;span class=&quot;n&quot;&gt;pi_estimate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inside&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add_patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Rectangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inside_circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inside_circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outside_circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;outside_circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Samples&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# remove the box around the plot and xticks and yticks
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_xticks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_yticks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_xlim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_ylim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi_estimate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_xlim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Estimate of $\pi$&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_visible&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;!-- ![png](chapter-1%20copy_files/chapter-1%20copy_8_0.png)
- --&gt;
-&lt;p&gt;&lt;img src=&quot;plots/plot1.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;discrete-probability-on-a-computer&quot;&gt;Discrete Probability on a Computer&lt;/h3&gt;
-
-&lt;p&gt;Before we delve into complicated sampling problems, we can start with how to define, plot, and visualise discrete probability distributions. The best way to represent a discrete probability distribution on a computer is through its &lt;em&gt;states&lt;/em&gt; and &lt;em&gt;probabilities&lt;/em&gt;. For example, consider the following discrete probability distribution for a random variable $X$:
-\begin{align&lt;em&gt;}
-\mathbb{P}(X = 0) = 0.2, \quad \mathbb{P}(X = 1) = 0.3, \quad \mathbb{P}(X = 2) = 0.5.
-\end{align&lt;/em&gt;}
-We can represent this distribution as a list of states and a list of probabilities. For example, we can define the states as follows:
-\begin{align&lt;em&gt;}
-\mathsf{s} = [0, 1, 2]
-\end{align&lt;/em&gt;}
-and the probabilities as follows:
-\begin{align&lt;em&gt;}
-\mathsf{w} = [0.2, 0.3, 0.5].
-\end{align&lt;/em&gt;}
-In code this would correspond to the following.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;rng&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;default_rng&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;stem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;markerfmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ko&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linefmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;StemContainer object of 3 artists&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;plots/plot2.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can also easily plot its CDF.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;cdf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cumsum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ro-&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drawstyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;steps-post&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[&amp;lt;matplotlib.lines.Line2D at 0x10d48d480&amp;gt;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;plots/plot3.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000/2025/02/28/simulation/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025/02/28/simulation/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Brainteasers</title>
-        <description>
-</description>
-        <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000/2025/02/13/brainteasers/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025/02/13/brainteasers/</guid>
-        
-        <category>Quant Finance</category>
-        
-        
-      </item>
-    
-      <item>
         <title>Some Quant Finance</title>
-        <description>&lt;h1 id=&quot;what-are-options&quot;&gt;What are options?&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;some-quant-finance-inexhaustive-list-of-knowledge&quot;&gt;Some Quant Finance (inexhaustive list of knowledge)&lt;/h1&gt;
 &lt;h2 id=&quot;greeks&quot;&gt;Greeks&lt;/h2&gt;
 &lt;h3 id=&quot;delta&quot;&gt;Delta&lt;/h3&gt;
 &lt;ul&gt;
@@ -203,34 +34,53 @@ $$&lt;/div&gt;
 &lt;h3 id=&quot;gamma&quot;&gt;Gamma&lt;/h3&gt;
 &lt;p&gt;High means convex trade (delta moves faster than underlying)&lt;/p&gt;
 
-&lt;p&gt;Highest for ATM&lt;/p&gt;
+&lt;p&gt;Gamma is Highest for ATM, and Close to 0 for OTM and ITM options&lt;/p&gt;
 
-&lt;p&gt;Close to 0 for OTM and ITM&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Gamma scalping&lt;br /&gt;
+Use straddle (call + put) to bet on positive gamma&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Stock up -&amp;gt; delta up -&amp;gt; short stock at higher price to flatten delta, profit in mean time&lt;/p&gt;
+
+&lt;p&gt;Stock down -&amp;gt; delta down -&amp;gt; long stock at lower price, Profit&lt;/p&gt;
+
+&lt;p&gt;Each hedging brings profit. But can’t hedge at infinitely high frequencies&lt;/p&gt;
+
+&lt;p&gt;During volatile times, option would be even more volatile, need to hedge more frequently&lt;/p&gt;
 
 &lt;h3 id=&quot;vega&quot;&gt;Vega&lt;/h3&gt;
-&lt;p&gt;WRT Change in implied vol&lt;/p&gt;
+&lt;p&gt;W.R.T. Change in implied vol (IV)&lt;br /&gt;
+Gamma and vega usually always positive&lt;/p&gt;
 
-&lt;p&gt;Gamma and vega usually always positive&lt;/p&gt;
+&lt;p&gt;While B.S. assumes constant vol, to fit the option price under B.S. framework, one computes that the IV.&lt;/p&gt;
+
+&lt;p&gt;IV typically varies across both strike ($K$)  and expiry ($T$), forming a volatility surface ($\sigma(T, K)$). This is opposed to realized vol (RV), which is the fixed vol of the underlying, computed by sample SD of some assets over some window, or as a fraction of the absolute return of the asset.&lt;/p&gt;
+
+&lt;p&gt;Models for RV include GARCH, HAR, etc. primarily for risk purposes. &lt;br /&gt;
+Models for IV include Stoch Vol models like Heston, Kalman filter (refer &lt;a href=&quot;https://jackxtong.github.io/Blogs/Monte_Carlo/volatility.html&quot;&gt;here&lt;/a&gt; ), for trading the IV surface.&lt;/p&gt;
+
+&lt;p&gt;Note the reason we have an IV surface is to fit the BS framework under constant vol and lognormal assumption. The true asset need not be lognormal, and one can obtain a constant vol also matching all option prices, by noting that&lt;/p&gt;
+
+&lt;div class=&quot;kdmath&quot;&gt;$$
+p(x) \propto \frac{\partial^2}{\partial K^2} Call
+$$&lt;/div&gt;
+
+&lt;p&gt;Where we obtain the market-calibrated pdf of the asset $p(x)$. Then the vol is given by
+$Var(X)$ under this pdf.&lt;/p&gt;
+
+&lt;p&gt;Note vol $\sigma_t$ is not observable, and the VIX is not tradable (but VIX future is)&lt;/p&gt;
 
 &lt;p&gt;IV is usually higher for ITM and OTM options than ATM&lt;/p&gt;
 
 &lt;p&gt;Shorting Vega means selling options and profiting from the risk premium
 (but faces an unlimited risk)&lt;/p&gt;
 
-&lt;h3 id=&quot;volatility&quot;&gt;Volatility&lt;/h3&gt;
-&lt;p&gt;Standard deviation of log return of some risky assets&lt;/p&gt;
-
-&lt;p&gt;Stocks usually exhibit volatility clustering (volatile days follow volatile days)&lt;/p&gt;
-
 &lt;h3 id=&quot;brownian-motion&quot;&gt;Brownian motion&lt;/h3&gt;
 
-&lt;p&gt;1.B_0 = 0, for any  0,t1…,tn, increment Bt2 - Bt1, are independent&lt;br /&gt;
-2.stationary &amp;amp; normal: Bt+h - Bt depend on h only, Bt+h - Bt ~ N(0, h)&lt;br /&gt;
-3.Continuous path, B(t) cont over t&lt;/p&gt;
-
-&lt;h3 id=&quot;filtrationsigma-algebera-ft&quot;&gt;filtration/sigma algebera Ft:&lt;/h3&gt;
-
-&lt;p&gt;set of all events up to time t&lt;/p&gt;
+&lt;p&gt;1.$B_0 = 0$, for any  $0,t1…,tn$, increment $B_{t2} - B_{t1}$, are independent&lt;br /&gt;
+2.stationary &amp;amp; normal: $B_{t+h} - B_t \sim N(0, h)$ depends on h not t&lt;br /&gt;
+3.Continuous path over t&lt;/p&gt;
 
 &lt;h3 id=&quot;martingale&quot;&gt;Martingale&lt;/h3&gt;
 &lt;p&gt;1.Xt is Ft measurable&lt;br /&gt;
@@ -243,21 +93,12 @@ $$&lt;/div&gt;
 
 &lt;p&gt;Assumptions&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;Efficient market (all past information already reflected in current stock price)&lt;/li&gt;
-  &lt;li&gt;Stock price follows geometric brownian motion, or Log(St) is normal 
-(i.e. St = S0 exp( (mu - sig^2/2)t + sig Wt) )&lt;/li&gt;
+  &lt;li&gt;Efficient market (all past information is priced in)&lt;/li&gt;
+  &lt;li&gt;Stock price follows GBM, and Log(St) is normal&lt;/li&gt;
   &lt;li&gt;Volatility is assumed to be constant&lt;/li&gt;
   &lt;li&gt;Risk free rate constant and known&lt;/li&gt;
   &lt;li&gt;Arbitrage free&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h3 id=&quot;call-put-parity&quot;&gt;call-put parity&lt;/h3&gt;
-&lt;p&gt;C - P = S - Ke^-rT&lt;/p&gt;
-
-&lt;p&gt;If C is cheaper, can buy C sell P and also short the stock&lt;br /&gt;
-hedged against price and profit from selling P&lt;/p&gt;
-
-&lt;p&gt;Can also construct butterfly with the cheap C: Buy call at K1 and K3, short C at K2&lt;/p&gt;
 
 &lt;h3 id=&quot;volatility-smile&quot;&gt;Volatility smile&lt;/h3&gt;
 
@@ -266,101 +107,79 @@ hedged against price and profit from selling P&lt;/p&gt;
 &lt;p&gt;Cannot compute IV analytically, have to numerical (bisection or newton)&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Input requirement: max(S0 - Ke^-rT, 0) &amp;lt; call price &amp;lt; stock price&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Why does it exist?
+  &lt;li&gt;Why does it exist?
 ITM and OTM options are more in demand than ATM options
-Consumers buy in-the-money (K &amp;gt; S0e^rT) put as insurance for stock crash (payoff = K - ST)&lt;br /&gt;
-ITM put and OTM call has intrinsic value&lt;/p&gt;
-  &lt;/li&gt;
+Long equity funds buy OTM put (K &amp;lt; S) as insurance for stock crash, and speculators buy OTM calls (K &amp;gt; S) in hope of a large rise&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Fixed income products, how to price how to hedge&lt;/p&gt;
-
-&lt;p&gt;What are swaps&lt;/p&gt;
+&lt;p&gt;Note by call-put parity, C and P shares same vol, rise in price for either C or P pushes up the vol.&lt;/p&gt;
 
 &lt;h3 id=&quot;volatility-trading&quot;&gt;volatility trading&lt;/h3&gt;
 &lt;p&gt;During periods of high volatility, price fluctuations are more frequent, creating more opportunities for market makers to capture the bid-ask spread.&lt;br /&gt;
 At same time, higher risk too. To hedge, may need wider spread.&lt;br /&gt;
 Less volatile times (more liquidity), can have tight spread, less risk of unfavorable move&lt;/p&gt;
 
-&lt;p&gt;Trading gamma:&lt;br /&gt;
-Positive gamma, or convex option: 
-Stock up -&amp;gt; delta up -&amp;gt; option up even faster&lt;br /&gt;
-During volatile times, option would be even more volatile, need to hedge more frequently&lt;br /&gt;
-more opportunies for bid-ask spread, also can keep buying low and selling high&lt;/p&gt;
+&lt;p&gt;Generally, buying options is long vol, and selling options is short vol. Gamma scalping with a straddle can be seen as long vol with flat delta&lt;/p&gt;
 
-&lt;h3 id=&quot;options-futures-swaps&quot;&gt;options, futures, swaps&lt;/h3&gt;
-&lt;p&gt;forward-similar to future, but OTC, cannot be priced
-swaps - agreement to exchange cash flow, priced on net present value
-futures - S0 * e^rT (no up-front payment)&lt;/p&gt;
+&lt;h2 id=&quot;risk-management&quot;&gt;Risk Management&lt;/h2&gt;
 
-&lt;h3 id=&quot;garch-for-volatility-forecast&quot;&gt;GARCH for volatility forecast&lt;/h3&gt;
-
-&lt;div class=&quot;kdmath&quot;&gt;$$
-\sigma_t^2 = long_term_vol + a * \epsilon_{t-1}^2 + b * \sigma_{t-1}^2
-$$&lt;/div&gt;
-
-&lt;p&gt;long_term_vol: fixed constant&lt;br /&gt;
-eps_t-1: residual derived from log return log(Rt/Rt-1) with mean removed&lt;br /&gt;
-sig_t-1: previous volatility (can be implied volatility from Black-Scholes)&lt;/p&gt;
-
-&lt;h2 id=&quot;fixed-income&quot;&gt;Fixed Income&lt;/h2&gt;
-&lt;p&gt;interest rates often follow stochastic processes (e.g., Vasicek, CIR).&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Explain monte carlo
-run large number of senarios to aggregate, useful when analytical solutions are difficult&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Explain VaR for a portfolio&lt;br /&gt;
-VaR = Upper bound of Confidence interval for the loss&lt;br /&gt;
+&lt;h3 id=&quot;metrics&quot;&gt;Metrics&lt;/h3&gt;
+&lt;p&gt;VaR = Upper bound of Confidence interval for the loss&lt;br /&gt;
 ES = E[ loss | loss &amp;gt; VaR]&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
 
 &lt;p&gt;VaR ignores tail risk. One can say 99% confident Loss won’t exceed 1M, but within the 1% chance, don’t know if it’s 1M or 1B. ES addresses this&lt;/p&gt;
 
 &lt;p&gt;Also VAR is not subadditive: risk(A+B) &amp;lt; risk(A) + risk(B), which encourage diversification&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Pricing interest rate swaps.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;forward-similar to future, but OTC, cannot be priced
-swaps - agreement to exchange cash flow, priced on net present value
-futures - S0 * e^rT (no up-front payment)&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;How to hedge bond portfolio against interest rate risk using swaps&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What are the key risk factors in a fixed income portfolio?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;If 10-year Treasury yields rise by 20 bps, how would you expect corporate bond spreads to behave and why?&lt;/li&gt;
-  &lt;li&gt;A zero-coupon bond matures in 5 years. How does its price sensitivity to interest rates compare to a 5-year coupon bond?&lt;/li&gt;
-  &lt;li&gt;Bond portfolio sharpe ratio&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;fx&quot;&gt;Fx&lt;/h2&gt;
-
-&lt;h2 id=&quot;pricing-options-with-monte-carlo&quot;&gt;Pricing options with Monte Carlo&lt;/h2&gt;
-&lt;p&gt;Simulate payoff with Geometric brownian motion
-Then option price = e^-rT * (average payoff)&lt;/p&gt;
-
-&lt;p&gt;Used when Closed-form solutions are unavailable (e.g. multi-asset options)&lt;/p&gt;
-
-&lt;p&gt;Converges at O(1/sqrt(N)), very slow and expensive&lt;/p&gt;
-
-&lt;h2 id=&quot;risk-management&quot;&gt;Risk management&lt;/h2&gt;
+&lt;h3 id=&quot;pca--ica&quot;&gt;PCA / ICA&lt;/h3&gt;
 &lt;p&gt;Can use PCA to find which risks contribute to portfolio’s risk&lt;/p&gt;
 
 &lt;p&gt;Look for dimension of max variance, opposed to ICA which look for least entropy (least normal)&lt;/p&gt;
 
 &lt;p&gt;Also find which factors drive asset returns (macro factors)&lt;/p&gt;
+
+&lt;h2 id=&quot;questions-on-rates&quot;&gt;Questions on Rates&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;What are the key risk factors in a fixed income portfolio?&lt;br /&gt;
+Interest rate risk, credit risk, liquidity risk, inflation risk, and reinvestment risk.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If 10-year Treasury yields rise by 20 bps, how would you expect corporate bond spreads to behave and why?&lt;br /&gt;
+Long-term yield may be due to two reasons:
+    &lt;ol&gt;
+      &lt;li&gt;Investors expect long-term inflation, or central banks being hawkish (raise interest rate), hence demand higher yield&lt;/li&gt;
+      &lt;li&gt;Investors have confidence in economy, and shift into riskier assets (stocks), causing long term treasury bond price drop&lt;br /&gt;
+In first case, corporate bonds spread will widen – investors demand compensation for credit risk. Second case is the reverse – spreads will tighten&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A zero-coupon bond matures in 5 years. How does its price sensitivity to interest rates compare to a 5-year coupon bond?&lt;br /&gt;
+Zero-coupon bonds are more sensitive to interest rate changes, because all cash flows come at maturity.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to price exotic options with no closed-form solutions&lt;br /&gt;
+Price with Monte Carlo: Simulate payoff paths (usually geometric BM), and compute average payoffs.&lt;br /&gt;
+One might also use numerical integration, if the payoff density is known (say $p(x)$), then the avg payoff is just&lt;/p&gt;
+
+    &lt;div class=&quot;kdmath&quot;&gt;$$
+\int x p(x) dx
+$$&lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Which can be computed with trapizoidal rule, simpson rule or quadrature.&lt;/p&gt;
+
+&lt;p&gt;With MC integration this is evaluated as&lt;/p&gt;
+
+&lt;div class=&quot;kdmath&quot;&gt;$$
+E_q[x p(x)/q(x)]
+$$&lt;/div&gt;
+
+&lt;p&gt;By sampling from some proposal $q(x)$. More can be found &lt;a href=&quot;https://jackxtong.github.io/Blogs/Monte_Carlo/importance_sampling.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;MC converges at $O(1/\sqrt{N})$, very slow and expensive&lt;/p&gt;
+
+&lt;p&gt;It is better than numerical integration when dim of data &amp;gt; 6&lt;/p&gt;
 
 &lt;h3 id=&quot;inefficiency-vs-arbitrage-free&quot;&gt;Inefficiency vs Arbitrage-free&lt;/h3&gt;
 
@@ -371,12 +190,6 @@ Then option price = e^-rT * (average payoff)&lt;/p&gt;
 &lt;p&gt;Traders could exploit this pattern (inefficiency) by predicting future price movements, but this involves risk.&lt;/p&gt;
 
 &lt;p&gt;At the same time, the market could be arbitrage-free because there are no riskless opportunities to exploit inconsistencies in pricing.&lt;/p&gt;
-
-&lt;h3 id=&quot;itos-formula&quot;&gt;Ito’s formula&lt;/h3&gt;
-&lt;p&gt;Given dX = mu dt + sig dW&lt;/p&gt;
-
-&lt;p&gt;for some f(X):&lt;br /&gt;
-df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW&lt;/p&gt;
 </description>
         <pubDate>Wed, 12 Feb 2025 00:00:00 +0000</pubDate>
         <link>http://localhost:4000/2025/02/12/Finance/</link>
@@ -943,15 +756,13 @@ Instead, you can prompt it in terminal like this:&lt;/p&gt;
 
 &lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
 
-&lt;p&gt;I was placed into the Data Science team within Natwest Group Solutions&lt;/p&gt;
-
-&lt;p&gt;I was in charge of improving the machine learning classifier for the Suspicious Activity Reports (SAR) which the FinCrime team need to analyze.&lt;/p&gt;
+&lt;p&gt;I was placed into the Data Science team within Natwest Group Solutions, worked on improving the machine learning classifier for the Suspicious Activity Reports (SAR) which the FinCrime team need to analyze.&lt;/p&gt;
 
 &lt;h3 id=&quot;challenges&quot;&gt;Challenges&lt;/h3&gt;
 
 &lt;p&gt;The SAR are written by different humans, without a set strict format in general.&lt;/p&gt;
 
-&lt;p&gt;The purpose is to classify each SAR into a category (e.g. Money laundering, gambling, fraud etc), for further analysis. The old classifier used by the FinCrime team is a rule-based model (based on a bunch of if-elses), and can lead to low classication accuracy especially in terms of minority groups. A major challenge for using a machine learning model that can be trained for higher accuracy is the lack of labeled data. While the bank has several thousand SARs per month, human labor are needed to label each SAR with the right category, and we had only 50ish labeled SARs per month.&lt;/p&gt;
+&lt;p&gt;The purpose is to classify each SAR into a category (e.g. Money laundering, gambling, fraud etc), for further analysis. The old classifier used by the FinCrime team is a rule-based model (based on a bunch of if-elses), and can lead to low classication accuracy especially in terms of minority groups. A major challenge for using a machine learning model that can be trained for higher accuracy is the lack of labeled data.&lt;/p&gt;
 
 &lt;h3 id=&quot;my-approach&quot;&gt;My Approach&lt;/h3&gt;
 &lt;p&gt;We used LLM to generate synthetic SARs for each category. To ensure the quality, we employed clustering analysis by looking at the vector embeddings of the original data and the generated data, both fed into the embedding layer of an LLM into a (1546,) vector. We used PCA to find the two most important dimension for plotting the data vectors, computed average consine similarity for both old and new data, and also constructed a cosine-distance based KNN graph. All evidence suggested there isn’t a systematic difference between the old and the new synthetic text data.&lt;/p&gt;

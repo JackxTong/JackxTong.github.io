@@ -199,7 +199,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="what-are-options">What are options?</h1>
+				<h1 id="some-quant-finance-inexhaustive-list-of-knowledge">Some Quant Finance (inexhaustive list of knowledge)</h1>
 <h2 id="greeks">Greeks</h2>
 <h3 id="delta">Delta</h3>
 <ul>
@@ -222,34 +222,53 @@ $$</div>
 <h3 id="gamma">Gamma</h3>
 <p>High means convex trade (delta moves faster than underlying)</p>
 
-<p>Highest for ATM</p>
+<p>Gamma is Highest for ATM, and Close to 0 for OTM and ITM options</p>
 
-<p>Close to 0 for OTM and ITM</p>
+<ul>
+  <li>Gamma scalping<br />
+Use straddle (call + put) to bet on positive gamma</li>
+</ul>
+
+<p>Stock up -&gt; delta up -&gt; short stock at higher price to flatten delta, profit in mean time</p>
+
+<p>Stock down -&gt; delta down -&gt; long stock at lower price, Profit</p>
+
+<p>Each hedging brings profit. But can’t hedge at infinitely high frequencies</p>
+
+<p>During volatile times, option would be even more volatile, need to hedge more frequently</p>
 
 <h3 id="vega">Vega</h3>
-<p>WRT Change in implied vol</p>
+<p>W.R.T. Change in implied vol (IV)<br />
+Gamma and vega usually always positive</p>
 
-<p>Gamma and vega usually always positive</p>
+<p>While B.S. assumes constant vol, to fit the option price under B.S. framework, one computes that the IV.</p>
+
+<p>IV typically varies across both strike ($K$)  and expiry ($T$), forming a volatility surface ($\sigma(T, K)$). This is opposed to realized vol (RV), which is the fixed vol of the underlying, computed by sample SD of some assets over some window, or as a fraction of the absolute return of the asset.</p>
+
+<p>Models for RV include GARCH, HAR, etc. primarily for risk purposes. <br />
+Models for IV include Stoch Vol models like Heston, Kalman filter (refer <a href="https://jackxtong.github.io/Blogs/Monte_Carlo/volatility.html">here</a> ), for trading the IV surface.</p>
+
+<p>Note the reason we have an IV surface is to fit the BS framework under constant vol and lognormal assumption. The true asset need not be lognormal, and one can obtain a constant vol also matching all option prices, by noting that</p>
+
+<div class="kdmath">$$
+p(x) \propto \frac{\partial^2}{\partial K^2} Call
+$$</div>
+
+<p>Where we obtain the market-calibrated pdf of the asset $p(x)$. Then the vol is given by
+$Var(X)$ under this pdf.</p>
+
+<p>Note vol $\sigma_t$ is not observable, and the VIX is not tradable (but VIX future is)</p>
 
 <p>IV is usually higher for ITM and OTM options than ATM</p>
 
 <p>Shorting Vega means selling options and profiting from the risk premium
 (but faces an unlimited risk)</p>
 
-<h3 id="volatility">Volatility</h3>
-<p>Standard deviation of log return of some risky assets</p>
-
-<p>Stocks usually exhibit volatility clustering (volatile days follow volatile days)</p>
-
 <h3 id="brownian-motion">Brownian motion</h3>
 
-<p>1.B_0 = 0, for any  0,t1…,tn, increment Bt2 - Bt1, are independent<br />
-2.stationary &amp; normal: Bt+h - Bt depend on h only, Bt+h - Bt ~ N(0, h)<br />
-3.Continuous path, B(t) cont over t</p>
-
-<h3 id="filtrationsigma-algebera-ft">filtration/sigma algebera Ft:</h3>
-
-<p>set of all events up to time t</p>
+<p>1.$B_0 = 0$, for any  $0,t1…,tn$, increment $B_{t2} - B_{t1}$, are independent<br />
+2.stationary &amp; normal: $B_{t+h} - B_t \sim N(0, h)$ depends on h not t<br />
+3.Continuous path over t</p>
 
 <h3 id="martingale">Martingale</h3>
 <p>1.Xt is Ft measurable<br />
@@ -262,21 +281,12 @@ $$</div>
 
 <p>Assumptions</p>
 <ol>
-  <li>Efficient market (all past information already reflected in current stock price)</li>
-  <li>Stock price follows geometric brownian motion, or Log(St) is normal 
-(i.e. St = S0 exp( (mu - sig^2/2)t + sig Wt) )</li>
+  <li>Efficient market (all past information is priced in)</li>
+  <li>Stock price follows GBM, and Log(St) is normal</li>
   <li>Volatility is assumed to be constant</li>
   <li>Risk free rate constant and known</li>
   <li>Arbitrage free</li>
 </ol>
-
-<h3 id="call-put-parity">call-put parity</h3>
-<p>C - P = S - Ke^-rT</p>
-
-<p>If C is cheaper, can buy C sell P and also short the stock<br />
-hedged against price and profit from selling P</p>
-
-<p>Can also construct butterfly with the cheap C: Buy call at K1 and K3, short C at K2</p>
 
 <h3 id="volatility-smile">Volatility smile</h3>
 
@@ -285,101 +295,79 @@ hedged against price and profit from selling P</p>
 <p>Cannot compute IV analytically, have to numerical (bisection or newton)</p>
 
 <ul>
-  <li>
-    <p>Input requirement: max(S0 - Ke^-rT, 0) &lt; call price &lt; stock price</p>
-  </li>
-  <li>
-    <p>Why does it exist?
+  <li>Why does it exist?
 ITM and OTM options are more in demand than ATM options
-Consumers buy in-the-money (K &gt; S0e^rT) put as insurance for stock crash (payoff = K - ST)<br />
-ITM put and OTM call has intrinsic value</p>
-  </li>
+Long equity funds buy OTM put (K &lt; S) as insurance for stock crash, and speculators buy OTM calls (K &gt; S) in hope of a large rise</li>
 </ul>
 
-<p>Fixed income products, how to price how to hedge</p>
-
-<p>What are swaps</p>
+<p>Note by call-put parity, C and P shares same vol, rise in price for either C or P pushes up the vol.</p>
 
 <h3 id="volatility-trading">volatility trading</h3>
 <p>During periods of high volatility, price fluctuations are more frequent, creating more opportunities for market makers to capture the bid-ask spread.<br />
 At same time, higher risk too. To hedge, may need wider spread.<br />
 Less volatile times (more liquidity), can have tight spread, less risk of unfavorable move</p>
 
-<p>Trading gamma:<br />
-Positive gamma, or convex option: 
-Stock up -&gt; delta up -&gt; option up even faster<br />
-During volatile times, option would be even more volatile, need to hedge more frequently<br />
-more opportunies for bid-ask spread, also can keep buying low and selling high</p>
+<p>Generally, buying options is long vol, and selling options is short vol. Gamma scalping with a straddle can be seen as long vol with flat delta</p>
 
-<h3 id="options-futures-swaps">options, futures, swaps</h3>
-<p>forward-similar to future, but OTC, cannot be priced
-swaps - agreement to exchange cash flow, priced on net present value
-futures - S0 * e^rT (no up-front payment)</p>
+<h2 id="risk-management">Risk Management</h2>
 
-<h3 id="garch-for-volatility-forecast">GARCH for volatility forecast</h3>
-
-<div class="kdmath">$$
-\sigma_t^2 = long_term_vol + a * \epsilon_{t-1}^2 + b * \sigma_{t-1}^2
-$$</div>
-
-<p>long_term_vol: fixed constant<br />
-eps_t-1: residual derived from log return log(Rt/Rt-1) with mean removed<br />
-sig_t-1: previous volatility (can be implied volatility from Black-Scholes)</p>
-
-<h2 id="fixed-income">Fixed Income</h2>
-<p>interest rates often follow stochastic processes (e.g., Vasicek, CIR).</p>
-<ol>
-  <li>
-    <p>Explain monte carlo
-run large number of senarios to aggregate, useful when analytical solutions are difficult</p>
-  </li>
-  <li>
-    <p>Explain VaR for a portfolio<br />
-VaR = Upper bound of Confidence interval for the loss<br />
+<h3 id="metrics">Metrics</h3>
+<p>VaR = Upper bound of Confidence interval for the loss<br />
 ES = E[ loss | loss &gt; VaR]</p>
-  </li>
-</ol>
 
 <p>VaR ignores tail risk. One can say 99% confident Loss won’t exceed 1M, but within the 1% chance, don’t know if it’s 1M or 1B. ES addresses this</p>
 
 <p>Also VAR is not subadditive: risk(A+B) &lt; risk(A) + risk(B), which encourage diversification</p>
 
-<ol>
-  <li>Pricing interest rate swaps.</li>
-</ol>
-
-<p>forward-similar to future, but OTC, cannot be priced
-swaps - agreement to exchange cash flow, priced on net present value
-futures - S0 * e^rT (no up-front payment)</p>
-
-<ol>
-  <li>
-    <p>How to hedge bond portfolio against interest rate risk using swaps</p>
-  </li>
-  <li>
-    <p>What are the key risk factors in a fixed income portfolio?</p>
-  </li>
-  <li>If 10-year Treasury yields rise by 20 bps, how would you expect corporate bond spreads to behave and why?</li>
-  <li>A zero-coupon bond matures in 5 years. How does its price sensitivity to interest rates compare to a 5-year coupon bond?</li>
-  <li>Bond portfolio sharpe ratio</li>
-</ol>
-
-<h2 id="fx">Fx</h2>
-
-<h2 id="pricing-options-with-monte-carlo">Pricing options with Monte Carlo</h2>
-<p>Simulate payoff with Geometric brownian motion
-Then option price = e^-rT * (average payoff)</p>
-
-<p>Used when Closed-form solutions are unavailable (e.g. multi-asset options)</p>
-
-<p>Converges at O(1/sqrt(N)), very slow and expensive</p>
-
-<h2 id="risk-management">Risk management</h2>
+<h3 id="pca--ica">PCA / ICA</h3>
 <p>Can use PCA to find which risks contribute to portfolio’s risk</p>
 
 <p>Look for dimension of max variance, opposed to ICA which look for least entropy (least normal)</p>
 
 <p>Also find which factors drive asset returns (macro factors)</p>
+
+<h2 id="questions-on-rates">Questions on Rates</h2>
+<ul>
+  <li>
+    <p>What are the key risk factors in a fixed income portfolio?<br />
+Interest rate risk, credit risk, liquidity risk, inflation risk, and reinvestment risk.</p>
+  </li>
+  <li>If 10-year Treasury yields rise by 20 bps, how would you expect corporate bond spreads to behave and why?<br />
+Long-term yield may be due to two reasons:
+    <ol>
+      <li>Investors expect long-term inflation, or central banks being hawkish (raise interest rate), hence demand higher yield</li>
+      <li>Investors have confidence in economy, and shift into riskier assets (stocks), causing long term treasury bond price drop<br />
+In first case, corporate bonds spread will widen – investors demand compensation for credit risk. Second case is the reverse – spreads will tighten</li>
+    </ol>
+  </li>
+  <li>
+    <p>A zero-coupon bond matures in 5 years. How does its price sensitivity to interest rates compare to a 5-year coupon bond?<br />
+Zero-coupon bonds are more sensitive to interest rate changes, because all cash flows come at maturity.</p>
+  </li>
+  <li>
+    <p>How to price exotic options with no closed-form solutions<br />
+Price with Monte Carlo: Simulate payoff paths (usually geometric BM), and compute average payoffs.<br />
+One might also use numerical integration, if the payoff density is known (say $p(x)$), then the avg payoff is just</p>
+
+    <div class="kdmath">$$
+\int x p(x) dx
+$$</div>
+  </li>
+</ul>
+
+<p>Which can be computed with trapizoidal rule, simpson rule or quadrature.</p>
+
+<p>With MC integration this is evaluated as</p>
+
+<div class="kdmath">$$
+E_q[x p(x)/q(x)]
+$$</div>
+
+<p>By sampling from some proposal $q(x)$. More can be found <a href="https://jackxtong.github.io/Blogs/Monte_Carlo/importance_sampling.html">here</a></p>
+
+<p>MC converges at $O(1/\sqrt{N})$, very slow and expensive</p>
+
+<p>It is better than numerical integration when dim of data &gt; 6</p>
 
 <h3 id="inefficiency-vs-arbitrage-free">Inefficiency vs Arbitrage-free</h3>
 
@@ -390,12 +378,6 @@ Then option price = e^-rT * (average payoff)</p>
 <p>Traders could exploit this pattern (inefficiency) by predicting future price movements, but this involves risk.</p>
 
 <p>At the same time, the market could be arbitrage-free because there are no riskless opportunities to exploit inconsistencies in pricing.</p>
-
-<h3 id="itos-formula">Ito’s formula</h3>
-<p>Given dX = mu dt + sig dW</p>
-
-<p>for some f(X):<br />
-df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW</p>
 
 
                 <hr style="visibility: hidden;">
@@ -409,13 +391,6 @@ df = (dfdt + mu * dfdx + 1/2 sig^2 * d^fdx^2)dt + sig * dfdx dW</p>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2025/02/13/brainteasers/" data-toggle="tooltip" data-placement="top" title="Brainteasers">
-                        Next<br>
-                        <span>Brainteasers</span>
-                        </a>
-                    </li>
                     
                 </ul>
             </div>  
