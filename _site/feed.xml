@@ -5,9 +5,75 @@
     <description>Every failure is leading towards success.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 23 Mar 2025 17:57:21 +0000</pubDate>
-    <lastBuildDate>Sun, 23 Mar 2025 17:57:21 +0000</lastBuildDate>
+    <pubDate>Sat, 21 Feb 2026 15:19:10 +0000</pubDate>
+    <lastBuildDate>Sat, 21 Feb 2026 15:19:10 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>OpenClaw</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/openclaw/openclaw?tab=readme-ov-file&quot;&gt;Openclaw&lt;/a&gt; has been extremely popular this month, although it looks like a vibe-coding project done by one person with AI in 2 months, and is really just a wrapper of different LLMs that wants access to everything. But I wanted to give it a try nevertheless.&lt;/p&gt;
+
+&lt;p&gt;Given my very good experience with Gemini, I have tried to use gemini-2.0-flash as the model API for openclaw, but noticed there is no free allowance in Europe and UK. Unfortunately Gemini does offer free allowance, at the expense of customer’s data being used for training, but due to the privacy laws in Europe, (thank you so much AI regulator!) they can’t offer it here.&lt;/p&gt;
+
+&lt;p&gt;Then I tried to host Qwen3:8B locally using Ollama, and set up Openclaw to use it. Talking directly to Qwen on Ollama was fine, but it took Openclaw 30 seconds to respond to a single ‘Hi’ from me. I am guessing Openclaw is giving the model too much context to process, and my Mac is not good enough.&lt;/p&gt;
+
+&lt;p&gt;Finally I tried to switch to OpenRouter, which offers some free APIs. (Side note: why are there so many middlewares/wrappers? Afaik there is Groq, LiteLLM, OpenRouter, Langchain, Ollama, vLLM, and probably more.) gpt-oss-120b seems to be the best free API that OpenRouter offers. Optimisitcally, I gave Openclaw my Whatsapp, and gave it my first task: Send me an encouraging statement every 30 minutes. Unfortunately, Openclaw failed to do so due to some cron job error. And the thing with Openclaw is whenever it fails, it keeps infinitely re-trying, and it easily uses up the daily API allowance within minutes.&lt;/p&gt;
+
+&lt;p&gt;The other problem I noticed is it would actually reply to every incoming whatsapp message assuming someone is trying to give it a command (what a stupid default setting!). How awkward. The fix is to change the dmpolicy setting  from ‘pairing’ to ‘allowlist’. I appreciate the fact that Gemini knows everything about Openclaw without the need to google, even though Openclaw is really just a month-old project.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2026/02/20/openclaw/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026/02/20/openclaw/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Goals 2026</title>
+        <description>&lt;p&gt;Today is the day when I decide to put my goals down for the next year every year from now on.&lt;/p&gt;
+
+&lt;h2 id=&quot;last-years-review&quot;&gt;Last year’s review:&lt;/h2&gt;
+
+&lt;p&gt;Looking back on 2025, I had quite some achievements, but also had an unfortunate winter.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;I landed a good algo trading internship at an investment bank, and got my return offer&lt;/li&gt;
+  &lt;li&gt;I landed a good program to try for a trading role at a top prop firm, which I will attend in March 2026&lt;/li&gt;
+  &lt;li&gt;I completed my Masters degree with first class (I am very happy with myself, given that I have actually spent quite little effort on this, and a lot on internship / poker / having fun with friends!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Areas I am not happy with myself:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Trading&lt;/strong&gt; I started trading CFDs on Trading 212 in April 2025, which is legitimate since I wanted to get a feel of the market before starting my internship. I quickly tasted my first loss with the Trump tariffs. After putting only £300 in and losing all of it, I switched to stable investments. The market’s bull run from June to October gave some good PnL (around £600), but I fomo-traded on gold, especially seeing my friends who bought a lot of gold CFDs back in July at around 3200, and saw it rise to 4000+, I added a lot of positions in gold CFDs at 4100 and 4200, but witnessed its &lt;a href=&quot;https://www.theguardian.com/business/live/2025/oct/21/uk-borrowing-outstrips-forecasts-reeves-amazon-web-services-outage-resolved-bank-of-england-stock-markets-business-live-news&quot;&gt;biggest one-day fall since 2020&lt;/a&gt;. I holded on to my positions, hoping it could bounce back, but it did not (despite paying massive interests to keep the positions open), and I lost around £1000 in total. I finally gave up in December, as I wanted to focus on my ski trip in Europe (Dolomites and Zell-am-See). Unfortunatly gold quickly acvhieved new high, and I FOMOed again as soon as I was back from my trip. I also FOMOed on silver, seeing it quickly went to 120 and crashed to 100 becasue of market rumour on Welsh being more hawkish, I thought the market is over-panicking, and added more positions on silver. Apparently silver was a product that was offered too much leverage, and it went from 120 down to 80 in 24 hours. I was playing poker with my friends while my portfolio witnessed the &lt;a href=&quot;https://bulliontradingllc.com/blog/gold-and-silver-price-crash-january-2026/&quot;&gt;steepest single-day percentage decline of silver since March 1980&lt;/a&gt; and I lost around £3000 in 2 hours (I lost 2 buy-ins on poker on that same day!). From then on I have kept added positions into both gold, silver and Nasdaq-100 hoping for a quick bounce back to make up for some losses, but in the following 2 weeks, no bounce back happened, and I lost around £1000 more. I finally gave up on trading in Febuary 2026, and I am now down around £5000 in total.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Poker&lt;/strong&gt; Winter 25-26 was a bad season for me financially. Despite studying GTO and watching a lot of poker videos, I have almost never won against 2 of my loose-aggressive friends, who play in a pretty random style. I was still up in the casino until then, but there were really just 2 hands. One hand was when I had KK and 3 betted, someone called with T4 and had 2 pairs on a pretty dry board. I couldn’t do much but to call all-in at the river. The other time was I had QQ and 3 betted, someone called with JJ, and raised me all-in on a very dry board. I called, but he hit another J on the river. If we remove these 2 hands from the 21 buy-ins I have played, I would still be up overall. But I seem to have no luck throughout the season.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;relationship&lt;/strong&gt; Not the best either. I broke up with my girlfriend who I have dated for the past 3.5 years. I have never really liked my parents, and she has been the person I share everything with and been through every major college life moment with, and is really like a family to me. But life is life, I have to do my best to move on!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;this-years-goals&quot;&gt;This year’s goals:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Do not put more than £300 in CFDs, focus on stable investments. Make sure 60% of portfolio is in S&amp;amp;P 500 and Nasdaq-100.&lt;/li&gt;
+  &lt;li&gt;Work on my poker play, bring overall PnL to positive (As of now, I have played 21 times with an average buy in of £200, and down £427 overall)&lt;/li&gt;
+  &lt;li&gt;Post blogs here at least once per month&lt;/li&gt;
+  &lt;li&gt;Exercise regularly, keep weight below 68kg.&lt;/li&gt;
+  &lt;li&gt;Play football or basketball at least twice per month.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2026/02/20/goals-2026/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026/02/20/goals-2026/</guid>
+        
+        <category>notes</category>
+        
+        <category>goals</category>
+        
+        
+      </item>
     
       <item>
         <title>Some Quant Finance</title>
